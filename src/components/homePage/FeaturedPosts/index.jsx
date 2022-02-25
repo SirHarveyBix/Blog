@@ -6,7 +6,7 @@ function FeaturedPosts(props) {
 
   return (
     <Container>
-      <Title>Featured Posts</Title>
+      <Title>Posts mis en avant</Title>
       <PostsGrid posts={posts} />
     </Container>
   );

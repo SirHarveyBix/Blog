@@ -53,21 +53,21 @@ function ContactForm() {
   if (requestStatus === 'pending') {
     notification = {
       status: 'pending',
-      title: 'Sending message...',
-      message: 'Your message is on its way',
+      title: 'Envoi de votre message',
+      message: "Votre message est en cours d'envoi",
     };
   }
   if (requestStatus === 'success') {
     notification = {
       status: 'success',
-      title: 'Message sent.',
-      message: 'Message sent successfully',
+      title: 'Message envoyé.',
+      message: 'Votre a bien été envoyé',
     };
   }
   if (requestError) {
     notification = {
       status: 'error',
-      title: 'Error !',
+      title: 'Erreur !',
       message: requestError,
     };
   }
@@ -76,11 +76,11 @@ function ContactForm() {
     <>
       <Spacer />
       <Container>
-        <Title>Want to reach me ?</Title>
+        <Title>Vous voulez me contacter ?</Title>
         <form onSubmit={sendMessageHandler}>
           <Controls>
             <Control>
-              <Lablel htmlFor="email">Your Email</Lablel>
+              <Lablel htmlFor="email">Email</Lablel>
               <Input
                 type="email"
                 id="email"
@@ -90,7 +90,7 @@ function ContactForm() {
               />
             </Control>
             <Control>
-              <Lablel htmlFor="name">Your Name</Lablel>
+              <Lablel htmlFor="name">Nom</Lablel>
               <Input
                 tag={'input'}
                 type="text"
@@ -101,7 +101,7 @@ function ContactForm() {
               />
             </Control>
             <Control>
-              <Lablel htmlFor="message">Your Message</Lablel>
+              <Lablel htmlFor="message">Message</Lablel>
               <Input
                 as="textarea"
                 id="message"
@@ -114,7 +114,7 @@ function ContactForm() {
               />
             </Control>
             <Actions>
-              <Button>Send Message</Button>
+              <Button>Envoyer</Button>
             </Actions>
           </Controls>
           {notification && <Notification {...notification} />}
