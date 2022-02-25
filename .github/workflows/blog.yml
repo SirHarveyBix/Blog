@@ -26,7 +26,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
 
       - run: npm install -g yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install
 
       - name: Test if yarn build succeeds
         run: yarn build
