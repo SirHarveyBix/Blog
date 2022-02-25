@@ -25,6 +25,7 @@ jobs:
           node-version: 16.13.0
           github-token: ${{secrets.GITHUB_TOKEN}}
 
+      - run: npm install --unsafe-perm node-sass
       - run: npm install -g yarn
       - run: yarn install --frozen-lockfile
 
