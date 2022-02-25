@@ -15,5 +15,6 @@
     "source.fixAll.eslint": true
   },
   "eslint.packageManager": "yarn",
-  "eslint.quiet": true
+  "eslint.quiet": true,
+  "editor.formatOnSave": true
 }
