@@ -23,7 +23,7 @@ import Hero from '/components/homePage/Hero';
 
 Based on Linux, vercel is case sensitive, but first I ignored my mistake because the first code was perfectly working locaaly, then, when I realize my mistake, change the case, that was still not working:
 
-```sh
+```shell
 Module not found: Can't resolve "/components/homePage/Hero" in "/vercel/path0/blog/pages"
 ```
 

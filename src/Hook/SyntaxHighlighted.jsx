@@ -28,13 +28,6 @@ export default function SyntaxHighlighted({ code: props }) {
   SyntaxHighlighter.registerLanguage('sh', sh);
 
   return (
-    <SyntaxHighlighter
-      style={atomDark}
-      language={language}
-      children={children}
-      showLineNumbers
-      wrapLongLines
-      showInlineLineNumbers={false}
-    />
+    <SyntaxHighlighter style={atomDark} language={language} children={children} showLineNumbers />
   );
 }
