@@ -14,6 +14,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -25,6 +28,8 @@ jobs:
 
       - name: Test if yarn build succeeds
         run: yarn build
+        run: echo "👌 yarn builld proceeds successfully"
 
       - name: Test if ESLint succeeds
         run: yarn lint
+        run: echo "🥳 yarn lint proceeds successfully"
