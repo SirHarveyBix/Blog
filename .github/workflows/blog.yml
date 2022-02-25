@@ -1,4 +1,3 @@
-# This is a basic workflow to test if yarn builds
 name: Test if it builds
 
 # Controls when the action will run.
