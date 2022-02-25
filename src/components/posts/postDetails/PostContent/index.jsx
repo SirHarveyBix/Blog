@@ -12,6 +12,7 @@ function PostContent(props) {
   const customRenderers = {
     p(paragraph) {
       const { node } = paragraph;
+      console.log(node);
       if (node.children[0].tagName === 'img') {
         const image = node.children[0];
         return (
@@ -29,9 +30,7 @@ function PostContent(props) {
     },
 
     code(code) {
-      const { className, children } = code;
-
-      return <SyntaxHighlighted className={className} children={children} />;
+      return <SyntaxHighlighted code={code} />;
     },
   };
 

@@ -10,7 +10,7 @@ import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 
 export default function SyntaxHighlighted(props) {
   // makes build lighter
-  const { className, children } = props;
+  const { className, children } = props.code;
   const language = className.split('-')[1];
 
   SyntaxHighlighter.registerLanguage('js', js);
