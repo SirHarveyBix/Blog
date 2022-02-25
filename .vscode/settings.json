@@ -1,0 +1,19 @@
+{
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "trailing",
+  "editor.autoIndent": "full",
+  "prettier.useEditorConfig": false,
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.arrowParens": "always",
+  "prettier.trailingComma": "all",
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.packageManager": "yarn",
+  "eslint.quiet": true
+}
