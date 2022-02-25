@@ -12,7 +12,6 @@ function PostContent(props) {
   const customRenderers = {
     p(paragraph) {
       const { node } = paragraph;
-      console.log(node);
       if (node.children[0].tagName === 'img') {
         const image = node.children[0];
         return (
