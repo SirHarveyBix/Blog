@@ -10,20 +10,8 @@ import {
   Spacer,
 } from './style';
 import { useState, useEffect } from 'react';
+import sendContactData from '/src/lib/sendContactData';
 import Notification from '../Notification/index';
-
-const sendContactData = async (contactDetails) => {
-  const response = await fetch('/api/contact', {
-    method: 'POST',
-    body: JSON.stringify(contactDetails),
-    headers: { 'Content-Type': 'application/json' },
-  });
-
-  const data = await response.json();
-  if (!response.ok) {
-    throw new Error(data.message || 'Something went wrong');
-  }
-};
 
 function ContactForm() {
   const [requestStatus, setRequestStatus] = useState();
@@ -47,7 +35,6 @@ function ContactForm() {
   const sendMessageHandler = async (event) => {
     event.preventDefault();
     setRequestStatus('pending');
-
     try {
       await sendContactData({ ...entertedData });
       setRequestStatus('success');

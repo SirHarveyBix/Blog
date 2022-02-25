@@ -11,13 +11,13 @@ isFeatured: true
 As you now know this website is deployed on vercel,
 and for some reason, I F\*\*k'd up a single import :
 
-```js
+```jsx
 import Hero from '/components/HomePage/Hero';
 ```
 
 This was working perfectly fine on Local, but not on deploy, because the right import must have been :
 
-```js
+```jsx
 import Hero from '/components/homePage/Hero';
 ```
 
