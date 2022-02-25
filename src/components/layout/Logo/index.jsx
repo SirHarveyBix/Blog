@@ -1,6 +1,6 @@
 import { Container } from './style';
 
 function Logo() {
-  return <Container>Next website </Container>;
+  return <Container>Gui' Blog</Container>;
 }
 export default Logo;

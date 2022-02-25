@@ -2,22 +2,8 @@ import { Container, Picture, Content, Spacer } from './style';
 import PostHeader from '../PostHeader/index';
 import ReactMarkdown from 'react-markdown';
 
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
-// makes build lighter
-import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
-import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
-import graphql from 'react-syntax-highlighter/dist/cjs/languages/prism/graphql';
-import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash';
-import git from 'react-syntax-highlighter/dist/cjs/languages/prism/git';
-import shell from 'react-syntax-highlighter/dist/cjs/languages/prism/shell-session';
-
-SyntaxHighlighter.registerLanguage('js', js);
-SyntaxHighlighter.registerLanguage('css', css);
-SyntaxHighlighter.registerLanguage('graphql', graphql);
-SyntaxHighlighter.registerLanguage('bash', bash);
-SyntaxHighlighter.registerLanguage('git', git);
-SyntaxHighlighter.registerLanguage('shell', shell);
+import SyntaxHighlighted from '/src/Hook/SyntaxHighlighted';
+// import SyntaxHighlighted from '../../../../Hook/SyntaxHighlighted';
 
 function PostContent(props) {
   const { post } = props;
@@ -43,13 +29,7 @@ function PostContent(props) {
     },
 
     code(code) {
-      const { className, children } = code;
-      const language = className.split('-')[1];
-      return (
-        <>
-          <SyntaxHighlighter style={atomDark} language={language} children={children} />
-        </>
-      );
+      return <SyntaxHighlighted code={code} />;
     },
   };
 

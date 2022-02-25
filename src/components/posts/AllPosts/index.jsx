@@ -6,7 +6,7 @@ function AllPosts(props) {
     <>
       <Spacer />
       <Container>
-        <Title>All Posts</Title>
+        <Title>Tout les Posts</Title>
         <PostsGrid posts={props.posts} />
       </Container>
     </>
