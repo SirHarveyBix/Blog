@@ -1,5 +1,5 @@
-import AllPosts from '../../components/posts/AllPosts';
-import { getAllPosts } from '../../lib/posts-utils';
+import AllPosts from '/src/components/posts/AllPosts';
+import { getAllPosts } from '/src/lib/posts-utils';
 import Head from 'next/head';
 
 function AllPostsPage(props) {
