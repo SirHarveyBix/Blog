@@ -15,7 +15,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: List files in the repository
-      - run: |
+        run: |
           ls ${{ github.workspace }}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
@@ -27,9 +27,9 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - name: Test if yarn build succeeds
-        run: yarn build
+      - run: yarn build
         run: echo "👌 yarn builld proceeds successfully"
 
       - name: Test if ESLint succeeds
-        run: yarn lint
+      - run: yarn lint
         run: echo "🥳 yarn lint proceeds successfully"
