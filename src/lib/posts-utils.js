@@ -4,6 +4,10 @@ import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
+export const getPostsFiles = () => {
+  return fs.readdirSync(postsDirectory);
+};
+
 export const getPostData = (postIdentifier) => {
   const postSlug = postIdentifier.replace(/\.md$/, '');
 
@@ -15,10 +19,6 @@ export const getPostData = (postIdentifier) => {
   const postData = { slug: postSlug, ...data, content };
 
   return postData;
-};
-
-export const getPostsFiles = () => {
-  return fs.readdirSync(postsDirectory);
 };
 
 export const getAllPosts = () => {
