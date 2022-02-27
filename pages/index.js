@@ -1,7 +1,9 @@
 import FeaturedPosts from '/src/components/homePage/FeaturedPosts/index';
 import Hero from '/src/components/homePage/Hero/index';
-import { getFeaturedPosts } from '/src/lib/posts-utils';
 import Head from 'next/head';
+
+import { FEATURED_POSTS } from '../src/graphql/query';
+import { client } from '../src/lib/apolloClient';
 
 function HomePage(props) {
   const { posts } = props;
@@ -18,8 +20,10 @@ function HomePage(props) {
   );
 }
 
-export function getStaticProps() {
-  const featuredPosts = getFeaturedPosts();
+export async function getStaticProps() {
+  const { data } = await client.query({ query: FEATURED_POSTS });
+  const featuredPosts = data.getFeaturedPosts;
+
   return {
     props: {
       posts: featuredPosts,

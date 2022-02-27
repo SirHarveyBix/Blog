@@ -3,12 +3,14 @@
   "env": {
     "node": true
   },
-  "parser": "@babel/eslint-parser",
+  "parser": "module:@babel/eslint-parser",
   "extends": [
+    "next/babel",
     "plugin:@next/next/recommended",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended"
   ],
+  "plugins": ["graphql"],
   "rules": {
     "react/no-unescaped-entities": "off",
     "react/no-children-prop": "off",

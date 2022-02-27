@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from 'apollo-server';
 
 const typeDefs = gql`
   type Post {
@@ -17,7 +17,7 @@ const typeDefs = gql`
   type Query {
     getAllPosts: [Post!]!
     getFeaturedPosts: [Post!]!
-    getPost(data: PostInput): Post!
+    getPostDetails(data: PostInput): Post
   }
 `;
 
