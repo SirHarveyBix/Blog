@@ -1,5 +1,4 @@
-import { gql } from 'apollo-server-express';
-// import { gql } from '@apollo/client';
+import { gql } from '@apollo/client';
 
 export const POST_PART = gql`
   fragment PostParts on Post {

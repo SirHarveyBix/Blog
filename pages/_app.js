@@ -1,9 +1,13 @@
 import Layout from '/src/components/layout/Layout';
 import GlobalStyle from '/src/components/GlobalStyle/index';
 import Head from 'next/head';
+// import { ApolloProvider } from '@apollo/client';
 
 function MyApp({ Component, pageProps }) {
+  // const apolloClient = useApollo(pageProps.initialApolloState);
+
   return (
+    // <ApolloProvider client={apolloClient}>
     <>
       <GlobalStyle />
       <Layout>
@@ -13,6 +17,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout>
     </>
+    // </ApolloProvider>
   );
 }
 

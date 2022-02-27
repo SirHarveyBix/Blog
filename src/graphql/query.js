@@ -11,9 +11,9 @@ export const ALL_POSTS = gql`
   ${POST_PART}
 `;
 
-export const POST = gql`
-  query GetPost($data: PostInput) {
-    getPost(data: $data) {
+export const POST_DETAILS = gql`
+  query GetPostDetails($data: PostInput) {
+    getPostDetails(data: $data) {
       ...PostParts
       content
     }

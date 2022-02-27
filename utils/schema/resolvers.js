@@ -23,10 +23,10 @@ export const getPostData = (postIdentifier) => {
 
 export const resolvers = {
   Query: {
-    getPost(_parent, { data: { slug } }) {
+    getPostDetails(_parent, { data: { slug } }) {
       const postSlug = slug.replace(/\.md$/, '');
 
-      const filePath = path.join(postsDirectory, `${postSlug}.md`);
+      const filePath = path.join(postsDirectory, `${slug}.md`);
 
       const fileContent = fs.readFileSync(filePath, 'utf-8');
 

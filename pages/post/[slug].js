@@ -1,6 +1,8 @@
 import PostContent from '/src/components/posts/postDetails/PostContent';
-import { getPostData, getPostsFiles } from '/src/lib/posts-utils';
 import Head from 'next/head';
+import { client } from '../../src/lib/apolloClient';
+import { POST_DETAILS, ALL_POSTS } from '../../src/graphql/query';
+// import { getPostData } from '/src/lib/posts-utils';
 
 function PostDetailPage(props) {
   const { post } = props;
@@ -19,24 +21,39 @@ function PostDetailPage(props) {
 export function getStaticProps(context) {
   const { params } = context;
   const { slug } = params;
-  const postDetail = getPostData(slug);
+
+  const { data } = client
+    .query({
+      query: POST_DETAILS,
+      variables: {
+        data: {
+          slug,
+        },
+      },
+    })
+    .then((response) => {
+      console.log(response.data.getPostDetails);
+      return response.data.getPostDetails;
+    });
+
+  console.log(data);
 
   return {
     props: {
-      post: postDetail,
+      post: data,
     },
     revalidate: 600,
   };
 }
 
-export function getStaticPaths() {
-  const postFilenames = getPostsFiles();
-  const slugs = postFilenames.map((filename) => filename.replace(/\.md$/, ''));
+export async function getStaticPaths() {
+  const { data } = await client.query({ query: ALL_POSTS });
+  const allPosts = data.getAllPosts;
 
   return {
-    paths: slugs.map((slug) => ({
+    paths: allPosts.map((post) => ({
       params: {
-        slug: slug,
+        slug: post.slug,
       },
     })),
     fallback: 'blocking',
