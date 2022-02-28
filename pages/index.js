@@ -23,14 +23,7 @@ function HomePage(props) {
 
 export async function getStaticProps() {
   const apolloClient = initializeApollo();
-  const { data } = await client.query({
-    query: FEATURED_POSTS,
-    variables: {
-      data: {
-        isFeatured: true,
-      },
-    },
-  });
+  const { data } = await client.query({ query: FEATURED_POSTS });
 
   return {
     props: {

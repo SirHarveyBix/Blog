@@ -11,20 +11,20 @@ export const ALL_POSTS = gql`
   ${POST_PART}
 `;
 
-export const POST_DETAILS = gql`
-  query GetPostDetails($data: PostInput) {
-    getPostDetails(data: $data) {
-      content
+export const FEATURED_POSTS = gql`
+  query GetFeaturedPosts {
+    getFeaturedPosts {
+      isFeatured
       ...PostParts
     }
   }
   ${POST_PART}
 `;
 
-export const FEATURED_POSTS = gql`
-  query GetFeaturedPosts($data: isFeaturedPostInput) {
-    getFeaturedPosts(data: $data) {
-      isFeatured
+export const POST_DETAILS = gql`
+  query GetPostDetails($data: PostInput) {
+    getPostDetails(data: $data) {
+      content
       ...PostParts
     }
   }

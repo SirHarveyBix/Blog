@@ -30,7 +30,7 @@ const resolvers = {
       });
       return allPosts;
     },
-    getFeaturedPosts(_parent, { data: { isFeatured } }) {
+    getFeaturedPosts() {
       const postFiles = getPostsFiles();
       const allPosts = postFiles.map((postFile) => {
         return getPostData(postFile);
