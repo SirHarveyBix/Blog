@@ -1,6 +1,7 @@
 import AllPosts from '/src/components/posts/AllPosts';
-import { getAllPosts } from '/src/lib/posts-utils';
 import Head from 'next/head';
+import { ALL_POSTS } from '../../src/graphql/query';
+import { client } from '../api/graphql';
 
 function AllPostsPage(props) {
   const { posts } = props;
@@ -16,12 +17,12 @@ function AllPostsPage(props) {
   );
 }
 
-export function getStaticProps() {
-  const allPosts = getAllPosts();
+export async function getStaticProps() {
+  const { data } = await client.query({ query: ALL_POSTS });
 
   return {
     props: {
-      posts: allPosts,
+      posts: data.getAllPosts,
     },
   };
 }

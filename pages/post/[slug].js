@@ -1,6 +1,7 @@
 import PostContent from '/src/components/posts/postDetails/PostContent';
-import { getPostData, getPostsFiles } from '/src/lib/posts-utils';
 import Head from 'next/head';
+import { POST_DETAILS, ALL_POSTS } from '../../src/graphql/query';
+import { client } from '../api/graphql';
 
 function PostDetailPage(props) {
   const { post } = props;
@@ -16,27 +17,35 @@ function PostDetailPage(props) {
   );
 }
 
-export function getStaticProps(context) {
+export async function getStaticProps(context) {
   const { params } = context;
   const { slug } = params;
-  const postDetail = getPostData(slug);
+
+  const { data } = await client.query({
+    query: POST_DETAILS,
+    variables: {
+      data: {
+        slug,
+      },
+    },
+  });
 
   return {
     props: {
-      post: postDetail,
+      post: data.getPostDetails,
     },
     revalidate: 600,
   };
 }
 
-export function getStaticPaths() {
-  const postFilenames = getPostsFiles();
-  const slugs = postFilenames.map((filename) => filename.replace(/\.md$/, ''));
+export async function getStaticPaths() {
+  const { data } = await client.query({ query: ALL_POSTS });
+  const allPosts = data.getAllPosts;
 
   return {
-    paths: slugs.map((slug) => ({
+    paths: allPosts.map((post) => ({
       params: {
-        slug: slug,
+        slug: post.slug,
       },
     })),
     fallback: 'blocking',

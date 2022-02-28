@@ -1,7 +1,10 @@
 import FeaturedPosts from '/src/components/homePage/FeaturedPosts/index';
 import Hero from '/src/components/homePage/Hero/index';
-import { getFeaturedPosts } from '/src/lib/posts-utils';
 import Head from 'next/head';
+
+import { FEATURED_POSTS } from '../src/graphql/query';
+import { initializeApollo } from '../utils/apolloClient';
+import { client } from './api/graphql';
 
 function HomePage(props) {
   const { posts } = props;
@@ -18,12 +21,16 @@ function HomePage(props) {
   );
 }
 
-export function getStaticProps() {
-  const featuredPosts = getFeaturedPosts();
+export async function getStaticProps() {
+  const apolloClient = initializeApollo();
+  const { data } = await client.query({ query: FEATURED_POSTS });
+
   return {
     props: {
-      posts: featuredPosts,
+      initialApolloState: apolloClient.cache.extract(),
+      posts: data.getFeaturedPosts,
     },
+    revalidate: 1,
     // revalidate : 1800 ? if not, next wil Never Re build after deployment
   };
 }

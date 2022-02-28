@@ -3,7 +3,6 @@ import PostHeader from '../PostHeader/index';
 import ReactMarkdown from 'react-markdown';
 
 import SyntaxHighlighted from '/src/Hook/SyntaxHighlighted';
-// import SyntaxHighlighted from '../../../../Hook/SyntaxHighlighted';
 
 function PostContent(props) {
   const { post } = props;
