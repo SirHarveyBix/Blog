@@ -1,8 +1,8 @@
 import { ApolloServer } from 'apollo-server';
 import { applyMiddleware } from 'graphql-middleware';
 import { makeExecutableSchema } from '@graphql-tools/schema';
-import resolvers from './schema/resolvers';
-import typeDefs from './schema/typeDefs';
+import resolvers from './schema/resolvers.js';
+import typeDefs from './schema/typeDefs.js';
 
 const schema = applyMiddleware(makeExecutableSchema({ typeDefs, resolvers }));
 
