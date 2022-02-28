@@ -1,9 +1,12 @@
 import FeaturedPosts from '/src/components/homePage/FeaturedPosts/index';
 import Hero from '/src/components/homePage/Hero/index';
 import Head from 'next/head';
-
+import { ApolloServer } from 'apollo-server';
+import typeDefs from '../utils/schema/typeDefs';
+import resolvers from '../utils/schema/resolvers';
 import { FEATURED_POSTS } from '../src/graphql/query';
-import { client } from '../src/lib/apolloClient';
+import { initializeApollo } from '../utils/apolloClient';
+import { client } from './api/graphql';
 
 function HomePage(props) {
   const { posts } = props;
@@ -21,13 +24,32 @@ function HomePage(props) {
 }
 
 export async function getStaticProps() {
-  const { data } = await client.query({ query: FEATURED_POSTS });
-  const featuredPosts = data.getFeaturedPosts;
+  const server = new ApolloServer({
+    ssrMode: typeof window === 'undefined',
+    resolvers,
+    typeDefs,
+  });
+
+  server.listen().then(({ url }) => {
+    console.log(`🚀  Server ready at ${url}`);
+  });
+
+  const apolloClient = initializeApollo();
+  const { data } = await client.query({
+    query: FEATURED_POSTS,
+    variables: {
+      data: {
+        isFeatured: true,
+      },
+    },
+  });
 
   return {
     props: {
-      posts: featuredPosts,
+      initialApolloState: apolloClient.cache.extract(),
+      posts: data.getFeaturedPosts,
     },
+    revalidate: 1,
     // revalidate : 1800 ? if not, next wil Never Re build after deployment
   };
 }

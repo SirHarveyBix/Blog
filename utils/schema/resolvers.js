@@ -21,21 +21,8 @@ export const getPostData = (postIdentifier) => {
   return postData;
 };
 
-export const resolvers = {
+const resolvers = {
   Query: {
-    getPostDetails(_parent, { data: { slug } }) {
-      const postSlug = slug.replace(/\.md$/, '');
-
-      const filePath = path.join(postsDirectory, `${slug}.md`);
-
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-
-      const { data, content } = matter(fileContent);
-      const postData = { slug: postSlug, ...data, content };
-
-      return postData;
-    },
-
     getAllPosts() {
       const postFiles = getPostsFiles();
       const allPosts = postFiles.map((postFile) => {
@@ -43,16 +30,26 @@ export const resolvers = {
       });
       return allPosts;
     },
-
-    getFeaturedPosts() {
+    getFeaturedPosts(_parent, { data: { isFeatured } }) {
       const postFiles = getPostsFiles();
       const allPosts = postFiles.map((postFile) => {
         return getPostData(postFile);
       });
+
       const sortedPosts = allPosts.sort((postA, postB) => (postA.date > postB.date ? -1 : 1));
       const featuredPosts = sortedPosts.filter((post) => post.isFeatured);
 
       return featuredPosts;
+    },
+    getPostDetails(_parent, { data: { slug } }) {
+      const filePath = path.join(postsDirectory, `${slug}.md`);
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+
+      const postSlug = slug.replace(/\.md$/, '');
+      const { data, content } = matter(fileContent);
+      const postData = { slug: postSlug, ...data, content };
+
+      return postData;
     },
   },
 };

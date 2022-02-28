@@ -1,8 +1,7 @@
 import PostContent from '/src/components/posts/postDetails/PostContent';
 import Head from 'next/head';
-import { client } from '../../src/lib/apolloClient';
 import { POST_DETAILS, ALL_POSTS } from '../../src/graphql/query';
-// import { getPostData } from '/src/lib/posts-utils';
+import { client } from '../api/graphql';
 
 function PostDetailPage(props) {
   const { post } = props;
@@ -18,29 +17,22 @@ function PostDetailPage(props) {
   );
 }
 
-export function getStaticProps(context) {
+export async function getStaticProps(context) {
   const { params } = context;
   const { slug } = params;
 
-  const { data } = client
-    .query({
-      query: POST_DETAILS,
-      variables: {
-        data: {
-          slug,
-        },
+  const { data } = await client.query({
+    query: POST_DETAILS,
+    variables: {
+      data: {
+        slug,
       },
-    })
-    .then((response) => {
-      console.log(response.data.getPostDetails);
-      return response.data.getPostDetails;
-    });
-
-  console.log(data);
+    },
+  });
 
   return {
     props: {
-      post: data,
+      post: data.getPostDetails,
     },
     revalidate: 600,
   };

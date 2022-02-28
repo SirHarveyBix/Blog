@@ -13,11 +13,14 @@ const typeDefs = gql`
   input PostInput {
     slug: String
   }
+  input isFeaturedPostInput {
+    isFeatured: Boolean
+  }
   # Query :
   type Query {
     getAllPosts: [Post!]!
-    getFeaturedPosts: [Post!]!
-    getPostDetails(data: PostInput): Post
+    getFeaturedPosts(data: isFeaturedPostInput): [Post!]!
+    getPostDetails(data: PostInput): Post!
   }
 `;
 

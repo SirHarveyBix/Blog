@@ -1,7 +1,7 @@
 import AllPosts from '/src/components/posts/AllPosts';
 import Head from 'next/head';
 import { ALL_POSTS } from '../../src/graphql/query';
-import { client } from '../../src/lib/apolloClient';
+import { client } from '../api/graphql';
 
 function AllPostsPage(props) {
   const { posts } = props;
@@ -19,11 +19,10 @@ function AllPostsPage(props) {
 
 export async function getStaticProps() {
   const { data } = await client.query({ query: ALL_POSTS });
-  const allPosts = data.getAllPosts;
 
   return {
     props: {
-      posts: allPosts,
+      posts: data.getAllPosts,
     },
   };
 }

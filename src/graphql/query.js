@@ -4,8 +4,8 @@ import { POST_PART } from './fragments';
 export const ALL_POSTS = gql`
   query GetAllPosts {
     getAllPosts {
-      ...PostParts
       isFeatured
+      ...PostParts
     }
   }
   ${POST_PART}
@@ -14,16 +14,17 @@ export const ALL_POSTS = gql`
 export const POST_DETAILS = gql`
   query GetPostDetails($data: PostInput) {
     getPostDetails(data: $data) {
-      ...PostParts
       content
+      ...PostParts
     }
   }
   ${POST_PART}
 `;
 
 export const FEATURED_POSTS = gql`
-  query GetFeaturedPosts {
-    getFeaturedPosts {
+  query GetFeaturedPosts($data: isFeaturedPostInput) {
+    getFeaturedPosts(data: $data) {
+      isFeatured
       ...PostParts
     }
   }
