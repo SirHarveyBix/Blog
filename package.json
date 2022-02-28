@@ -3,7 +3,7 @@
   "private": true,
   "npmClient": "yarn",
   "scripts": {
-    "gql": "nodemon utils/apolloCLient.js",
+    "gql": "nodemon utils/server.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
