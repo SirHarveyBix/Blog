@@ -62,6 +62,7 @@ const resolvers = {
         process.env.NODE_ENV === 'production' ? process.env.DB_PROD : process.env.DB_DEV
       }?retryWrites=true&w=majority`;
 
+      console.log(connectionString);
       let client;
       try {
         client = await MongoClient.connect(connectionString);
