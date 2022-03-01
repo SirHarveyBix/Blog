@@ -8,6 +8,9 @@
     "yarn": "1.x"
   },
   "dependencies": {
-    "dotenv": "^16.0.0"
+    "apollo-server": "^3.6.3",
+    "dotenv": "^16.0.0",
+    "graphql-middleware": "^6.1.15",
+    "graphql-tool": "^1.0.0"
   }
 }
