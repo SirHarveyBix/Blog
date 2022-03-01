@@ -7,10 +7,7 @@ module.exports = (phase) => {
       reactStrictMode: true,
       extends: ['plugin:@next/next/recommended'],
       env: {
-        mongodb_username: process.env.USERNAME,
-        mongodb_password: process.env.PASSWORD,
-        mongodb_clustername: process.env.CLUSTER,
-        mongodb_database: process.env.DB_DEV,
+        URI: 'http://localhost:4000/',
       },
     };
   }
@@ -18,10 +15,7 @@ module.exports = (phase) => {
     reactStrictMode: true,
     extends: ['plugin:@next/next/recommended'],
     env: {
-      mongodb_username: process.env.USERNAME,
-      mongodb_password: process.env.PASSWORD,
-      mongodb_clustername: process.env.CLUSTER,
-      mongodb_database: process.env.DB_PROD,
+      URI: 'https://blog-gql-backend.herokuapp.com/',
     },
   };
 };
