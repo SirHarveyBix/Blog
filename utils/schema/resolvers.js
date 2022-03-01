@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { MongoClient } from 'mongodb';
+import 'dotenv/config';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -50,6 +52,31 @@ const resolvers = {
       const postData = { slug: postSlug, ...data, content };
 
       return postData;
+    },
+  },
+  Mutation: {
+    async sendMessage(_parent, { data: newMessage }, context, info) {
+      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${
+        process.env.CLUSTER
+      }.wyrhp.mongodb.net/${process.env.DB_DEV || process.env.DB_PROD}?retryWrites=true&w=majority`;
+
+      let client;
+      try {
+        client = await MongoClient.connect(connectionString);
+      } catch (error) {
+        return error;
+      }
+
+      const db = client.db();
+      try {
+        const result = await db.collection('messages').insertOne(newMessage);
+        newMessage.id = result.insertedId;
+      } catch (error) {
+        return error;
+      }
+
+      client.close();
+      return newMessage;
     },
   },
 };

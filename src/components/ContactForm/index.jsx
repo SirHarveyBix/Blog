@@ -16,7 +16,7 @@ import Notification from '../Notification/index';
 function ContactForm() {
   const [requestStatus, setRequestStatus] = useState();
   const [requestError, setRequestError] = useState();
-  const [entertedData, setEnteredData] = useState({
+  const [enteredData, setEnteredData] = useState({
     name: '',
     email: '',
     message: '',
@@ -36,7 +36,7 @@ function ContactForm() {
     event.preventDefault();
     setRequestStatus('pending');
     try {
-      await sendContactData({ ...entertedData });
+      await sendContactData({ ...enteredData });
       setRequestStatus('success');
       setEnteredData({
         name: '',
@@ -85,8 +85,8 @@ function ContactForm() {
                 type="email"
                 id="email"
                 required
-                value={entertedData.email}
-                onChange={(event) => setEnteredData({ ...entertedData, email: event.target.value })}
+                value={enteredData.email}
+                onChange={(event) => setEnteredData({ ...enteredData, email: event.target.value })}
               />
             </Control>
             <Control>
@@ -96,8 +96,8 @@ function ContactForm() {
                 type="text"
                 id="name"
                 required
-                value={entertedData.name}
-                onChange={(event) => setEnteredData({ ...entertedData, name: event.target.value })}
+                value={enteredData.name}
+                onChange={(event) => setEnteredData({ ...enteredData, name: event.target.value })}
               />
             </Control>
             <Control>
@@ -107,9 +107,9 @@ function ContactForm() {
                 id="message"
                 rows="5"
                 required
-                value={entertedData.message}
+                value={enteredData.message}
                 onChange={(event) =>
-                  setEnteredData({ ...entertedData, message: event.target.value })
+                  setEnteredData({ ...enteredData, message: event.target.value })
                 }
               />
             </Control>

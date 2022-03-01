@@ -30,3 +30,14 @@ export const POST_DETAILS = gql`
   }
   ${POST_PART}
 `;
+
+export const SEND_MESSAGE = gql`
+  mutation SendMessage($data: SendMessageInput) {
+    sendMessage(data: $data) {
+      name
+      email
+      message
+      id
+    }
+  }
+`;
