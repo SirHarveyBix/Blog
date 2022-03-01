@@ -1,4 +1,5 @@
-import { MongoClient } from 'mongodb';
+import { SEND_MESSAGE } from '../../src/graphql/query';
+import { client } from './graphql';
 
 export default async function handler(request, response) {
   if (request.method === 'POST') {
@@ -16,30 +17,19 @@ export default async function handler(request, response) {
       return;
     }
 
-    const newMessage = { email, name, message };
-
-    let client;
-
-    const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.wyrhp.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
-
+    let newMessage = { email, name, message };
     try {
-      client = await MongoClient.connect(connectionString);
+      newMessage = await client.mutate({
+        mutation: SEND_MESSAGE,
+        variables: { data: newMessage },
+      });
     } catch (error) {
       response.status(500).json({ message: 'could not connect to mongo DB !' });
       return;
     }
 
-    const db = client.db();
-
-    try {
-      const result = await db.collection('messages').insertOne(newMessage);
-      newMessage.id = result.insertedId;
-    } catch (error) {
-      response.status(500).json({ message: 'Storing message Faild !' });
-      return;
-    }
-
-    client.close();
-    response.status(201).json({ message: 'Successfully Sent !', message: newMessage });
+    response
+      .status(201)
+      .json({ message: 'Successfully Sent !', message: newMessage.data.sendMessage.id });
   }
 }

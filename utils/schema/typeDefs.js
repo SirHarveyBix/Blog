@@ -10,15 +10,30 @@ const typeDefs = gql`
     isFeatured: Boolean
     content: String
   }
+  type NewMessage {
+    id: ID
+    name: String
+    email: String
+    message: String
+  }
+
   input PostInput {
     slug: String
   }
-
+  input SendMessageInput {
+    name: String
+    email: String
+    message: String
+  }
   # Query :
   type Query {
     getAllPosts: [Post!]!
     getFeaturedPosts: [Post!]!
     getPostDetails(data: PostInput): Post!
+    # getMessage: SendMessage
+  }
+  type Mutation {
+    sendMessage(data: SendMessageInput): NewMessage
   }
 `;
 
