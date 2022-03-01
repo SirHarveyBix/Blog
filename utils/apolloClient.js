@@ -8,9 +8,9 @@ let apolloClient;
 
 export function createApolloClient() {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined', // set to true for SSR
+    ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: `${URI}`,
+      uri: `${process.env.DEVELOPMENT_URI}`,
     }),
     cache: new InMemoryCache({}),
   });
