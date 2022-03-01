@@ -3,6 +3,10 @@
   "name": "utils",
   "version": "1.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "16.x",
+    "yarn": "1.x"
+  },
   "dependencies": {
     "dotenv": "^16.0.0"
   }

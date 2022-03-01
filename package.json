@@ -3,7 +3,8 @@
   "private": true,
   "npmClient": "yarn",
   "engines": {
-    "node": "16.x"
+    "node": "16.x",
+    "yarn": "1.x"
   },
   "scripts": {
     "gql": "nodemon utils/server.js",
