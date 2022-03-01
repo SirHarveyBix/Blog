@@ -13,9 +13,10 @@ const server = new ApolloServer({
   plugins: [ApolloServerPluginInlineTrace()],
 });
 
-server.listen().then(({ url }) => {
+const port = process.env.PORT || 4000;
+server.listen(port).then((port) => {
   console.info(`
-    🚀  Server is ready at ${url}
+    🚀  Server is ready at ${port}
     📭  Query at https://studio.apollographql.com/dev
   `);
 });

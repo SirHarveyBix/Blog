@@ -58,7 +58,6 @@ const resolvers = {
     async sendMessage(_parent, { data: newMessage }, context, info) {
       const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${process.env.DB_DEV}?retryWrites=true&w=majority`;
 
-      console.log(connectionString);
       let client;
       try {
         client = await MongoClient.connect(connectionString);
