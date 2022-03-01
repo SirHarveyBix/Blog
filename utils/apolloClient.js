@@ -1,13 +1,16 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { useMemo } from 'react';
 
+const URI =
+  process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_URI : process.env.DEVELOPMENT_URI;
+
 let apolloClient;
 
 export function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined', // set to true for SSR
     link: new HttpLink({
-      uri: 'http://localhost:4000/api/graphql', //back-end endpoint
+      uri: `${URI}`,
     }),
     cache: new InMemoryCache({}),
   });
