@@ -2,13 +2,6 @@
   "name": "blog",
   "private": true,
   "npmClient": "yarn",
-  "engines": {
-    "node": "16.x",
-    "yarn": "1.x"
-  },
-  "browser": {
-    "os": false
-  },
   "scripts": {
     "gql": "cd utils && nodemon server.js",
     "dev": "next dev",
