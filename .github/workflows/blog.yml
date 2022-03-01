@@ -23,8 +23,11 @@ jobs:
       - run: npm install -g yarn
       - run: yarn install --frozen-lockfile
 
-      - name: Launch back end & Test if yarn build succeeds
-        run: yarn node utils/server.js && yarn build && echo "👌 yarn build proceeds successfully"
+      - name: Test if yarn build succeeds
+        run: yarn build && echo "👌 yarn build proceeds successfully"
 
       - name: Test if ESLint succeeds
         run: yarn lint && echo "🥳 ESLint proceeds successfully"
+
+    # - name: Deploy to Heroku
+    #   uses: AkhileshNS/heroku-deploy@v3.12.12

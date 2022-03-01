@@ -2,6 +2,9 @@
   "name": "blog",
   "private": true,
   "npmClient": "yarn",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "gql": "nodemon utils/server.js",
     "dev": "next dev",
