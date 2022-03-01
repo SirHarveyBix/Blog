@@ -45,6 +45,12 @@ heroku config:set PROJECT_PATH=projects/nodejs/frontend --app your-app
 ```
 
 _pointing to what you want to be a project root here :_ utils
-_set it directly to your Herku setup_
+_set it directly to your Heroku setup_
+
+```
+heroku logs --app your-app
+```
+
+_in case any depployement fails, you may wanna know why ?_
 
 Deploy your project to Heroku, and give a thank to [timanovsky](https://github.com/timanovsky) for his [article](https://medium.com/@timanovsky/heroku-buildpack-to-support-deployment-from-subdirectory-e743c2c838dd)
