@@ -8,9 +8,6 @@
     "node": "16.x",
     "yarn": "1.x"
   },
-  "scripts": {
-    "start": "node server.js"
-  },
   "dependencies": {
     "apollo-server": "^3.6.3",
     "dotenv": "^16.0.0",
