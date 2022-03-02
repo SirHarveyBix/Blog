@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
 import PostContent from '/src/components/posts/postDetails/PostContent';
+import { ALL_POSTS, POST_DETAILS } from '/src/graphql/query';
 
-import { ALL_POSTS, POST_DETAILS } from '../../src/graphql/query';
 import { client } from '../api/graphql';
 
 function PostDetailPage(props) {

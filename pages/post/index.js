@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
 import AllPosts from '/src/components/posts/AllPosts';
+import { ALL_POSTS } from '/src/graphql/query';
 
-import { ALL_POSTS } from '../../src/graphql/query';
 import { client } from '../api/graphql';
 
 function AllPostsPage(props) {
