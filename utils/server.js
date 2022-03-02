@@ -14,9 +14,10 @@ const server = new ApolloServer({
 });
 
 const port = process.env.PORT || 4000;
-server.listen(port).then((port) => {
+server.listen({ port: port }).then((port) => {
   console.info(`
-    🚀  Server is ready at ${port}
+    🚀  Server is ready at ${{ port: port }}
     📭  Query at https://studio.apollographql.com/dev
+    🎬  Ready for ${process.env.NOD_ENV} 
   `);
 });
