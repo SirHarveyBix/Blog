@@ -2,12 +2,6 @@
   "name": "blog",
   "private": true,
   "npmClient": "yarn",
-  "useWorkspaces": true,
-  "workspaces": {
-    "packages": [
-      "utils"
-    ]
-  },
   "scripts": {
     "gql": "cd utils && nodemon server.js",
     "dev": "next dev",
@@ -23,7 +17,6 @@
     "graphql-tools": "^8.2.0",
     "micro-cors": "^0.1.1",
     "next": "12.1.0",
-    "nodemon": "^2.0.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-is": "^17.0.2",
@@ -33,6 +26,7 @@
     "typescript": "^4.5.5"
   },
   "devDependencies": {
+    "nodemon": "^2.0.15",
     "@babel/core": "^7.17.5",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-react": "^7.16.7",
