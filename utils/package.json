@@ -1,6 +1,6 @@
 {
+  "name": "@blog/utils",
   "type": "module",
-  "name": "utils",
   "version": "1.0.0",
   "license": "MIT",
   "npmClient": "yarn",
@@ -29,7 +29,11 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "os-browserify": "^0.3.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "aws4": "^1.11.0",
+    "bson-ext": "^4.0.2",
+    "encoding": "^0.1.13",
+    "kerberos": "^2.0.0",
+    "mongodb-client-encryption": "^2.0.0"
   }
 }

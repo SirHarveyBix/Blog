@@ -3,9 +3,9 @@
   "env": {
     "node": true
   },
-  "parser": "module:@babel/eslint-parser",
+  "parser": "@babel/eslint-parser",
   "extends": [
-    "next/babel",
+    // "next/babel",
     "plugin:@next/next/recommended",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended"
@@ -14,6 +14,8 @@
   "rules": {
     "react/no-unescaped-entities": "off",
     "react/no-children-prop": "off",
+    // "unused-imports/no-unused-imports-ts": "warn",
+    // "simple-import-sort/imports": "warn",
     "prettier/prettier": [
       "error",
       {
