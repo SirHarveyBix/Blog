@@ -56,7 +56,10 @@ const resolvers = {
   },
   Mutation: {
     async sendMessage(_parent, { data: newMessage }, context, info) {
-      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${process.env.DB_DEV}?retryWrites=true&w=majority`;
+      const isOnProd =
+        process.env.NODE_ENV === 'production' ? process.env.DB_PROD : process.env.DB_DEV;
+
+      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
 
       let client;
       try {

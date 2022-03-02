@@ -17,9 +17,8 @@ const server = new ApolloServer({
 const port = process.env.PORT || 4000;
 server.listen({ port: port }).then((port) => {
   console.info(`
-    🚀  Server is ready at ${port}
+    🚀  Server is ready at port ${JSON.stringify(port.port)}
     📭  Query at https://studio.apollographql.com/dev
-    🎬  Ready for mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${process.env.DB_DEV}?retryWrites=true&w=majority
-    👑  process.env.PORT = ${process.env.PORT}
+    🎬  Ready for ${process.env.NODE_ENV} 
   `);
 });

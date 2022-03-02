@@ -15,7 +15,7 @@ module.exports = (phase) => {
     reactStrictMode: true,
     extends: ['plugin:@next/next/recommended'],
     env: {
-      URI: 'https://blog-gql-backend.herokuapp.com/',
+      URI: 'https://bloggql.herokuapp.com/',
     },
   };
 };
