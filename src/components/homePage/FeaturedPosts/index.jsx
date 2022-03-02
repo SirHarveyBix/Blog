@@ -1,5 +1,5 @@
-import { Container, Title } from './style';
 import PostsGrid from '../../posts/PostsGrid';
+import { Container, Title } from './style';
 
 function FeaturedPosts(props) {
   const { posts } = props;

@@ -1,5 +1,5 @@
-import { Container, Title, Spacer } from './style';
 import PostsGrid from '../PostsGrid/index';
+import { Container, Spacer, Title } from './style';
 
 function AllPosts(props) {
   return (

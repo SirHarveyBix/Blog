@@ -1,8 +1,9 @@
-import { Container, Picture, Content, Spacer } from './style';
-import PostHeader from '../PostHeader/index';
 import ReactMarkdown from 'react-markdown';
 
 import SyntaxHighlighted from '/src/Hook/SyntaxHighlighted';
+
+import PostHeader from '../PostHeader/index';
+import { Container, Content, Picture, Spacer } from './style';
 
 function PostContent(props) {
   const { post } = props;

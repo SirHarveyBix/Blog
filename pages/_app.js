@@ -1,7 +1,8 @@
-import Layout from '/src/components/layout/Layout';
-import GlobalStyle from '/src/components/GlobalStyle/index';
-import Head from 'next/head';
 import { ApolloProvider } from '@apollo/client';
+import Head from 'next/head';
+
+import GlobalStyle from '/src/components/GlobalStyle/index';
+import Layout from '/src/components/layout/Layout';
 import { useApollo } from '/src/lib/apolloClient';
 
 function MyApp({ Component, pageProps }) {

@@ -1,17 +1,19 @@
+import { useEffect, useState } from 'react';
+
+import sendContactData from '/src/lib/sendContactData';
+
+import Notification from '../Notification/index';
 import {
-  Container,
   Actions,
   Button,
+  Container,
   Control,
   Controls,
   Input,
-  Title,
   Lablel,
   Spacer,
+  Title,
 } from './style';
-import { useState, useEffect } from 'react';
-import sendContactData from '/src/lib/sendContactData';
-import Notification from '../Notification/index';
 
 function ContactForm() {
   const [requestStatus, setRequestStatus] = useState();

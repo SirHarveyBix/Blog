@@ -1,4 +1,4 @@
-import { Container, Picture, Title, Description, Spacer } from './style';
+import { Container, Description, Picture, Spacer, Title } from './style';
 
 function Hero() {
   return (

@@ -5,17 +5,19 @@
   },
   "parser": "@babel/eslint-parser",
   "extends": [
-    // "next/babel",
+    "next",
     "plugin:@next/next/recommended",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["graphql"],
+  "plugins": ["graphql", "simple-import-sort", "react-hooks"],
   "rules": {
     "react/no-unescaped-entities": "off",
     "react/no-children-prop": "off",
-    // "unused-imports/no-unused-imports-ts": "warn",
-    // "simple-import-sort/imports": "warn",
+
+    "simple-import-sort/imports": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "prettier/prettier": [
       "error",
       {

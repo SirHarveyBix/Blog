@@ -1,14 +1,15 @@
+import Link from 'next/link';
+
 import {
-  ListContainer,
   Container,
-  PictureContainer,
-  Picture,
   Content,
-  Title,
   DateContainer,
   Excerpt,
+  ListContainer,
+  Picture,
+  PictureContainer,
+  Title,
 } from './style';
-import Link from 'next/link';
 
 function PostItem(props) {
   const { title, image, excerpt, date, slug } = props.post;

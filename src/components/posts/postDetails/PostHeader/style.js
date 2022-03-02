@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Image from 'next/image';
+import styled from 'styled-components';
 
 export const Header = styled.header`
   padding-bottom: var(--size-8);
