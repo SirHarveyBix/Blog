@@ -1,8 +1,8 @@
+import dotenv from 'dotenv/config';
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
 import { MongoClient } from 'mongodb';
-import dotenv from 'dotenv/config';
+import path from 'path';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 

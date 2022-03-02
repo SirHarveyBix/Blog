@@ -1,10 +1,12 @@
-import { ApolloServer } from 'apollo-server';
-import { applyMiddleware } from 'graphql-middleware';
+import 'dotenv/config';
+
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { ApolloServer } from 'apollo-server';
+import { ApolloServerPluginInlineTrace } from 'apollo-server-core';
+import { applyMiddleware } from 'graphql-middleware';
+
 import resolvers from './schema/resolvers.js';
 import typeDefs from './schema/typeDefs.js';
-import { ApolloServerPluginInlineTrace } from 'apollo-server-core';
-import 'dotenv/config';
 
 const schema = applyMiddleware(makeExecutableSchema({ typeDefs, resolvers }));
 
