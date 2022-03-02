@@ -2,8 +2,8 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { applyMiddleware } from 'graphql-middleware';
 
-import resolvers from '/utils/schema/resolvers';
-import typeDefs from '/utils/schema/typeDefs';
+import resolvers from '/utils/schema/resolvers.js';
+import typeDefs from '/utils/schema/typeDefs.js';
 
 export const config = { api: { bodyParser: false } };
 
