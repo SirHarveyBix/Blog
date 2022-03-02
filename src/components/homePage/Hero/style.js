@@ -25,7 +25,7 @@ export const Title = styled.h1`
   color: var(--color-grey-300);
 `;
 
-export const Description = styled.p`
+export const Description = styled.div`
   font-size: var(--size-6);
   color: var(--color-grey-200);
   width: 90%;

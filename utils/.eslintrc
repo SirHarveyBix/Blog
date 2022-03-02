@@ -1,0 +1,32 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "parser": "module:@babel/eslint-parser",
+  "extends": ["plugin:prettier/recommended"],
+  "plugins": ["graphql"],
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "react/no-children-prop": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "printWidth": 100
+      }
+    ]
+  },
+  "settings": {
+    "import/core-modules": ["path"],
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { MongoClient } from 'mongodb';
-import 'dotenv/config';
+import dotenv from 'dotenv/config';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -56,9 +56,10 @@ const resolvers = {
   },
   Mutation: {
     async sendMessage(_parent, { data: newMessage }, context, info) {
-      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${
-        process.env.CLUSTER
-      }.wyrhp.mongodb.net/${process.env.DB_DEV || process.env.DB_PROD}?retryWrites=true&w=majority`;
+      const isOnProd =
+        process.env.NODE_ENV === 'production' ? process.env.DB_PROD : process.env.DB_DEV;
+
+      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
 
       let client;
       try {

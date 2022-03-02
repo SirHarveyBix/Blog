@@ -3,7 +3,7 @@
   "private": true,
   "npmClient": "yarn",
   "scripts": {
-    "gql": "nodemon utils/server.js",
+    "gql": "cd utils && nodemon server.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -11,17 +11,12 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.9",
-    "apollo-server": "^3.6.3",
     "dotenv": "^16.0.0",
     "graphql": "^16.3.0",
-    "graphql-config": "^4.1.0",
     "graphql-middleware": "^6.1.15",
     "graphql-tools": "^8.2.0",
-    "gray-matter": "^4.0.3",
     "micro-cors": "^0.1.1",
-    "mongodb": "^4.4.0",
     "next": "12.1.0",
-    "next-http-proxy-middleware": "^1.2.2",
     "nodemon": "^2.0.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -49,6 +44,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "os-browserify": "^0.3.0",
     "prettier": "^2.5.1"
   }
 }

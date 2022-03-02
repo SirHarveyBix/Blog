@@ -5,9 +5,9 @@ let apolloClient;
 
 export function createApolloClient() {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined', // set to true for SSR
+    ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: 'http://localhost:4000/api/graphql', //back-end endpoint
+      uri: 'http://localhost:4000/',
     }),
     cache: new InMemoryCache({}),
   });

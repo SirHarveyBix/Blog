@@ -11,6 +11,6 @@ const schema = applyMiddleware(makeExecutableSchema({ typeDefs, resolvers }));
 export const client = new ApolloClient({
   ssrMode: typeof window === 'undefined',
   schema,
-  uri: 'http://localhost:4000/api/graphql',
+  uri: `${process.env.URI}`,
   cache: new InMemoryCache(),
 });
