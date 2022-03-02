@@ -7,9 +7,15 @@ export function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: 'http://localhost:4000/',
+      uri: `${process.env.URI}`,
     }),
     cache: new InMemoryCache({}),
+    defaultOptions: {
+      query: {
+        // set to 'cache-only' to see if SSR works
+        fetchPolicy: 'cache-first',
+      },
+    },
   });
 }
 export function initializeApollo(initialState = null) {

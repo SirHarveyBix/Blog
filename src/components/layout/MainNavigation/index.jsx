@@ -1,6 +1,7 @@
-import { Header, Container, List } from './style';
-import Logo from '../Logo/index';
 import Link from 'next/link';
+
+import Logo from '../Logo/index';
+import { Container, Header, List } from './style';
 
 function MainNavigation() {
   return (

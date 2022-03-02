@@ -1,5 +1,5 @@
-import { Container } from './style';
 import PostItem from '../PostItem/index';
+import { Container } from './style';
 
 function PostsGrid(props) {
   const { posts } = props;

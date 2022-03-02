@@ -1,5 +1,6 @@
-import ContactForm from '/src/components/ContactForm/index';
 import Head from 'next/head';
+
+import ContactForm from '/src/components/ContactForm/index';
 
 function ContactPage() {
   return (

@@ -1,5 +1,4 @@
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
-require('dotenv').config();
 
 module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {

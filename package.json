@@ -2,6 +2,12 @@
   "name": "blog",
   "private": true,
   "npmClient": "yarn",
+  "useWorkspaces": true,
+  "workspaces": {
+    "packages": [
+      "utils"
+    ]
+  },
   "scripts": {
     "gql": "cd utils && nodemon server.js",
     "dev": "next dev",
@@ -44,7 +50,8 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "os-browserify": "^0.3.0",
-    "prettier": "^2.5.1"
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.5.1",
+    "root": "^3.2.0"
   }
 }

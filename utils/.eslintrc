@@ -3,10 +3,11 @@
   "env": {
     "node": true
   },
-  "parser": "module:@babel/eslint-parser",
+  "parser": "@babel/eslint-parser",
   "extends": ["plugin:prettier/recommended"],
-  "plugins": ["graphql"],
+  "plugins": ["graphql", "simple-import-sort"],
   "rules": {
+    "simple-import-sort/imports": "warn",
     "react/no-unescaped-entities": "off",
     "react/no-children-prop": "off",
     "prettier/prettier": [
