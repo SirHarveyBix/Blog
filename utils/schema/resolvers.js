@@ -32,6 +32,15 @@ const resolvers = {
       });
       return allPosts;
     },
+    searchQuery(_parent, { filter: { input } }) {
+      const postFiles = getPostsFiles();
+      const allPosts = postFiles.map((postFile) => {
+        return getPostData(postFile);
+      });
+
+      const requestedPosts = allPosts.filter((post) => JSON.stringify(post).includes(input));
+      return requestedPosts;
+    },
     getFeaturedPosts() {
       const postFiles = getPostsFiles();
       const allPosts = postFiles.map((postFile) => {
