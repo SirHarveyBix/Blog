@@ -17,7 +17,7 @@ module.exports = (phase) => {
     extends: ['plugin:@next/next/recommended'],
     eslint: { dirs: ['src'] },
     env: {
-      URI: process.env.PRODUCTION_URI || '{{ secrets.PRODUCTION_URI }}',
+      URI: process.env.PRODUCTION_URI || secrets.PRODUCTION_URI,
     },
   };
 };
