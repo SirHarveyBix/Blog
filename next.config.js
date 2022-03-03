@@ -7,7 +7,7 @@ module.exports = (phase) => {
       reactStrictMode: true,
       extends: ['plugin:@next/next/recommended'],
       env: {
-        URI: process.env.DEVELOPMENT_URI,
+        URI: `${process.env.DEVELOPMENT_URI}`,
       },
     };
   }
@@ -15,7 +15,7 @@ module.exports = (phase) => {
     reactStrictMode: true,
     extends: ['plugin:@next/next/recommended'],
     env: {
-      URI: process.env.PRODUCTION_URI,
+      URI: `${process.env.PRODUCTION_URI}`,
     },
   };
 };
