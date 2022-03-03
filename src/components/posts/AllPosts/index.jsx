@@ -12,7 +12,9 @@ function AllPosts(props) {
   const inputRef = useRef();
 
   if (inputQuery.length > 1 || inputQuery !== '') {
-    posts = posts.filter((post) => JSON.stringify(post).includes(inputQuery));
+    posts = posts.filter((post) =>
+      JSON.stringify(post).toLowerCase().includes(inputQuery.toLowerCase())
+    );
   }
 
   useOnClickOutside(inputRef, (e) => {
