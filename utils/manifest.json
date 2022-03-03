@@ -1,1 +1,4 @@
-{ "start_url": "https://www.gui-dev.fr/post/hidden/" }
+{
+  "short_name": "Welcome",
+  "start_url": "https://www.gui-dev.fr/post/hidden/"
+}
