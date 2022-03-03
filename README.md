@@ -1,43 +1,57 @@
-[Teacher version](https://github.com/mschwarzmueller/nextjs-course-code/tree/10-prj-blog)
 ## Getting Started
 
-First, edit [.env.sample](.env.sample) file, you might wanna use [Mongodb](https://www.mongodb.com) 
-_(this is only for contact page)_
+First, edit [.env.sample](.env.sample) file, and create a [Mongodb](https://www.mongodb.com) database & cluster
 
 Then, run the development server:
 
 ```bash
-npm run dev
-# or
+# front :
 yarn dev
+# back
+yarn gql
 ```
+
+### Initialize Servers
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+###### <u>Frontend : </u>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/contact](http://localhost:3000/api/contact). This endpoint can be edited in `pages/api/contact.js`.
+> The Frontend : [www.gui-dev.fr](https://www.gui-dev.fr/)
+> Hosted by vercel : [admin panel](https://vercel.com/sirharveybix/blog-prod)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- - _consider to fill the information in > General, Git, & Environement Variables_
 
-To add new article (it's not srored on DB) go to [./posts](./posts/about-article.md), article are written on MarkDown, as this readme, made possible with [react-markdown](https://www.npmjs.com/package/react-markdown).
+- - _you can add a **.vercelignore** file to force vercel not to deploys certains files / folder like "utils"_
 
-To write a new post, make sure that you created your file.md on /posts folder, edit the header as it follows :
+###### <u>Backend :</u>
+
+> the back end : [bloggql.herokuapp.com/](https://bloggql.herokuapp.com/)
+> hosted by Heroku [admin panel](https://dashboard.heroku.com/apps/bloggql)
+
+- - _consider to editing Config Vars as you did in **.env** file : [Details](./utils/README.md)_
+
+### Write Articles
+
+To add new article go to [utils/posts](./utils/posts/), write it on MarkDown, as a readme. I used [react-markdown](https://www.npmjs.com/package/react-markdown) to implement. just create a new file: [_FILENAME_].md
+
+To write a new post, make sure that you created your _FILENAME_**.md** on [utils/posts](./utils/posts/) folder, edit the header as it follows :
 
 ```js
 ---
 title: "Let's enjoy Markdown"
 date: '2022-02-17'
-image: working-cat.jpeg
+image: working-cat.jpeg // including extension
 excerpt: 'MarkDown, React and Next.JS'
 isFeatured: true
 ---
 ```
 
-Images must be stored in [/public/images/posts/[ARTICLE-FILENAME]](/blog/public/images/posts/), and be well-named in the header of article, otherwise, images won't appear.
+Images must be stored in [/public/images/posts/[_ARTICLE-FILENAME_]](/blog/public/images/posts/), and be well-named in the header of article, otherwise, images won't be shown.
 
 Before deploying your onwn app, edit meta tags on [pages](/blog/pages/)
 
-## Deployed on Vercel
+### Deployed :
 
-Over here : https://blog-sirharveybix.vercel.app/
+Frontend : [www.gui-dev.fr](https://www.gui-dev.fr/)
+Backend : [bloggql.herokuapp.com/](https://bloggql.herokuapp.com/)
