@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+
 import { POST_PART } from './fragments';
 
 export const ALL_POSTS = gql`

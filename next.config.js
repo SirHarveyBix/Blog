@@ -1,21 +1,25 @@
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 require('dotenv').config();
 
+const commonnRules = {
+  reactStrictMode: true,
+  extends: ['plugin:@next/next/recommended'],
+  eslint: { dirs: ['src'] },
+};
+
 module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
-      reactStrictMode: true,
-      extends: ['plugin:@next/next/recommended'],
+      ...commonnRules,
       env: {
-        URI: `${process.env.DEVELOPMENT_URI}`,
+        URI: process.env.DEVELOPMENT_URI,
       },
     };
   }
   return {
-    reactStrictMode: true,
-    extends: ['plugin:@next/next/recommended'],
+    ...commonnRules,
     env: {
-      URI: `${process.env.PRODUCTION_URI}`,
+      URI: process.env.PRODUCTION_URI,
     },
   };
 };
