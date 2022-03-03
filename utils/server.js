@@ -4,7 +4,7 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { ApolloServer } from 'apollo-server';
 import {
   ApolloServerPluginInlineTrace,
-  ApolloServerPluginLandingPageDisabled,
+  ApolloServerPluginLandingPageProductionDefault,
 } from 'apollo-server-core';
 import { applyMiddleware } from 'graphql-middleware';
 
@@ -20,7 +20,7 @@ const server = new ApolloServer({
     ApolloServerPluginInlineTrace({
       rewriteError: (err) => (err.message.match(SENSITIVE_REGEX) ? null : err),
     }),
-    ApolloServerPluginLandingPageDisabled(),
+    ApolloServerPluginLandingPageProductionDefault({ footer: false }),
   ],
 });
 
