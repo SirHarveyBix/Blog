@@ -2,7 +2,10 @@ import 'dotenv/config';
 
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { ApolloServer } from 'apollo-server';
-import { ApolloServerPluginInlineTrace } from 'apollo-server-core';
+import {
+  ApolloServerPluginInlineTrace,
+  ApolloServerPluginLandingPageDisabled,
+} from 'apollo-server-core';
 import { applyMiddleware } from 'graphql-middleware';
 
 import resolvers from './schema/resolvers.js';
@@ -13,7 +16,12 @@ const schema = applyMiddleware(makeExecutableSchema({ typeDefs, resolvers }));
 const server = new ApolloServer({
   ssrMode: typeof window === 'undefined',
   schema,
-  plugins: [ApolloServerPluginInlineTrace()],
+  plugins: [
+    ApolloServerPluginInlineTrace({
+      rewriteError: (err) => (err.message.match(SENSITIVE_REGEX) ? null : err),
+    }),
+    ApolloServerPluginLandingPageDisabled(),
+  ],
 });
 
 const port = process.env.PORT || 4000;
