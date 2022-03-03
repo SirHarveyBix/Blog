@@ -5,7 +5,7 @@
   "license": "MIT",
   "npmClient": "yarn",
   "engines": {
-    "node": "16.x",
+    "node": "14.x",
     "yarn": "1.x"
   },
   "dependencies": {
