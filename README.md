@@ -15,21 +15,23 @@ yarn gql
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-###### <u>Frontend : </u>
+###### Frontend :
 
 > The Frontend : [www.gui-dev.fr](https://www.gui-dev.fr/)
+> 
 > Hosted by vercel : [admin panel](https://vercel.com/sirharveybix/blog-prod)
 
-- - _consider to fill the information in > General, Git, & Environement Variables_
+-->  _consider to fill the information in > General, Git, & Environement Variables_
 
-- - _you can add a **.vercelignore** file to force vercel not to deploys certains files / folder like "utils"_
+--> _you can add a **.vercelignore** file to force vercel not to deploys certains files / folder like "utils"_
 
-###### <u>Backend :</u>
+###### Backend :
 
-> the back end : [bloggql.herokuapp.com/](https://bloggql.herokuapp.com/)
-> hosted by Heroku [admin panel](https://dashboard.heroku.com/apps/bloggql)
+> The Backend : [bloggql.herokuapp.com/](https://bloggql.herokuapp.com/)
+> 
+> Hosted by Heroku [admin panel](https://dashboard.heroku.com/apps/bloggql)
 
-- - _consider to editing Config Vars as you did in **.env** file : [Details](./utils/README.md)_
+--> _consider to editing Config Vars as you did in **.env** file : [Details](./utils/README.md)_
 
 ### Write Articles
 
@@ -54,4 +56,5 @@ Before deploying your onwn app, edit meta tags on [pages](/blog/pages/)
 ### Deployed :
 
 Frontend : [www.gui-dev.fr](https://www.gui-dev.fr/)
+
 Backend : [bloggql.herokuapp.com/](https://bloggql.herokuapp.com/)
