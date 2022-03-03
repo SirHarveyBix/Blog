@@ -10,6 +10,9 @@ const typeDefs = gql`
     isFeatured: Boolean
     content: String
   }
+  input QueryInput {
+    input: String
+  }
   type NewMessage {
     id: ID
     name: String
@@ -30,7 +33,7 @@ const typeDefs = gql`
     getAllPosts: [Post!]!
     getFeaturedPosts: [Post!]!
     getPostDetails(data: PostInput): Post!
-    # getMessage: SendMessage
+    searchQuery(filter: QueryInput): [Post]
   }
   type Mutation {
     sendMessage(data: SendMessageInput): NewMessage

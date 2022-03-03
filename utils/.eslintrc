@@ -8,8 +8,6 @@
   "plugins": ["graphql", "simple-import-sort"],
   "rules": {
     "simple-import-sort/imports": "warn",
-    "react/no-unescaped-entities": "off",
-    "react/no-children-prop": "off",
     "prettier/prettier": [
       "error",
       {
@@ -25,9 +23,6 @@
       "node": {
         "extensions": [".js", ".jsx"]
       }
-    },
-    "react": {
-      "version": "detect"
     }
   }
 }

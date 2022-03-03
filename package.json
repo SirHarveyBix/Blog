@@ -2,12 +2,6 @@
   "name": "blog",
   "private": true,
   "npmClient": "yarn",
-  "useWorkspaces": true,
-  "workspaces": {
-    "packages": [
-      "utils"
-    ]
-  },
   "scripts": {
     "gql": "cd utils && nodemon server.js",
     "dev": "next dev",
@@ -19,25 +13,23 @@
     "@apollo/client": "^3.5.9",
     "dotenv": "^16.0.0",
     "graphql": "^16.3.0",
-    "graphql-middleware": "^6.1.15",
     "graphql-tools": "^8.2.0",
-    "micro-cors": "^0.1.1",
     "next": "12.1.0",
-    "nodemon": "^2.0.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-is": "^17.0.2",
     "react-markdown": "^8.0.0",
     "react-syntax-highlighter": "^15.4.5",
     "styled-components": "^5.3.3",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "use-onclickoutside": "^0.4.0"
   },
   "devDependencies": {
+    "nodemon": "^2.0.15",
     "@babel/core": "^7.17.5",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-react": "^7.16.7",
     "@next/eslint-plugin-next": "^12.1.0",
-    "@types/micro-cors": "^0.1.2",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
@@ -51,7 +43,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "prettier": "^2.5.1",
-    "root": "^3.2.0"
+    "prettier": "^2.5.1"
   }
 }
