@@ -5,6 +5,10 @@ const commonnRules = {
   reactStrictMode: true,
   extends: ['plugin:@next/next/recommended'],
   eslint: { dirs: ['src'] },
+  compiler: {
+    styledComponents: true,
+  },
+  swcMinify: true,
 };
 
 module.exports = (phase) => {
