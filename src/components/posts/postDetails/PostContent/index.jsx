@@ -14,13 +14,15 @@ function PostContent(props) {
       const { node } = paragraph;
       if (node.children[0].tagName === 'img') {
         const image = node.children[0];
+        const imageFormat = image.properties.src.split('-')[0];
+
         return (
           <>
             <Picture
               src={`/images/posts/${post.slug}/${image.properties.src}`}
               alt={image.alt}
-              width={600}
-              height={300}
+              width={imageFormat === 'banner' ? 650 : 600}
+              height={imageFormat === 'banner' ? 70 : 300}
             />
           </>
         );
