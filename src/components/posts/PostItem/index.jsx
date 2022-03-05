@@ -28,7 +28,7 @@ function PostItem(props) {
       <Link href={linkPath} passHref>
         <Container>
           <PictureContainer>
-            <Picture src={imagePath} alt={title} width={300} height={200} layout="responsive" />
+            <Picture src={imagePath} alt={title} width={275} height={150} layout="responsive" />
           </PictureContainer>
           <Content>
             <Title>{title}</Title>
