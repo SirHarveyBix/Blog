@@ -24,13 +24,13 @@ export const Container = styled.ul`
 `;
 
 export const List = styled.li`
-  a {
-    color: var(--color-grey-100);
-  }
   font-size: var(--size-4);
   margin: 0 var(--size-4);
-  &:hover,
-  &:active {
-    color: var(--color-grey-200);
+  a {
+    color: var(--color-grey-100);
+    &:hover,
+    &:active {
+      color: var(--color-grey-200);
+    }
   }
 `;
