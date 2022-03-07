@@ -7,6 +7,7 @@ import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
 import shell from 'react-syntax-highlighter/dist/cjs/languages/prism/powershell';
 import sh from 'react-syntax-highlighter/dist/cjs/languages/prism/shell-session';
+import yml from 'react-syntax-highlighter/dist/cjs/languages/prism/yaml';
 import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 
 export default function SyntaxHighlighted({ code: props }) {
@@ -25,6 +26,7 @@ export default function SyntaxHighlighted({ code: props }) {
   SyntaxHighlighter.registerLanguage('git', git);
   SyntaxHighlighter.registerLanguage('shell', shell);
   SyntaxHighlighter.registerLanguage('sh', sh);
+  SyntaxHighlighter.registerLanguage('yml', yml);
 
   return (
     <SyntaxHighlighter style={atomDark} language={language} children={children} showLineNumbers />
