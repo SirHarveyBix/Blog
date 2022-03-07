@@ -1,9 +1,12 @@
 import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
 
 import Logo from '../Logo/index';
-import { Container, Header, List } from './style';
+import { Button, Container, Header, List } from './style';
 
 function MainNavigation() {
+  const { data: session, status } = useSession();
+
   return (
     <Header>
       <Link href="/">
@@ -19,6 +22,11 @@ function MainNavigation() {
           <List>
             <Link href="/contact">Contact</Link>
           </List>
+          {session && (
+            <List>
+              <Button onClick={signOut}>Logout</Button>
+            </List>
+          )}
         </Container>
       </nav>
     </Header>

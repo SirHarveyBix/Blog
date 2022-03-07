@@ -42,3 +42,21 @@ export const SEND_MESSAGE = gql`
     }
   }
 `;
+
+export const EXISTING_USER = gql`
+  query FindExistingUser($data: findExistigUSer) {
+    findExistingUser(data: $data) {
+      id
+    }
+  }
+`;
+
+export const CREATE_USER = gql`
+  mutation CreateUuser($data: CreateUser) {
+    createUser(data: $data) {
+      id
+      email
+      password
+    }
+  }
+`;

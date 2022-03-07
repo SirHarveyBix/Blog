@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type Post {
     slug: String
     title: String
@@ -19,7 +19,6 @@ const typeDefs = gql`
     email: String
     message: String
   }
-
   input PostInput {
     slug: String
   }
@@ -28,16 +27,35 @@ const typeDefs = gql`
     email: String
     message: String
   }
-  # Query :
+
   type Query {
     getAllPosts: [Post!]!
     getFeaturedPosts: [Post!]!
     getPostDetails(data: PostInput): Post!
     searchQuery(filter: QueryInput): [Post]
   }
+
+  type User {
+    id: ID
+    email: String
+    password: String
+  }
+
+  input CreateUser {
+    email: String
+    password: String
+  }
+
+  input FindUserEmail {
+    email: String
+  }
+
+  type Query {
+    findExistingUser(data: FindUserEmail): Boolean
+  }
+
   type Mutation {
     sendMessage(data: SendMessageInput): NewMessage
+    createUser(data: CreateUser): User
   }
 `;
-
-export default typeDefs;

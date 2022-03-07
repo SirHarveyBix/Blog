@@ -4,6 +4,8 @@ import matter from 'gray-matter';
 import { MongoClient } from 'mongodb';
 import path from 'path';
 
+import { hashPassword } from '../../lib/bcript.js';
+
 const postsDirectory = path.join(process.cwd(), 'posts');
 
 const getPostsFiles = () => {
@@ -23,7 +25,7 @@ export const getPostData = (postIdentifier) => {
   return postData;
 };
 
-const resolvers = {
+export const resolvers = {
   Query: {
     getAllPosts() {
       const postFiles = getPostsFiles();
@@ -62,6 +64,29 @@ const resolvers = {
 
       return postData;
     },
+
+    async findExistingUser(_parent, { data: userData }) {
+      const isOnProd =
+        process.env.NODE_ENV === 'production' ? process.env.AUTH_DB_PROD : process.env.AUTH_DB_DEV;
+      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
+
+      let client;
+      try {
+        client = await MongoClient.connect(connectionString);
+      } catch (error) {
+        return error;
+      }
+
+      const db = client.db();
+      let userExists;
+      try {
+        userExists = await db.collection('user').findOne({ email: userData.email });
+      } catch (error) {
+        return error;
+      }
+
+      return !!userExists;
+    },
   },
   Mutation: {
     async sendMessage(_parent, { data: newMessage }, context, info) {
@@ -88,6 +113,41 @@ const resolvers = {
       client.close();
       return newMessage;
     },
+
+    async createUser(_parent, { data: userData }) {
+      const isOnProd =
+        process.env.NODE_ENV === 'production' ? process.env.AUTH_DB_PROD : process.env.AUTH_DB_DEV;
+      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
+
+      let client;
+      try {
+        client = await MongoClient.connect(connectionString);
+      } catch (error) {
+        return error;
+      }
+
+      const hasedPassword = await hashPassword(userData.password);
+      const newUser = {
+        email: userData.email,
+        password: hasedPassword,
+      };
+
+      const db = client.db();
+      try {
+        const userExists = await db.collection('user').findOne({ email: newUser.email });
+        if (!userExists) {
+          const result = await db.collection('user').insertOne(newUser);
+          newUser.id = result.insertedId;
+        }
+      } catch (error) {
+        return error;
+      }
+
+      return newUser;
+    },
   },
+
+  // Query: {
+  //   getAllUsers() {},
+  // },
 };
-export default resolvers;

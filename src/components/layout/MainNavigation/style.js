@@ -34,3 +34,17 @@ export const List = styled.li`
     }
   }
 `;
+export const Button = styled.button`
+  font: inherit;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  &:hover {
+    background-color: #c291e2;
+    color: #38015c;
+  }
+`;

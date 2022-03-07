@@ -15,7 +15,8 @@
     "graphql-middleware": "^6.1.15",
     "graphql-tool": "^1.0.0",
     "gray-matter": "^4.0.3",
-    "mongodb": "^4.4.0"
+    "mongodb": "^4.4.0",
+    "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
