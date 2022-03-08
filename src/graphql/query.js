@@ -44,17 +44,17 @@ export const SEND_MESSAGE = gql`
 `;
 
 export const EXISTING_USER = gql`
-  query FindExistingUser($data: findExistigUSer) {
+  query FindExistingUser($data: FindUserEmail) {
     findExistingUser(data: $data) {
-      id
+      _id
     }
   }
 `;
 
 export const CREATE_USER = gql`
-  mutation CreateUuser($data: CreateUser) {
+  mutation CreateUuser($data: CreateUserInput) {
     createUser(data: $data) {
-      id
+      _id
       email
       password
     }

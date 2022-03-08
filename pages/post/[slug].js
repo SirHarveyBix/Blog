@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { client } from '/pages/api/graphql';
+import client from '/pages/api/graphql';
 import PostContent from '/src/components/posts/postDetails/PostContent';
 import { ALL_POSTS, POST_DETAILS } from '/src/graphql/query';
 

@@ -69,7 +69,7 @@ export const resolvers = {
       const isOnProd =
         process.env.NODE_ENV === 'production' ? process.env.AUTH_DB_PROD : process.env.AUTH_DB_DEV;
       const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
-
+      console.log(userData);
       let client;
       try {
         client = await MongoClient.connect(connectionString);
@@ -85,7 +85,8 @@ export const resolvers = {
         return error;
       }
 
-      return !!userExists;
+      client.close();
+      return userExists;
     },
   },
   Mutation: {
@@ -142,12 +143,9 @@ export const resolvers = {
       } catch (error) {
         return error;
       }
+      client.close();
 
       return newUser;
     },
   },
-
-  // Query: {
-  //   getAllUsers() {},
-  // },
 };

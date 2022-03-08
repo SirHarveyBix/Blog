@@ -28,20 +28,16 @@ export const typeDefs = gql`
     message: String
   }
 
-  type Query {
-    getAllPosts: [Post!]!
-    getFeaturedPosts: [Post!]!
-    getPostDetails(data: PostInput): Post!
-    searchQuery(filter: QueryInput): [Post]
-  }
-
   type User {
-    id: ID
+    _id: ID
     email: String
     password: String
   }
+  type ExisitingUser {
+    _id: ID
+  }
 
-  input CreateUser {
+  input CreateUserInput {
     email: String
     password: String
   }
@@ -51,11 +47,14 @@ export const typeDefs = gql`
   }
 
   type Query {
-    findExistingUser(data: FindUserEmail): Boolean
+    getAllPosts: [Post!]!
+    getFeaturedPosts: [Post!]!
+    getPostDetails(data: PostInput): Post!
+    searchQuery(filter: QueryInput): [Post]
+    findExistingUser(data: FindUserEmail): ExisitingUser
   }
-
   type Mutation {
     sendMessage(data: SendMessageInput): NewMessage
-    createUser(data: CreateUser): User
+    createUser(data: CreateUserInput): User
   }
 `;

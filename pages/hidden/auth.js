@@ -3,7 +3,6 @@ import Head from 'next/head';
 import AuthCard from '/src/components/hidden/AuthCard/index';
 
 function Auth(props) {
-  console.log('props', props);
   return (
     <>
       <Head>

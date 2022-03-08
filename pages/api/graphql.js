@@ -8,9 +8,11 @@ export const config = { api: { bodyParser: false } };
 
 // const schema = applyMiddleware(makeExecutableSchema({ typeDefs, resolvers }));
 
-export const client = new ApolloClient({
+const client = new ApolloClient({
   ssrMode: typeof window === 'undefined',
   // schema,
   uri: `${process.env.URI}`,
   cache: new InMemoryCache(),
 });
+
+export default client;

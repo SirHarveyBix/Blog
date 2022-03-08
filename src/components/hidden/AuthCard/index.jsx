@@ -1,8 +1,7 @@
-import { useMutation } from '@apollo/client';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
-import { CREATE_USER } from '../../../graphql/query';
+import createUser from '../../../lib/createUser';
 import {
   Actions,
   AuthContainer,
@@ -24,8 +23,6 @@ function AuthCard(props) {
     password: '',
   });
 
-  const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
-
   const submitHandler = async (event) => {
     event.preventDefault();
     if (isLogin) {
@@ -35,10 +32,11 @@ function AuthCard(props) {
         password: loginData.password,
       });
     } else {
-      createUser({
-        variables: { data: loginData },
-      });
-      console.info(`user : ${loginData.email} has been created`);
+      try {
+        const result = await createUser(loginData);
+      } catch (error) {
+        console.error('error', error);
+      }
     }
   };
 

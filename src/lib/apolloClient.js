@@ -1,17 +1,8 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { useMemo } from 'react';
 
-const defaultOptions = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return {
-      query: {
-        // set to 'cache-only' to see if SSR works
-        fetchPolicy: 'cache-first',
-      },
-    };
-  }
-};
 let apolloClient;
+
 export function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
@@ -19,9 +10,15 @@ export function createApolloClient() {
       uri: `${process.env.URI}`,
     }),
     cache: new InMemoryCache({}),
-    defaultOptions: defaultOptions(),
+    defaultOptions: {
+      query: {
+        // set to 'cache-only' to see if SSR works
+        fetchPolicy: 'cache-first',
+      },
+    },
   });
 }
+
 export function initializeApollo(initialState = null) {
   const _apolloClient = apolloClient ?? createApolloClient();
 
