@@ -10,17 +10,18 @@ export const typeDefs = gql`
     isFeatured: Boolean
     content: String
   }
+  input PostInput {
+    slug: String
+  }
   input QueryInput {
     input: String
   }
+
   type NewMessage {
     id: ID
     name: String
     email: String
     message: String
-  }
-  input PostInput {
-    slug: String
   }
   input SendMessageInput {
     name: String
@@ -28,6 +29,10 @@ export const typeDefs = gql`
     message: String
   }
 
+  input CreateUserInput {
+    email: String
+    password: String
+  }
   type User {
     _id: ID
     email: String
@@ -36,12 +41,6 @@ export const typeDefs = gql`
   type ExisitingUser {
     _id: ID
   }
-
-  input CreateUserInput {
-    email: String
-    password: String
-  }
-
   input FindUserEmail {
     email: String
   }
