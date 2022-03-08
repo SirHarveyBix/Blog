@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { client } from '/pages/api/graphql';
+import client from '/pages/api/graphql';
 import FeaturedPosts from '/src/components/homePage/FeaturedPosts/index';
 import Hero from '/src/components/homePage/Hero/index';
 import { FEATURED_POSTS } from '/src/graphql/query';

@@ -1,4 +1,4 @@
-import { client } from '/pages/api/graphql';
+import client from '/pages/api/graphql';
 import { SEND_MESSAGE } from '/src/graphql/query';
 
 export default async function handler(request, response) {
