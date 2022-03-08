@@ -16,7 +16,6 @@ export default NextAuth({
           query: EXISTING_USER,
           variables: { data: { email: credentials.email } },
         });
-        console.log('inside NextAuth');
         if (!existingUser.data.findExistingUser?._id) {
           throw new Error('No user Found !');
         }
@@ -30,10 +29,8 @@ export default NextAuth({
             },
           },
         });
-
-        console.log(connectUser);
-
         if (!connectUser.data) throw new Error('Could not log you in');
+
         return { email: existingUser.data.findExistingUser.email };
       },
     }),
