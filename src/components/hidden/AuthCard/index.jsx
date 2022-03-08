@@ -1,7 +1,7 @@
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
-import createUser from '../../../lib/createUser';
+import createUserRoute from '../../../lib/createUser';
 import {
   Actions,
   AuthContainer,
@@ -33,7 +33,7 @@ function AuthCard(props) {
       });
     } else {
       try {
-        const result = await createUser(loginData);
+        const result = await createUserRoute(loginData);
       } catch (error) {
         console.error('error', error);
       }

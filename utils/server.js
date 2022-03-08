@@ -2,6 +2,7 @@ import 'dotenv/config';
 
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { ApolloServer } from 'apollo-server';
+import { ApolloServerPluginUsageReporting } from 'apollo-server-core';
 import {
   ApolloServerPluginInlineTrace,
   ApolloServerPluginLandingPageProductionDefault,
@@ -23,7 +24,7 @@ const server = new ApolloServer({
   schema,
   plugins: [
     ApolloServerPluginInlineTrace({
-      rewriteError: (error) => console.error(error.message.match(SENSITIVE_REGEX) ? null : error),
+      // rewriteError: (error) => console.error(error.message.match(SENSITIVE_REGEX) ? null : error),
     }),
     ApolloServerPluginLandingPageProductionDefault({ footer: false }),
   ],

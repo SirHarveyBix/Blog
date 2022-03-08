@@ -48,15 +48,14 @@ export const EXISTING_USER = gql`
     findExistingUser(data: $data) {
       _id
       email
-      password
     }
   }
 `;
 
 export const CREATE_USER = gql`
-  mutation CreateUuser($data: UserInput) {
+  mutation CreateUser($data: UserInput) {
     createUser(data: $data) {
-      _id
+      id
       email
     }
   }
