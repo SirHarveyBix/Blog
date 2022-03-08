@@ -1,9 +1,9 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { EXISTING_USER } from '/src/graphql/query';
+import { CONNECT_USER, EXISTING_USER } from '/src/graphql/query';
 
-console.log('before NextAuth');
+import client from '../graphql';
 
 export default NextAuth({
   session: {
@@ -11,36 +11,30 @@ export default NextAuth({
   },
   providers: [
     CredentialsProvider({
-      async authoize(credentials) {
-        const client = await connectToDatabase();
-        const userCollection = client.db().collection('user');
-
-        const user = await userCollection.findOne({ email: credentials.email });
-        if (!user) {
-          client.close();
+      async authorize(credentials) {
+        const existingUser = await client.query({
+          query: EXISTING_USER,
+          variables: { data: { email: credentials.email } },
+        });
+        console.log('inside NextAuth');
+        if (!existingUser.data.findExistingUser?._id) {
           throw new Error('No user Found !');
         }
 
-        const isValid = await verifyPassword(credentials.password, user.password);
-        if (!isValid) {
-          client.close();
-          throw new Error('Could not log you in');
-        }
+        const connectUser = await client.query({
+          query: CONNECT_USER,
+          variables: {
+            data: {
+              password: credentials?.password,
+              dbPassword: existingUser?.password,
+            },
+          },
+        });
 
-        client.close();
-        return { email: user.email };
-        // console.log('inside NextAuth');
-        // // try {
-        // const isExistingUser = await client.mutate({
-        //   query: EXISTING_USER,
-        //   variables: { data: credentials.email },
-        // });
-        // console.log(isExistingUser);
-        // // } catch (error) {
-        // //   response.status(500).json({ message: 'could not connect to mongo DB !' });
-        // //   return;
-        // // }
-        // console.log('credentials', credentials);
+        console.log(connectUser);
+
+        if (!connectUser.data) throw new Error('Could not log you in');
+        return { email: existingUser.data.findExistingUser.email };
       },
     }),
   ],

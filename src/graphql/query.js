@@ -47,16 +47,25 @@ export const EXISTING_USER = gql`
   query FindExistingUser($data: FindUserEmail) {
     findExistingUser(data: $data) {
       _id
+      email
+      password
     }
   }
 `;
 
 export const CREATE_USER = gql`
-  mutation CreateUuser($data: CreateUserInput) {
+  mutation CreateUuser($data: UserInput) {
     createUser(data: $data) {
       _id
       email
-      password
+    }
+  }
+`;
+
+export const CONNECT_USER = gql`
+  query ConnectUser($data: PasswordInput) {
+    connectUser(data: $data) {
+      isValid
     }
   }
 `;

@@ -17,6 +17,7 @@ export const typeDefs = gql`
     input: String
   }
 
+  #### contact
   type NewMessage {
     id: ID
     name: String
@@ -29,31 +30,40 @@ export const typeDefs = gql`
     message: String
   }
 
-  input CreateUserInput {
-    email: String
-    password: String
-  }
+  ### user Handling
   type User {
     _id: ID
     email: String
-    password: String
+  }
+  type UserConnection {
+    isValid: Boolean
   }
   type ExisitingUser {
     _id: ID
+    password: String
   }
   input FindUserEmail {
     email: String
   }
-
+  input UserInput {
+    email: String
+    password: String
+  }
+  input PasswordInput {
+    dbPassword: String
+    password: String
+  }
   type Query {
     getAllPosts: [Post!]!
     getFeaturedPosts: [Post!]!
     getPostDetails(data: PostInput): Post!
     searchQuery(filter: QueryInput): [Post]
+
     findExistingUser(data: FindUserEmail): ExisitingUser
+    connectUser(data: PasswordInput): UserConnection
   }
   type Mutation {
     sendMessage(data: SendMessageInput): NewMessage
-    createUser(data: CreateUserInput): User
+    createUser(data: UserInput): User
   }
 `;

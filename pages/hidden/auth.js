@@ -1,8 +1,12 @@
 import Head from 'next/head';
+import { getSession } from 'next-auth/react';
 
 import AuthCard from '/src/components/hidden/AuthCard/index';
 
-function Auth(props) {
+function Auth() {
+  const findSession = getSession().then((session) => console.log(session));
+  console.log(findSession);
+
   return (
     <>
       <Head>

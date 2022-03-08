@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { MongoClient } from 'mongodb';
 import path from 'path';
 
-import { hashPassword } from '../../lib/bcript.js';
+import { hashPassword, verifyPassword } from '../../lib/bcript.js';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -69,7 +69,7 @@ export const resolvers = {
       const isOnProd =
         process.env.NODE_ENV === 'production' ? process.env.AUTH_DB_PROD : process.env.AUTH_DB_DEV;
       const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
-      console.log(userData);
+
       let client;
       try {
         client = await MongoClient.connect(connectionString);
@@ -87,6 +87,11 @@ export const resolvers = {
 
       client.close();
       return userExists;
+    },
+    async connectUser(_parent, { data: passwords }) {
+      const isPasswordValid = await verifyPassword(passwords.password, passwords.dbPassword);
+
+      return { isValid: isPasswordValid ? isPasswordValid : null };
     },
   },
   Mutation: {
