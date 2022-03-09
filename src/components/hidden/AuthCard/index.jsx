@@ -2,6 +2,7 @@ import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
 import createUserRoute from '../../../lib/createUser';
+import Notification from '../../Notification/index';
 import {
   Actions,
   AuthContainer,
@@ -18,6 +19,7 @@ import {
 
 function AuthCard(props) {
   const [isLogin, setIsLogin] = useState(false);
+  const [requestStatus, setRequestStatus] = useState(null);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -26,16 +28,26 @@ function AuthCard(props) {
   const submitHandler = async (event) => {
     event.preventDefault();
     if (isLogin) {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email: loginData.email,
-        password: loginData.password,
-      });
+      try {
+        setRequestStatus('pending');
+        const result = await signIn('credentials', {
+          redirect: false,
+          email: loginData.email,
+          password: loginData.password,
+        });
+        setRequestStatus('connected');
+        if (result.error) setRequestStatus('wrongPassword');
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       try {
+        setRequestStatus('pending');
         const result = await createUserRoute(loginData);
+        setRequestStatus('userCreated');
       } catch (error) {
-        console.error('error', error);
+        console.error(error);
+        setRequestStatus('userExists');
       }
     }
   };
@@ -74,6 +86,7 @@ function AuthCard(props) {
           </ContentFrom>
         </AuthContainer>
       </Container>
+      <Notification requestStatus={requestStatus} />
     </>
   );
 }

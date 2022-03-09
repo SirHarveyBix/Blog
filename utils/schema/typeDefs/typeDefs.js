@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
+  ### posts Handling
   type Post {
     slug: String
     title: String
@@ -17,7 +18,7 @@ export const typeDefs = gql`
     input: String
   }
 
-  #### contact
+  ### contact
   type NewMessage {
     id: ID
     name: String
