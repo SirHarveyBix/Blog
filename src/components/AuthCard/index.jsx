@@ -1,8 +1,9 @@
+import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
-import createUserRoute from '../../../lib/createUser';
-import Notification from '../../Notification/index';
+import createUserRoute from '../../lib/createUser';
+import Notification from '../Notification/index';
 import {
   Actions,
   AuthContainer,
@@ -17,7 +18,8 @@ import {
   Toogle,
 } from './style';
 
-function AuthCard(props) {
+function AuthCard() {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const [requestStatus, setRequestStatus] = useState(null);
   const [loginData, setLoginData] = useState({
@@ -37,6 +39,7 @@ function AuthCard(props) {
         });
         setRequestStatus('connected');
         if (result.error) setRequestStatus('wrongPassword');
+        if (!result.error) router.push('/');
       } catch (error) {
         console.error(error);
       }
