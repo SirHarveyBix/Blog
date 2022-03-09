@@ -54,9 +54,9 @@ export const EXISTING_USER = gql`
 `;
 
 export const CREATE_USER = gql`
-  mutation CreateUuser($data: UserInput) {
+  mutation CreateUser($data: UserInput) {
     createUser(data: $data) {
-      _id
+      id
       email
     }
   }

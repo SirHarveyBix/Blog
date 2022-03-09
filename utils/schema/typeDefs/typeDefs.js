@@ -32,7 +32,7 @@ export const typeDefs = gql`
 
   ### user Handling
   type User {
-    _id: ID
+    id: ID
     email: String
   }
   type UserConnection {
@@ -40,6 +40,7 @@ export const typeDefs = gql`
   }
   type ExisitingUser {
     _id: ID
+    email: String
     password: String
   }
   input FindUserEmail {

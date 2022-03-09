@@ -14,6 +14,7 @@ export function createApolloClient() {
       query: {
         // set to 'cache-only' to see if SSR works
         fetchPolicy: 'cache-first',
+        // fetchPolicy: 'network-only',
       },
     },
   });
