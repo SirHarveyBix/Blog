@@ -14,7 +14,7 @@ export default async function handler(request, response) {
       variables: { data: { email: email } },
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 
   if (userExists?.data.findExistingUser) {

@@ -6,7 +6,6 @@ import { Button, Container, Header, List } from './style';
 
 function MainNavigation() {
   const { data: session, status } = useSession();
-  console.log('MainNavigation : session', session);
 
   return (
     <Header>
