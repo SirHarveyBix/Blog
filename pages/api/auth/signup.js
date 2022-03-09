@@ -14,7 +14,7 @@ export default async function handler(request, response) {
       variables: { data: { email: email } },
     });
   } catch (error) {
-    console.log('EXISTING_USER', error.networkError.result);
+    console.log(error);
   }
 
   if (userExists?.data.findExistingUser) {
@@ -28,7 +28,7 @@ export default async function handler(request, response) {
       variables: { data: data },
     });
   } catch (error) {
-    console.error('CREATE_USER', error);
+    console.error(error);
   }
 
   response.status(201).json({ message: 'User Created' });

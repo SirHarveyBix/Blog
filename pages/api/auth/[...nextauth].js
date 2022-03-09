@@ -38,7 +38,7 @@ export default NextAuth({
             },
           });
         } catch (error) {
-          console.error(error.graphQLErrors[0].extensions);
+          console.error(error);
         }
         if (!connectUser.data?.connectUser?.isValid) console.log('mauvais mot de passe');
 
