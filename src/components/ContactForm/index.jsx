@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import sendContactData from '/src/lib/sendContactData';
 
@@ -24,16 +24,6 @@ function ContactForm() {
     message: '',
   });
 
-  useEffect(() => {
-    if (requestStatus === 'success' || requestStatus === 'error') {
-      const timer = setTimeout(() => {
-        setRequestError(null);
-        setRequestStatus(null);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [requestStatus]);
-
   const sendMessageHandler = async (event) => {
     event.preventDefault();
     setRequestStatus('pending');
@@ -50,29 +40,6 @@ function ContactForm() {
       setRequestStatus('error');
     }
   };
-
-  let notification = null;
-  if (requestStatus === 'pending') {
-    notification = {
-      status: 'pending',
-      title: 'Envoi de votre message',
-      message: "Votre message est en cours d'envoi",
-    };
-  }
-  if (requestStatus === 'success') {
-    notification = {
-      status: 'success',
-      title: 'Message envoyé.',
-      message: 'Votre a bien été envoyé',
-    };
-  }
-  if (requestError) {
-    notification = {
-      status: 'error',
-      title: 'Erreur !',
-      message: requestError,
-    };
-  }
 
   return (
     <>
@@ -119,7 +86,7 @@ function ContactForm() {
               <Button>Envoyer</Button>
             </Actions>
           </Controls>
-          {notification && <Notification {...notification} />}
+          <Notification requestStatus={requestStatus} requestError={requestError} />
         </form>
       </Container>
     </>

@@ -18,13 +18,13 @@ export const NotificationStatus = styled.div`
   ${({ status }) =>
     status === 'error'
       ? `
-    background-color: var(--color-error-500;`
+    background-color: var(--color-error-500);`
       : null}
   ${({ status }) =>
     status === 'success'
       ? `
-    background-color: var(--color-success-500);
-    color: var(--color-grey-800);`
+     background-color: var(--color-success-500);
+     color: var(--color-grey-800);`
       : null}
 @media (min-width: 768px) {
     width: 40rem;

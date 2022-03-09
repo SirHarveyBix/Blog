@@ -22,8 +22,7 @@ export default NextAuth({
           console.error(error);
         }
         if (!userExists.data.findExistingUser) {
-          console.log("l'utilisateur n'existe pas !");
-          return;
+          throw new Error("l'utilisateur n'existe pas !");
         }
 
         let connectUser;
@@ -40,7 +39,9 @@ export default NextAuth({
         } catch (error) {
           console.error(error);
         }
-        if (!connectUser.data?.connectUser?.isValid) console.log('mauvais mot de passe');
+        if (!connectUser.data?.connectUser?.isValid) {
+          throw new Error('mauvais mot de passe');
+        }
 
         return { email: userExists.data.findExistingUser.email };
       },
