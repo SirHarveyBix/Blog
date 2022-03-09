@@ -41,6 +41,7 @@ export const typeDefs = gql`
   type ExisitingUser {
     _id: ID
     email: String
+    password: String
   }
   input FindUserEmail {
     email: String

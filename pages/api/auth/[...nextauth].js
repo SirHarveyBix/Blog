@@ -12,26 +12,37 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        const existingUser = await client.query({
-          query: EXISTING_USER,
-          variables: { data: { email: credentials.email } },
-        });
-        if (!existingUser.data.findExistingUser?._id) {
-          throw new Error('No user Found !');
+        let userExists;
+        try {
+          userExists = await client.query({
+            query: EXISTING_USER,
+            variables: { data: { email: credentials.email } },
+          });
+        } catch (error) {
+          console.error(error);
+        }
+        if (!userExists.data.findExistingUser) {
+          console.log("l'utilisateur n'existe pas !");
+          return;
         }
 
-        const connectUser = await client.query({
-          query: CONNECT_USER,
-          variables: {
-            data: {
-              password: credentials?.password,
-              dbPassword: existingUser?.password,
+        let connectUser;
+        try {
+          connectUser = await client.query({
+            query: CONNECT_USER,
+            variables: {
+              data: {
+                password: credentials.password,
+                dbPassword: userExists.data.findExistingUser.password,
+              },
             },
-          },
-        });
-        if (!connectUser.data) throw new Error('Could not log you in');
+          });
+        } catch (error) {
+          console.error(error.graphQLErrors[0].extensions);
+        }
+        if (!connectUser.data?.connectUser?.isValid) console.log('mauvais mot de passe');
 
-        return { email: existingUser.data.findExistingUser.email };
+        return { email: userExists.data.findExistingUser.email };
       },
     }),
   ],

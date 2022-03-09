@@ -48,6 +48,7 @@ export const EXISTING_USER = gql`
     findExistingUser(data: $data) {
       _id
       email
+      password
     }
   }
 `;
