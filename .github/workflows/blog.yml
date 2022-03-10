@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PRODUCTION_URI: ${{ secrets.PRODUCTION_URI }}
-      
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -30,6 +30,3 @@ jobs:
 
       - name: Test if ESLint succeeds
         run: yarn lint && echo "🥳 ESLint proceeds successfully"
-
-    # - name: Deploy to Heroku
-    #   uses: AkhileshNS/heroku-deploy@v3.12.12

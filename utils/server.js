@@ -1,30 +1,22 @@
 import 'dotenv/config';
 
-import { makeExecutableSchema } from '@graphql-tools/schema';
 import { ApolloServer } from 'apollo-server';
-import { ApolloServerPluginUsageReporting } from 'apollo-server-core';
 import {
   ApolloServerPluginInlineTrace,
   ApolloServerPluginLandingPageProductionDefault,
 } from 'apollo-server-core';
 import { applyMiddleware } from 'graphql-middleware';
 
-import { resolvers } from './schema/resolvers/resolvers.js';
-import { typeDefs } from './schema/typeDefs/typeDefs.js';
+import executableSchema from './schema/loadSchema.js';
 
-const schema = applyMiddleware(
-  makeExecutableSchema({
-    resolvers,
-    typeDefs,
-  })
-);
+const schema = applyMiddleware(executableSchema);
 
 const server = new ApolloServer({
   ssrMode: typeof window === 'undefined',
   schema,
   plugins: [
     ApolloServerPluginInlineTrace({
-      // rewriteError: (error) => console.error(error.message.match(SENSITIVE_REGEX) ? null : error),
+      rewriteError: (error) => console.error(error.message.match(SENSITIVE_REGEX) ? null : error),
     }),
     ApolloServerPluginLandingPageProductionDefault({ footer: false }),
   ],

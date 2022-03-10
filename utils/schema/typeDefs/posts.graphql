@@ -1,0 +1,22 @@
+type Post {
+  slug: String
+  title: String
+  date: String
+  image: String
+  excerpt: String
+  isFeatured: Boolean
+  content: String
+}
+input PostInput {
+  slug: String
+}
+input QueryInput {
+  input: String
+}
+
+type Query {
+  getAllPosts: [Post!]!
+  getFeaturedPosts: [Post!]!
+  getPostDetails(data: PostInput): Post!
+  searchQuery(filter: QueryInput): [Post]
+}

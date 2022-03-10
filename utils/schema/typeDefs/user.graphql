@@ -1,0 +1,32 @@
+type User {
+  id: ID
+  email: String
+}
+type UserConnection {
+  isValid: Boolean
+}
+type ExisitingUser {
+  _id: ID
+  email: String
+  password: String
+}
+input FindUserEmail {
+  email: String
+}
+input UserInput {
+  email: String
+  password: String
+}
+input PasswordInput {
+  dbPassword: String
+  password: String
+}
+
+type Query {
+  findExistingUser(data: FindUserEmail): ExisitingUser
+  connectUser(data: PasswordInput): UserConnection
+}
+
+type Mutation {
+  createUser(data: UserInput): User
+}

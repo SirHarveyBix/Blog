@@ -1,0 +1,15 @@
+type NewMessage {
+  id: ID
+  name: String
+  email: String
+  message: String
+}
+input SendMessageInput {
+  name: String
+  email: String
+  message: String
+}
+
+type Mutation {
+  sendMessage(data: SendMessageInput): NewMessage
+}
