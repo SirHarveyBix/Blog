@@ -1,0 +1,16 @@
+# TODO : amount will be a currency
+# appear this way : length(unit: LengthUnit = METER): Float
+
+type Budget {
+  id: ID
+  amount: Int
+}
+input BudgetInput {
+  amount: Int
+}
+type Query {
+  getAllBudget: [Budget]
+}
+type Mutation {
+  createBudgetLine(data: BudgetInput): Budget
+}
