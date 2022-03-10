@@ -2,13 +2,16 @@ name: Deploy
 
 on:
   pull_request: { branches: master }
-    paths: utils/**
   push: { branches: master }
-      paths: utils/**
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./utils
+        
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
@@ -16,3 +19,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'bloggql' #Must be unique in Heroku
           heroku_email: 'gui.lefort.17@gmail.com'
+
