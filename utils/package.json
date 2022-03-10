@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "^7.3.4",
+    "@graphql-tools/load": "^7.5.2",
     "apollo-server": "^3.6.3",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.0",
