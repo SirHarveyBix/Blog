@@ -8,14 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PROJECT_PATH: utils
       
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
           
         with:
+          PROJECT_PATH: utils
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'bloggql'
           heroku_email: 'gui.lefort.17@gmail.com'
