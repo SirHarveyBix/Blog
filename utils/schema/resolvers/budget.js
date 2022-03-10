@@ -1,14 +1,14 @@
 import dotenv from 'dotenv/config';
 import { MongoClient } from 'mongodb';
+import { stringify } from 'querystring';
 
 const isOnProd =
   process.env.NODE_ENV === 'production' ? process.env.BUDGET_DB_PROD : process.env.BUDGET_DB_DEV;
-
 const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
-// TODO : is mandatory to check if, and which user is connected !
+
 const budgetResolver = {
   Query: {
-    async getAllBudget() {
+    async getAllBudget(_parent, { data: FindUserEmail }) {
       let client;
       try {
         client = await MongoClient.connect(connectionString);
@@ -19,8 +19,22 @@ const budgetResolver = {
 
       let data = [];
       try {
-        const results = await db.collection('budget').find({}).toArray();
-        results.map((item) => data.push({ id: item._id, amount: item.amount }));
+        const results = await db
+          .collection('budget')
+          .find({
+            'author.email': FindUserEmail.email,
+          })
+          .toArray();
+
+        results.map((item) => {
+          return data.push({
+            id: item._id,
+            amount: item.amount,
+            author: item.author?.map((element) => ({
+              ...element,
+            })),
+          });
+        });
       } catch (error) {
         console.error(error);
         return error;
@@ -30,6 +44,7 @@ const budgetResolver = {
       return data;
     },
   },
+  // TODO : is mandatory to check if, and which user is connected !
   Mutation: {
     async createBudgetLine(_parent, { data: BudgetInput }) {
       let client;

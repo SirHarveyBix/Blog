@@ -4,12 +4,13 @@
 type Budget {
   id: ID
   amount: Int
+  author: [User]
 }
 input BudgetInput {
   amount: Int
 }
 type Query {
-  getAllBudget: [Budget]
+  getAllBudget(data: FindUserEmail): [Budget]
 }
 type Mutation {
   createBudgetLine(data: BudgetInput): Budget
