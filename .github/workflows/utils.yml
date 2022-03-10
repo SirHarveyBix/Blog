@@ -17,6 +17,6 @@ jobs:
           heroku_app_name: 'bloggql'
           heroku_email: 'gui.lefort.17@gmail.com'
           appdir: utils
-          healthcheck: "https://bloggql.herokuapp.com/health"
+          healthcheck: ${{secrets.PRODUCTION_URI}}"/health"
           checkstring: "👌"
           rollbackonhealthcheckfailed: true
