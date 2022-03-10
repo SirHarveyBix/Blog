@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_PATH: ${{ secrets.PROJECT_PATH }}
+      PROJECT_PATH: utils
       
     steps:
       - uses: actions/checkout@v2
