@@ -28,8 +28,8 @@ function AuthCard() {
   });
 
   const submitHandler = async (event) => {
-    event.preventDefault();
     if (isLogin) {
+      event.preventDefault();
       try {
         setRequestStatus('pending');
         const result = await signIn('credentials', {
@@ -38,7 +38,7 @@ function AuthCard() {
           password: loginData.password,
         });
         setRequestStatus('connected');
-        if (result.error) setRequestStatus('wrongPassword'), console.log(result.error);
+        if (result.error) setRequestStatus('wrongPassword');
         if (!result.error) router.push('/hidden/budget');
       } catch (error) {
         console.error(error);
