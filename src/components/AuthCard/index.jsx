@@ -38,7 +38,7 @@ function AuthCard() {
           password: loginData.password,
         });
         setRequestStatus('connected');
-        if (result.error) setRequestStatus('wrongPassword');
+        if (result.error) setRequestStatus('wrongPassword'), console.log(result.error);
         if (!result.error) router.push('/hidden/budget');
       } catch (error) {
         console.error(error);
