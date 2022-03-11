@@ -69,3 +69,31 @@ export const CONNECT_USER = gql`
     }
   }
 `;
+
+export const GET_BUDGET = gql`
+  query GetAllBudget($data: FindUserEmail) {
+    getAllBudget(data: $data) {
+      id
+      amount
+      label
+      author {
+        id
+        email
+      }
+    }
+  }
+`;
+
+export const CREATE_BUDGET_LINE = gql`
+  mutation CreateBudgetLine($data: BudgetInput) {
+    createBudgetLine(data: $data) {
+      id
+      label
+      amount
+      author {
+        id
+        email
+      }
+    }
+  }
+`;
