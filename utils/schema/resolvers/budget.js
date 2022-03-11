@@ -30,6 +30,7 @@ const budgetResolver = {
           return data.push({
             id: item._id,
             amount: item.amount,
+            label: item.label,
             author: item.author?.map((element) => ({
               ...element,
             })),

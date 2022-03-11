@@ -4,11 +4,20 @@
 type Budget {
   id: ID
   amount: Int
+  label: String
   author: [User]
 }
 input BudgetInput {
   amount: Int
+  label: String
+  author: [UsersBudgetInput]
 }
+
+input UsersBudgetInput {
+  id: ID
+  email: String
+}
+
 type Query {
   getAllBudget(data: FindUserEmail): [Budget]
 }
