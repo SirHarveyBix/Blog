@@ -18,7 +18,7 @@ import {
 function Budget(props) {
   const { data, loading } = props;
   const { data: session, status } = useSession();
-  const [inputData, setInputData] = useState({ amount: 0, label: '' });
+  const [inputData, setInputData] = useState({ amount: 0, label: '', author: [session?.user] });
   const [newLabel, setNewLabel] = useState(false);
 
   const [createBudgetLine] = useMutation(CREATE_BUDGET_LINE, {
@@ -34,7 +34,6 @@ function Budget(props) {
   const handleAddedInput = (event) => {
     event.preventDefault();
     if (session && status === 'authenticated') {
-      setInputData({ ...inputData, author: [session?.user] });
       createBudgetLine({ variables: { data: inputData } });
     }
   };
