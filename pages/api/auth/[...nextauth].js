@@ -43,7 +43,10 @@ export default NextAuth({
           throw new Error('mauvais mot de passe');
         }
 
-        return { email: userExists.data.findExistingUser.email };
+        return {
+          id: userExists.data.findExistingUser._id,
+          email: userExists.data.findExistingUser.email,
+        };
       },
     }),
   ],

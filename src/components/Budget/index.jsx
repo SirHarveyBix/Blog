@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { useSession } from 'next-auth/react';
+import { useState } from 'react';
 
+import { CREATE_BUDGET_LINE } from '../../graphql/query';
 import {
   Button,
   Container,
@@ -11,30 +14,29 @@ import {
   Spacer,
   Title,
 } from './style';
-const incomeData = [
-  { id: 1, amout: 30, label: 'internet' },
-  { id: 2, amout: 800, label: 'credit immo' },
-  { id: 3, amout: 12, label: 'assurance' },
-  { id: 4, amout: 55, label: 'assurance voiture' },
-  { id: 5, amout: 12, label: 'telephone' },
-];
-function Budget() {
-  const [data, setData] = useState([]);
-  const [inputData, setInputData] = useState({ id: 0, amout: 0, label: '' });
+
+function Budget(props) {
+  const { data, loading } = props;
+  const { data: session, status } = useSession();
+  const [inputData, setInputData] = useState({ amount: 0, label: '' });
   const [newLabel, setNewLabel] = useState(false);
 
-  useEffect(() => {
-    setData(incomeData);
-  }, [data]);
+  const [createBudgetLine] = useMutation(CREATE_BUDGET_LINE, {
+    onCompleted: () => setNewLabel(false),
+    onError: (error) => console.error(error),
+  });
 
   const handleNewLabel = (event) => {
     event.preventDefault();
     setNewLabel(true);
   };
+
   const handleAddedInput = (event) => {
     event.preventDefault();
-    setNewLabel(false);
-    // setData(data.push(inputData));
+    if (session && status === 'authenticated') {
+      setInputData({ ...inputData, author: [session?.user] });
+      createBudgetLine({ variables: { data: inputData } });
+    }
   };
 
   return (
@@ -43,19 +45,23 @@ function Budget() {
       <Container>
         <ContentFrom>
           <Title>Budget</Title>
-          {data.map((input) => (
-            <Control key={input.id}>
-              <Label htmlFor="amount">{input.label} </Label>
-              <Input
-                defaultValue={input.amout || 'Montant'}
-                type="number"
-                id="amout"
-                onChange={(event) =>
-                  setInputData({ ...data, id: input.id, amout: event.target.value })
-                }
-              />
-            </Control>
-          ))}
+          {loading && !data ? (
+            <></>
+          ) : (
+            data?.map((input) => (
+              <Control key={input.id}>
+                <Label htmlFor="amount">{input.label} </Label>
+                <Input
+                  defaultValue={input.amount || 'Montant'}
+                  type="number"
+                  id="amount"
+                  onChange={(event) =>
+                    setInputData({ ...data, id: input.id, amount: event.target.value })
+                  }
+                />
+              </Control>
+            ))
+          )}
           {newLabel && (
             <NewLabelControl>
               <Label htmlFor="label" />
@@ -64,15 +70,17 @@ function Budget() {
                 placeholder="Nom du Label"
                 type="text"
                 id="label"
-                onChange={(event) => setInputData({ ...data, amout: event.target.value })}
+                onChange={(event) => setInputData({ ...inputData, label: event.target.value })}
               />
-              <Label htmlFor="amout" />
+              <Label htmlFor="amount" />
               <Input
                 newInput
                 placeholder="Montant"
                 type="number"
-                id="amout"
-                onChange={(event) => setInputData({ ...data, amout: event.target.value })}
+                id="amount"
+                onChange={(event) =>
+                  setInputData({ ...inputData, amount: Number(event.target.value) })
+                }
               />
               <Button newInput onClick={handleAddedInput}>
                 ok
