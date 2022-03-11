@@ -11,7 +11,7 @@ function Auth() {
 
   useEffect(() => {
     getSession().then((session) => {
-      if (session) router.push('/');
+      if (session) router.replace('/hidden/budget');
       else setIsLoading(false);
     });
   }, [router]);
@@ -29,12 +29,21 @@ function Auth() {
   );
 }
 
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       posts: data.getFeaturedPosts,
-//     },
-//   };
-// }
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/hidden/budget',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+}
 
 export default Auth;

@@ -39,7 +39,7 @@ function AuthCard() {
         });
         setRequestStatus('connected');
         if (result.error) setRequestStatus('wrongPassword');
-        if (!result.error) router.push('/');
+        if (!result.error) router.push('/hidden/budget');
       } catch (error) {
         console.error(error);
       }
