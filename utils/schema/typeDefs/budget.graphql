@@ -8,6 +8,7 @@ type Budget {
   author: [User]
 }
 input BudgetInput {
+  id: ID
   amount: Int
   label: String
   author: [UsersBudgetInput]
@@ -17,10 +18,15 @@ input UsersBudgetInput {
   # id: ID
   email: String
 }
+input BudgetIdInput {
+  id: ID!
+}
 
 type Query {
   getAllBudget(data: FindUserEmail): [Budget]
 }
 type Mutation {
+  removeBudgetById(data: BudgetIdInput): Budget
+  updateBudgetById(data: BudgetInput): Budget
   createBudgetLine(data: BudgetInput): Budget
 }

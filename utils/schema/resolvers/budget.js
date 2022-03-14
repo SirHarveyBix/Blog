@@ -1,6 +1,7 @@
-import dotenv from 'dotenv/config';
-import { MongoClient } from 'mongodb';
-import { stringify } from 'querystring';
+import 'dotenv/config';
+
+import pkg from 'mongodb';
+const { MongoClient, ObjectID } = pkg;
 
 const isOnProd =
   process.env.NODE_ENV === 'production' ? process.env.BUDGET_DB_PROD : process.env.BUDGET_DB_DEV;
@@ -45,8 +46,8 @@ const budgetResolver = {
       return data;
     },
   },
-  // TODO : is mandatory to check if, and which user is connected !
   Mutation: {
+    // TODO : is mandatory to check if, and which user is connected !
     async createBudgetLine(_parent, { data: BudgetInput }) {
       let client;
       try {
@@ -65,6 +66,51 @@ const budgetResolver = {
 
       client.close();
       return BudgetInput;
+    },
+    async removeBudgetById(_parent, { data: BudgetIdInput }) {
+      let client;
+      try {
+        client = await MongoClient.connect(connectionString);
+      } catch (error) {
+        return error;
+      }
+
+      const db = client.db();
+      let result;
+      try {
+        result = await db.collection('budget').deleteOne({ _id: new ObjectID(BudgetIdInput.id) });
+      } catch (error) {
+        return error;
+      }
+
+      if (result.deletedCount === 1) return BudgetIdInput;
+      client.close();
+      return;
+    },
+    async updateBudgetById(_parent, { data: BudgetInput }) {
+      let client;
+      try {
+        client = await MongoClient.connect(connectionString);
+      } catch (error) {
+        return error;
+      }
+
+      const db = client.db();
+      let result;
+      try {
+        result = await db
+          .collection('budget')
+          .updateOne(
+            { _id: new ObjectID(BudgetInput.id) },
+            { $set: { amount: Number(BudgetInput?.amount), label: String(BudgetInput?.label) } }
+          );
+      } catch (error) {
+        return error;
+      }
+
+      if (result.modifiedCount === 1) return BudgetInput;
+      client.close();
+      return;
     },
   },
 };
