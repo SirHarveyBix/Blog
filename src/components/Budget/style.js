@@ -90,6 +90,7 @@ export const Button = styled.button`
 `;
 
 export const ValidButton = styled(Image)`
+  cursor: pointer;
   width: 17px;
   height: 37px;
 `;

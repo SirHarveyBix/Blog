@@ -34,6 +34,11 @@ function Budget(props) {
 
   const handleAddedInput = () => {
     if (session && status === 'authenticated') {
+      if (!inputData.amount || !inputData.label) {
+        // TODO : add notification error
+        setNewLabel(false);
+        return;
+      }
       createBudgetLine({ variables: { data: inputData } });
     }
   };
@@ -45,7 +50,7 @@ function Budget(props) {
         <ContentFrom>
           <Title>Budget</Title>
           {loading && !data ? (
-            <></>
+            <p>Loading ..</p>
           ) : (
             data?.map((input) => (
               <div key={input.id}>

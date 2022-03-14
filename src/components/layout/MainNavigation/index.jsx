@@ -17,6 +17,9 @@ function MainNavigation() {
       <nav>
         <Container>
           <List>
+            <Link href="/hidden/budget">Budget</Link>
+          </List>
+          <List>
             <Link href="/post">Posts</Link>
           </List>
           <List>
