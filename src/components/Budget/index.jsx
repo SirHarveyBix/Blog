@@ -79,8 +79,8 @@ function Budget(props) {
                 }
               />
               <ValidButton
-                width={17}
-                height={37}
+                width={40}
+                height={40}
                 src="/images/site/valid-Icon.png"
                 onClick={handleAddedInput}
               />
