@@ -32,8 +32,7 @@ function Budget(props) {
     setNewLabel(true);
   };
 
-  const handleAddedInput = (event) => {
-    event.preventDefault();
+  const handleAddedInput = () => {
     if (session && status === 'authenticated') {
       createBudgetLine({ variables: { data: inputData } });
     }
@@ -49,9 +48,9 @@ function Budget(props) {
             <></>
           ) : (
             data?.map((input) => (
-              <>
-                <EditBudget input={input} setInputData={setInputData} data={data} />
-              </>
+              <div key={input.id}>
+                <EditBudget data={input} />
+              </div>
             ))
           )}
           {newLabel && (

@@ -105,3 +105,12 @@ export const REMOVE_BUDGET_BY_ID = gql`
     }
   }
 `;
+export const UPDATE_BUDGET = gql`
+  mutation Mutation($data: BudgetInput) {
+    updateBudgetById(data: $data) {
+      amount
+      id
+      label
+    }
+  }
+`;

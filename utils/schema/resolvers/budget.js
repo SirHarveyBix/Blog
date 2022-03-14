@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
-import { MongoClient, ObjectID } from 'mongodb';
+import pkg from 'mongodb';
+const { MongoClient, ObjectID } = pkg;
 
 const isOnProd =
   process.env.NODE_ENV === 'production' ? process.env.BUDGET_DB_PROD : process.env.BUDGET_DB_DEV;
@@ -83,6 +84,31 @@ const budgetResolver = {
       }
 
       if (result.deletedCount === 1) return BudgetIdInput;
+      client.close();
+      return;
+    },
+    async updateBudgetById(_parent, { data: BudgetInput }) {
+      let client;
+      try {
+        client = await MongoClient.connect(connectionString);
+      } catch (error) {
+        return error;
+      }
+
+      const db = client.db();
+      let result;
+      try {
+        result = await db
+          .collection('budget')
+          .updateOne(
+            { _id: new ObjectID(BudgetInput.id) },
+            { $set: { amount: Number(BudgetInput?.amount), label: String(BudgetInput?.label) } }
+          );
+      } catch (error) {
+        return error;
+      }
+
+      if (result.modifiedCount === 1) return BudgetInput;
       client.close();
       return;
     },
