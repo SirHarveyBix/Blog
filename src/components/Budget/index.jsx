@@ -3,16 +3,17 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 import { CREATE_BUDGET_LINE } from '../../graphql/query';
+import EditBudget from './EditBudget';
 import {
   Button,
   Container,
   ContentFrom,
-  Control,
   Input,
   Label,
   NewLabelControl,
   Spacer,
   Title,
+  ValidButton,
 } from './style';
 
 function Budget(props) {
@@ -48,17 +49,9 @@ function Budget(props) {
             <></>
           ) : (
             data?.map((input) => (
-              <Control key={input.id}>
-                <Label htmlFor="amount">{input.label} </Label>
-                <Input
-                  defaultValue={input.amount || 'Montant'}
-                  type="number"
-                  id="amount"
-                  onChange={(event) =>
-                    setInputData({ ...data, id: input.id, amount: event.target.value })
-                  }
-                />
-              </Control>
+              <>
+                <EditBudget input={input} setInputData={setInputData} data={data} />
+              </>
             ))
           )}
           {newLabel && (
@@ -81,9 +74,12 @@ function Budget(props) {
                   setInputData({ ...inputData, amount: Number(event.target.value) })
                 }
               />
-              <Button newInput onClick={handleAddedInput}>
-                ok
-              </Button>
+              <ValidButton
+                width={17}
+                height={37}
+                src="/images/site/valid-Icon.png"
+                onClick={handleAddedInput}
+              />
             </NewLabelControl>
           )}
           <Button onClick={handleNewLabel}>ajouter un label</Button>
