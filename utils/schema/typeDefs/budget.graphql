@@ -17,10 +17,14 @@ input UsersBudgetInput {
   # id: ID
   email: String
 }
+input BudgetIdInput {
+  id: ID
+}
 
 type Query {
   getAllBudget(data: FindUserEmail): [Budget]
 }
 type Mutation {
+  removeBudgetById(data: BudgetIdInput): Budget
   createBudgetLine(data: BudgetInput): Budget
 }
