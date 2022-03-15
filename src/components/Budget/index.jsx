@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 import { CREATE_BUDGET_LINE } from '../../graphql/query';
+import Notification from '../Notification/index';
 import EditBudget from './EditBudget';
 import {
   Button,
@@ -21,6 +22,7 @@ function Budget(props) {
   const { data: session, status } = useSession();
   const [inputData, setInputData] = useState({ amount: 0, label: '', author: [session?.user] });
   const [newLabel, setNewLabel] = useState(false);
+  const [requestStatus, setSequestStatus] = useState(null);
 
   const [createBudgetLine] = useMutation(CREATE_BUDGET_LINE, {
     onCompleted: () => setNewLabel(false),
@@ -35,7 +37,7 @@ function Budget(props) {
   const handleAddedInput = () => {
     if (session && status === 'authenticated') {
       if (!inputData.amount || !inputData.label) {
-        // TODO : add notification error
+        setSequestStatus('missingField');
         setNewLabel(false);
         return;
       }
@@ -89,6 +91,7 @@ function Budget(props) {
           <Button onClick={handleNewLabel}>ajouter un label</Button>
         </ContentFrom>
       </Container>
+      <Notification requestStatus={requestStatus} />
     </>
   );
 }

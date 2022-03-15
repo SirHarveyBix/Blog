@@ -50,6 +50,13 @@ function Notification(props) {
         message: 'votre mot de passe est erronné',
       });
     }
+    if (requestStatus === 'missingField') {
+      setNotification({
+        status: 'error',
+        title: 'Erreur !',
+        message: 'Vous devez remplir les deux champs !',
+      });
+    }
     if (requestError) {
       setNotification({
         status: 'error',

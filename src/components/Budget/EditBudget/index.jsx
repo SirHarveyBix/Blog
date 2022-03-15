@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 
-import { REMOVE_BUDGET_BY_ID, UPDATE_BUDGET } from '../../../graphql/query';
+import { REMOVE_BUDGET, UPDATE_BUDGET } from '../../../graphql/query';
 import { Control, EditButton, Input, Label, PlainText, PlainTextRow } from './style';
 
 function EditBudget(props) {
@@ -9,15 +9,8 @@ function EditBudget(props) {
   const [isEditable, setIsEditable] = useState(false);
   const [editedInput, setEditedInput] = useState({ label: null, amount: null });
 
-  const [removeBudgetById] = useMutation(REMOVE_BUDGET_BY_ID, {
-    onCompleted: () => setIsEditable(false),
-    onError: (error) => console.error(error),
-  });
-
-  const [updateBudget] = useMutation(UPDATE_BUDGET, {
-    onCompleted: () => setIsEditable(false),
-    onError: (error) => console.error(error),
-  });
+  const [removeBudget] = useMutation(REMOVE_BUDGET, { onCompleted: () => setIsEditable(false) });
+  const [updateBudget] = useMutation(UPDATE_BUDGET, { onCompleted: () => setIsEditable(false) });
 
   useEffect(() => {
     setEditedInput({ ...editedInput, id: data.id });
@@ -68,8 +61,8 @@ function EditBudget(props) {
             }
           />
           <EditButton
-            width={31}
-            height={31}
+            width={40}
+            height={40}
             src="/images/site/valid-Icon.png"
             onClick={handleUpdate}
           />
@@ -77,7 +70,7 @@ function EditBudget(props) {
             width={26}
             height={34}
             src="/images/site/delete-icon.png"
-            onClick={() => removeBudgetById({ variables: { data: { id: data.id } } })}
+            onClick={() => removeBudget({ variables: { data: { id: data.id } } })}
           />
         </Control>
       )}

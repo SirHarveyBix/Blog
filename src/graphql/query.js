@@ -98,7 +98,7 @@ export const CREATE_BUDGET_LINE = gql`
   }
 `;
 
-export const REMOVE_BUDGET_BY_ID = gql`
+export const REMOVE_BUDGET = gql`
   mutation RemoveBudgetById($data: BudgetIdInput) {
     removeBudgetById(data: $data) {
       id
