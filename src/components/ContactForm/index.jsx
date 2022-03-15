@@ -18,7 +18,6 @@ import {
 
 function ContactForm() {
   const { setRequestStatus } = useContext(NotificationContext);
-  const [requestError, setRequestError] = useState();
   const [enteredData, setEnteredData] = useState({
     name: '',
     email: '',
@@ -37,7 +36,6 @@ function ContactForm() {
         message: '',
       });
     } catch (error) {
-      setRequestError(error.message);
       setRequestStatus('error');
     }
   };
@@ -87,7 +85,7 @@ function ContactForm() {
               <Button>Envoyer</Button>
             </Actions>
           </Controls>
-          <Notification requestError={requestError} />
+          <Notification />
         </form>
       </Container>
     </>
