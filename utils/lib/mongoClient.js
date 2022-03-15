@@ -21,7 +21,7 @@ const clientDB = async (db) => {
   try {
     client = await MongoClient.connect(connectionString);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return error;
   }
 

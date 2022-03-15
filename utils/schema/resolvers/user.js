@@ -18,7 +18,6 @@ const userResolver = {
       return userExists;
     },
     async connectUser(_parent, { data: passwords }) {
-      console.log(passwords);
       const isPasswordValid = await verifyPassword(passwords.password, passwords.dbPassword);
 
       return { isValid: isPasswordValid ? isPasswordValid : null };
@@ -28,7 +27,6 @@ const userResolver = {
     async createUser(_parent, { data: userData }) {
       const getClient = await clientDB('Auth');
       const db = getClient.db();
-      console.log(userData);
 
       const hasedPassword = await hashPassword(userData.password);
       const newUser = {
