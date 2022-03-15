@@ -1,4 +1,4 @@
-import { hashPassword, verifyPassword } from '../../lib/bcript.js';
+import { hashPassword, verifyPassword } from '../../lib/bcrypt.js';
 import clientDB from '../../lib/mongoClient.js';
 
 const userResolver = {

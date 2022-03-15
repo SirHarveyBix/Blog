@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 
 import AuthCard from '/src/components/AuthCard/index';
 
+import { NotificationContextProvider } from '../../src/components/context/NotificationContext';
+
 function Auth() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +26,9 @@ function Auth() {
         <title>La connection</title>
         <meta name="description" content="login" />
       </Head>
-      <AuthCard />
+      <NotificationContextProvider>
+        <AuthCard />
+      </NotificationContextProvider>
     </>
   );
 }

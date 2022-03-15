@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
+import { NotificationContext } from '../context/NotificationContext';
 import { Message, NotificationStatus, Title } from './style';
 
 function Notification(props) {
-  const { requestStatus, requestError } = props;
+  const { requestError } = props;
+  const { requestStatus } = useContext(NotificationContext);
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
@@ -51,6 +53,7 @@ function Notification(props) {
       });
     }
     if (requestStatus === 'missingField') {
+      //ok
       setNotification({
         status: 'error',
         title: 'Erreur !',
