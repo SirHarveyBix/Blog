@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import sendContactData from '/src/lib/sendContactData';
 
+import { NotificationContext } from '../context/NotificationContext';
 import Notification from '../Notification/index';
 import {
   Actions,
@@ -16,8 +17,7 @@ import {
 } from './style';
 
 function ContactForm() {
-  const [requestStatus, setRequestStatus] = useState();
-  const [requestError, setRequestError] = useState();
+  const { setRequestStatus } = useContext(NotificationContext);
   const [enteredData, setEnteredData] = useState({
     name: '',
     email: '',
@@ -36,7 +36,6 @@ function ContactForm() {
         message: '',
       });
     } catch (error) {
-      setRequestError(error.message);
       setRequestStatus('error');
     }
   };
@@ -86,7 +85,7 @@ function ContactForm() {
               <Button>Envoyer</Button>
             </Actions>
           </Controls>
-          <Notification requestStatus={requestStatus} requestError={requestError} />
+          <Notification />
         </form>
       </Container>
     </>

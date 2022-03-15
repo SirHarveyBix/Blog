@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import createUserRoute from '../../lib/createUser';
+import { NotificationContext } from '../context/NotificationContext';
 import Notification from '../Notification/index';
 import {
   Actions,
@@ -21,7 +22,7 @@ import {
 function AuthCard() {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
-  const [requestStatus, setRequestStatus] = useState(null);
+  const { setRequestStatus } = useContext(NotificationContext);
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -89,7 +90,7 @@ function AuthCard() {
           </ContentFrom>
         </AuthContainer>
       </Container>
-      <Notification requestStatus={requestStatus} />
+      <Notification />
     </>
   );
 }
