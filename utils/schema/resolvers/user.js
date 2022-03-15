@@ -1,23 +1,12 @@
-import dotenv from 'dotenv/config';
-import { MongoClient } from 'mongodb';
-
 import { hashPassword, verifyPassword } from '../../lib/bcript.js';
+import clientDB from '../../lib/mongoClient.js';
 
 const userResolver = {
   Query: {
     async findExistingUser(_parent, { data: userData }) {
-      const isOnProd =
-        process.env.NODE_ENV === 'production' ? process.env.AUTH_DB_PROD : process.env.AUTH_DB_DEV;
-      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
+      const getClient = await clientDB('Auth');
+      const db = getClient.db();
 
-      let client;
-      try {
-        client = await MongoClient.connect(connectionString);
-      } catch (error) {
-        return error;
-      }
-
-      const db = client.db();
       let userExists;
       try {
         userExists = await db.collection('user').findOne({ email: userData.email });
@@ -25,7 +14,7 @@ const userResolver = {
         return error;
       }
 
-      client.close();
+      getClient.close();
       return userExists;
     },
     async connectUser(_parent, { data: passwords }) {
@@ -36,16 +25,8 @@ const userResolver = {
   },
   Mutation: {
     async createUser(_parent, { data: userData }) {
-      const isOnProd =
-        process.env.NODE_ENV === 'production' ? process.env.AUTH_DB_PROD : process.env.AUTH_DB_DEV;
-      const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
-
-      let client;
-      try {
-        client = await MongoClient.connect(connectionString);
-      } catch (error) {
-        return error;
-      }
+      const getClient = await clientDB('Auth');
+      const db = getClient.db();
 
       const hasedPassword = await hashPassword(userData.password);
       const newUser = {
@@ -53,7 +34,6 @@ const userResolver = {
         password: hasedPassword,
       };
 
-      const db = client.db();
       try {
         const userExists = await db.collection('user').findOne({ email: newUser.email });
         if (!userExists) {
@@ -63,8 +43,8 @@ const userResolver = {
       } catch (error) {
         return error;
       }
-      client.close();
 
+      getClient.close();
       return newUser;
     },
   },

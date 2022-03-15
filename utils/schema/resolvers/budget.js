@@ -1,22 +1,12 @@
-import 'dotenv/config';
+import { ObjectID } from 'mongodb';
 
-import pkg from 'mongodb';
-const { MongoClient, ObjectID } = pkg;
-
-const isOnProd =
-  process.env.NODE_ENV === 'production' ? process.env.BUDGET_DB_PROD : process.env.BUDGET_DB_DEV;
-const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${isOnProd}?retryWrites=true&w=majority`;
+import clientDB from '../../lib/mongoClient.js';
 
 const budgetResolver = {
   Query: {
     async getAllBudget(_parent, { data: FindUserEmail }) {
-      let client;
-      try {
-        client = await MongoClient.connect(connectionString);
-      } catch (error) {
-        return error;
-      }
-      const db = client.db();
+      const getClient = await clientDB('Budget');
+      const db = getClient.db();
 
       let data = [];
       try {
@@ -32,31 +22,24 @@ const budgetResolver = {
             id: item._id,
             amount: item.amount,
             label: item.label,
-            author: item.author?.map((element) => ({
+            author: item.author.map((element) => ({
               ...element,
             })),
           });
         });
       } catch (error) {
-        console.error(error);
         return error;
       }
-      client.close();
 
+      getClient.close();
       return data;
     },
   },
   Mutation: {
     // TODO : is mandatory to check if, and which user is connected !
     async createBudgetLine(_parent, { data: BudgetInput }) {
-      let client;
-      try {
-        client = await MongoClient.connect(connectionString);
-      } catch (error) {
-        return error;
-      }
-
-      const db = client.db();
+      const getClient = await clientDB('Budget');
+      const db = getClient.db();
       try {
         const result = await db.collection('budget').insertOne(BudgetInput);
         BudgetInput.id = result.insertedId;
@@ -64,38 +47,28 @@ const budgetResolver = {
         return error;
       }
 
-      client.close();
+      getClient.close();
       return BudgetInput;
     },
     async removeBudgetById(_parent, { data: BudgetIdInput }) {
-      let client;
-      try {
-        client = await MongoClient.connect(connectionString);
-      } catch (error) {
-        return error;
-      }
+      const getClient = await clientDB('Budget');
+      const db = getClient.db();
 
-      const db = client.db();
       let result;
       try {
         result = await db.collection('budget').deleteOne({ _id: new ObjectID(BudgetIdInput.id) });
       } catch (error) {
         return error;
       }
-
       if (result.deletedCount === 1) return BudgetIdInput;
-      client.close();
+
+      getClient.close();
       return;
     },
     async updateBudgetById(_parent, { data: BudgetInput }) {
-      let client;
-      try {
-        client = await MongoClient.connect(connectionString);
-      } catch (error) {
-        return error;
-      }
+      const getClient = await clientDB('Budget');
+      const db = getClient.db();
 
-      const db = client.db();
       let result;
       try {
         result = await db
@@ -107,9 +80,9 @@ const budgetResolver = {
       } catch (error) {
         return error;
       }
-
       if (result.modifiedCount === 1) return BudgetInput;
-      client.close();
+
+      getClient.close();
       return;
     },
   },

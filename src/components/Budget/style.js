@@ -5,18 +5,11 @@ export const Spacer = styled.div`
 `;
 
 export const Container = styled.div`
-  margin: 0;
-  padding: 0;
   display: flex;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-  gap: 1.5rem;
-  align-content: center;
   justify-content: center;
 `;
 
 export const ContentFrom = styled.form`
-  padding: var(--size-4);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   background-color: var(--color-grey-700);
   text-align: center;
   border-radius: 6px;
@@ -90,6 +83,7 @@ export const Button = styled.button`
 `;
 
 export const ValidButton = styled(Image)`
+  cursor: pointer;
   width: 17px;
   height: 37px;
 `;
