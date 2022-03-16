@@ -11,6 +11,7 @@ type ExisitingUser {
   password: String
 }
 input FindUserEmail {
+  id: String
   email: String
 }
 input UserInput {
