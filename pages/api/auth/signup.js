@@ -26,6 +26,7 @@ export default async function handler(request, response) {
     await client.mutate({
       mutation: CREATE_USER,
       variables: { data: data },
+      refetchQueries: [{ query: EXISTING_USER, variables: { data: { email: email } } }],
     });
   } catch (error) {
     console.error(error);
