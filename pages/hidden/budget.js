@@ -8,10 +8,8 @@ import { GET_BUDGET } from '../../src/graphql/query';
 
 function BudgetPage(props) {
   const { session } = props;
-  const { loading, error, data } = useQuery(GET_BUDGET, {
+  const { loading, data } = useQuery(GET_BUDGET, {
     variables: { data: session?.user },
-    pollInterval: 800,
-    notifyOnNetworkStatusChange: true,
   });
   const [budget, setBudget] = useState();
 

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import createUserRoute from '../../lib/createUser';
 import { NotificationContext } from '../context/NotificationContext';
@@ -21,34 +21,43 @@ import {
 
 function AuthCard() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(false);
   const { setRequestStatus } = useContext(NotificationContext);
-  const [loginData, setLoginData] = useState({
-    email: '',
-    password: '',
-  });
+  const [isLogin, setIsLogin] = useState(false);
+
+  const enteredEmail = useRef();
+  const enteredPassword = useRef();
 
   const submitHandler = async (event) => {
+    event.preventDefault();
     if (isLogin) {
-      event.preventDefault();
       try {
         setRequestStatus('pending');
         const result = await signIn('credentials', {
           redirect: false,
-          email: loginData.email,
-          password: loginData.password,
+          email: enteredEmail.current.value,
+          password: enteredPassword.current.value,
         });
         setRequestStatus('connected');
-        if (result.error) setRequestStatus('wrongPassword');
+        if (result.error) {
+          console.error(result.error);
+          setRequestStatus('wrongPassword');
+        }
         if (!result.error) router.push('/hidden/budget');
       } catch (error) {
         console.error(error);
       }
-    } else {
+    }
+
+    if (!isLogin) {
       try {
         setRequestStatus('pending');
-        const result = await createUserRoute(loginData);
+        await createUserRoute({
+          email: enteredEmail.current.value,
+          password: enteredPassword.current.value,
+        });
         setRequestStatus('userCreated');
+        setIsLogin(!isLogin);
+        return;
       } catch (error) {
         console.error(error);
         setRequestStatus('userExists');
@@ -65,21 +74,11 @@ function AuthCard() {
             <Title>{isLogin ? 'Connection' : 'Creer un compte'}</Title>
             <Control>
               <Label htmlFor="email">Email</Label>
-              <Input
-                type="email"
-                id="email"
-                onChange={(event) => setLoginData({ ...loginData, email: event.target.value })}
-                required
-              />
+              <Input ref={enteredEmail} type="email" id="email" required />
             </Control>
             <Control>
               <Label htmlFor="password">Password</Label>
-              <Input
-                type="password"
-                id="password"
-                onChange={(event) => setLoginData({ ...loginData, password: event.target.value })}
-                required
-              />
+              <Input ref={enteredPassword} type="password" id="password" required />
             </Control>
             <Actions>
               <Button>{isLogin ? 'Connection' : 'Creer un compte'}</Button>

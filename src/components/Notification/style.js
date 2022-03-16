@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const NotificationStatus = styled.div`
+  position: fixed;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;

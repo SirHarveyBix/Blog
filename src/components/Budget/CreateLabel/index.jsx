@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useSession } from 'next-auth/react';
 import { useContext, useState } from 'react';
 
-import { CREATE_BUDGET_LINE } from '../../../graphql/query';
+import { CREATE_BUDGET_LINE, GET_BUDGET } from '../../../graphql/query';
 import { NotificationContext } from '../../context/NotificationContext';
 import { Button, Container, Input, Label, ValidButton } from './style';
 
@@ -13,6 +13,7 @@ const CreateLabel = () => {
   const [newLabel, setNewLabel] = useState(false);
 
   const [createBudgetLine] = useMutation(CREATE_BUDGET_LINE, {
+    refetchQueries: [{ query: GET_BUDGET, variables: { data: session?.user } }],
     onCompleted: () => setNewLabel(false),
   });
 
