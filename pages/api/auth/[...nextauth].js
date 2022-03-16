@@ -9,6 +9,23 @@ export default NextAuth({
   session: {
     strategy: 'jwt',
   },
+  secret: process.env.SECRET,
+  // get userID & insert
+  callbacks: {
+    session: async ({ session, token }) => {
+      if (session?.user) {
+        session.user.id = token.uid;
+      }
+      return session;
+    },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.uid = user.id;
+      }
+      return token;
+    },
+  },
+  //
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
@@ -50,5 +67,4 @@ export default NextAuth({
       },
     }),
   ],
-  secret: process.env.SECRET,
 });

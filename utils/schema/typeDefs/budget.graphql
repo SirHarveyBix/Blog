@@ -15,7 +15,7 @@ input BudgetInput {
 }
 
 input UsersBudgetInput {
-  # id: ID
+  id: ID
   email: String
 }
 input BudgetIdInput {
