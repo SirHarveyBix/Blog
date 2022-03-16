@@ -2,17 +2,7 @@ import { NotificationContextProvider } from '../context/NotificationContext';
 import Notification from '../Notification/index';
 import CreateLabel from './CreateLabel';
 import EditBudget from './EditBudget';
-import {
-  Button,
-  Container,
-  ContentFrom,
-  Input,
-  Label,
-  NewLabelControl,
-  Spacer,
-  Title,
-  ValidButton,
-} from './style';
+import { Container, ContentFrom, Spacer, Title } from './style';
 
 function Budget(props) {
   const { data, loading } = props;

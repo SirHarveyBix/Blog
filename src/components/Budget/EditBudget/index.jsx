@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { useSession } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { GET_BUDGET, REMOVE_BUDGET, UPDATE_BUDGET } from '../../../graphql/query';
 import { Control, EditButton, Input, Label, PlainText, PlainTextRow } from './style';
@@ -9,18 +9,18 @@ function EditBudget(props) {
   const { data: session, status } = useSession();
   const { data } = props;
   const [isEditable, setIsEditable] = useState(false);
-  const [editedInput, setEditedInput] = useState({ label: null, amount: null });
+  const [editedInput, setEditedInput] = useState({
+    id: data.id,
+    label: null,
+    amount: null,
+  });
 
   const options = {
-    refetchQueries: [{ query: GET_BUDGET, variables: { data: session?.user } }],
+    refetchQueries: [{ query: GET_BUDGET, variables: { data: session.user } }],
     onCompleted: () => setIsEditable(false),
   };
   const [removeBudget] = useMutation(REMOVE_BUDGET, options);
   const [updateBudget] = useMutation(UPDATE_BUDGET, options);
-
-  useEffect(() => {
-    setEditedInput({ ...editedInput, id: data.id });
-  }, [data, isEditable]);
 
   const handleUpdate = () => {
     if (!editedInput.label && !editedInput.amount) setIsEditable(false);

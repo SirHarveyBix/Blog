@@ -9,12 +9,12 @@ import { GET_BUDGET } from '../../src/graphql/query';
 function BudgetPage(props) {
   const { session } = props;
   const { loading, data } = useQuery(GET_BUDGET, {
-    variables: { data: session?.user },
+    variables: { data: session.user },
   });
   const [budget, setBudget] = useState();
 
   useEffect(() => {
-    if (!loading && data.getAllBudget) setBudget(data?.getAllBudget);
+    if (!loading && data?.getAllBudget) setBudget(data.getAllBudget);
   }, [data]);
 
   return <Budget data={budget} loading={loading} />;
