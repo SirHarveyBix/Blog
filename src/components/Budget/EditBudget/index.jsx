@@ -16,7 +16,7 @@ function EditBudget(props) {
   });
 
   const options = {
-    refetchQueries: [{ query: GET_BUDGET, variables: { data: session.user } }],
+    refetchQueries: [{ query: GET_BUDGET, variables: { data: { id: session.user.id } } }],
     onCompleted: () => setIsEditable(false),
   };
   const [removeBudget] = useMutation(REMOVE_BUDGET, options);
