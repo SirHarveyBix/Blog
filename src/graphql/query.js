@@ -71,14 +71,13 @@ export const CONNECT_USER = gql`
 `;
 
 export const GET_BUDGET = gql`
-  query GetAllBudget($data: FindUserEmail) {
+  query GetAllBudget($data: FindUserById) {
     getAllBudget(data: $data) {
       id
       amount
       label
       author {
         id
-        email
       }
     }
   }

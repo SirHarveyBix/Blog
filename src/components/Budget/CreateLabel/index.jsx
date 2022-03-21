@@ -9,11 +9,15 @@ import { Button, Container, Input, Label, ValidButton } from './style';
 const CreateLabel = () => {
   const { data: session, status } = useSession();
   const { setRequestStatus } = useContext(NotificationContext);
-  const [inputData, setInputData] = useState({ amount: 0, label: '', author: [session.user] });
+  const [inputData, setInputData] = useState({
+    amount: 0,
+    label: '',
+    author: [{ id: session.user.id }],
+  });
   const [newLabel, setNewLabel] = useState(false);
 
   const [createBudgetLine] = useMutation(CREATE_BUDGET_LINE, {
-    refetchQueries: [{ query: GET_BUDGET, variables: { data: session.user } }],
+    refetchQueries: [{ query: GET_BUDGET, variables: { data: { id: session.user.id } } }],
     onCompleted: () => setNewLabel(false),
   });
 

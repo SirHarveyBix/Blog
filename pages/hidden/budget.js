@@ -9,7 +9,7 @@ import { GET_BUDGET } from '../../src/graphql/query';
 function BudgetPage(props) {
   const { session } = props;
   const { loading, data } = useQuery(GET_BUDGET, {
-    variables: { data: session.user },
+    variables: { data: { id: session.user.id } },
   });
   const [budget, setBudget] = useState();
 

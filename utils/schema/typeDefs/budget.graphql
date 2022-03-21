@@ -23,7 +23,7 @@ input BudgetIdInput {
 }
 
 type Query {
-  getAllBudget(data: FindUserEmail): [Budget]
+  getAllBudget(data: FindUserById): [Budget]
 }
 type Mutation {
   removeBudgetById(data: BudgetIdInput): Budget

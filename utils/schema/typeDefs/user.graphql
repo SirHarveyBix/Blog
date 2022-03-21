@@ -14,6 +14,9 @@ input FindUserEmail {
   id: String
   email: String
 }
+input FindUserById {
+  id: String
+}
 input UserInput {
   email: String
   password: String

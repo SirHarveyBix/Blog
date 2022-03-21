@@ -4,7 +4,7 @@ import clientDB from '../../lib/mongoClient.js';
 
 const budgetResolver = {
   Query: {
-    async getAllBudget(_parent, { data: FindUserEmail }) {
+    async getAllBudget(_parent, { data: FindUserById }) {
       const getClient = await clientDB('Budget');
       const db = getClient.db();
 
@@ -13,7 +13,7 @@ const budgetResolver = {
         const results = await db
           .collection('budget')
           .find({
-            'author.email': FindUserEmail.email,
+            'author.id': FindUserById.id,
           })
           .toArray();
 
