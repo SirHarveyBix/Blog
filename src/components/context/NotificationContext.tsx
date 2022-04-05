@@ -1,10 +1,12 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, FunctionComponent, ReactNode, useEffect, useState } from 'react';
 
-export const NotificationContext = createContext(null);
+import { NotificationType, NotificationContextType } from './type';
 
-export const NotificationContextProvider = ({ children }) => {
-  const [requestStatus, setRequestStatus] = useState(null);
-  const [notification, setNotification] = useState(null);
+export const NotificationContext = createContext<NotificationContextType | null>(null);
+
+export const NotificationContextProvider: FunctionComponent<ReactNode> = ({ children }) => {
+  const [requestStatus, setRequestStatus] = useState<string | null>(null);
+  const [notification, setNotification] = useState<NotificationType | null>(null);
 
   useEffect(() => {
     if (requestStatus === 'pending') {
