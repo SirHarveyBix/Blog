@@ -1,15 +1,16 @@
+import { ElementType, FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
-
-import SyntaxHighlighted from '/src/Hook/SyntaxHighlighted';
+import SyntaxHighlighted from 'src/Hook/SyntaxHighlighted';
 
 import PostHeader from '../PostHeader/index';
 import { Container, Content, Picture, Spacer } from './style';
+import { Post } from '../../type';
 
-function PostContent(props) {
+const PostContent: FunctionComponent<Post> = (props) => {
   const { post } = props;
   const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
-  const customRenderers = {
+  const customRenderers: { [nodeType: string]: ElementType } = {
     p(paragraph) {
       const { node } = paragraph;
       if (node.children[0].tagName === 'img') {
@@ -39,11 +40,11 @@ function PostContent(props) {
     <>
       <Spacer />
       <Container>
-        <PostHeader title={post.title} image={imagePath} />
+        <PostHeader {...post} image={imagePath} />
         <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
       </Container>
     </>
   );
-}
+};
 
 export default PostContent;

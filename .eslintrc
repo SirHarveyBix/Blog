@@ -8,16 +8,19 @@
     "next",
     "plugin:@next/next/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["graphql", "simple-import-sort", "react-hooks"],
+  "plugins": ["graphql", "simple-import-sort", "react-hooks", "@typescript-eslint"],
   "rules": {
-    "react/no-unescaped-entities": "off",
-    "react/no-children-prop": "off",
-
     "simple-import-sort/imports": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/no-unescaped-entities": "off",
+    "react/no-children-prop": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-empty-function": ["warn"],
+    "@typescript-eslint/ban-types": ["warn"],
     "prettier/prettier": [
       "error",
       {
@@ -31,7 +34,7 @@
     "import/core-modules": ["path"],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx"]
+        "extensions": [".js", ".ts", ".tsx", ".jsx"]
       }
     },
     "react": {

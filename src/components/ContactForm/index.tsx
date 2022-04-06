@@ -1,8 +1,8 @@
-import { useContext, useState } from 'react';
-
-import sendContactData from '/src/lib/sendContactData';
+import { FormEvent, useContext, useState } from 'react';
+import sendContactData from 'src/lib/sendContactData';
 
 import { NotificationContext } from '../context/NotificationContext';
+import { NotificationContextType } from '../context/type';
 import Notification from '../Notification/index';
 import {
   Actions,
@@ -14,17 +14,18 @@ import {
   Lablel,
   Spacer,
   Title,
+  Textarea,
 } from './style';
 
 function ContactForm() {
-  const { setRequestStatus } = useContext(NotificationContext);
+  const { setRequestStatus } = useContext(NotificationContext) as NotificationContextType;
   const [enteredData, setEnteredData] = useState({
     name: '',
     email: '',
     message: '',
   });
 
-  const sendMessageHandler = async (event) => {
+  const sendMessageHandler = async (event: FormEvent) => {
     event.preventDefault();
     setRequestStatus('pending');
     try {
@@ -60,7 +61,6 @@ function ContactForm() {
             <Control>
               <Lablel htmlFor="name">Nom</Lablel>
               <Input
-                tag={'input'}
                 type="text"
                 id="name"
                 required
@@ -70,10 +70,9 @@ function ContactForm() {
             </Control>
             <Control>
               <Lablel htmlFor="message">Message</Lablel>
-              <Input
-                as="textarea"
+              <Textarea
                 id="message"
-                rows="5"
+                rows={5}
                 required
                 value={enteredData.message}
                 onChange={(event) =>

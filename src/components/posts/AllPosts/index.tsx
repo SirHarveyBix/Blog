@@ -1,24 +1,26 @@
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { FunctionComponent, useRef, useState } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
 
 import PostsGrid from '../PostsGrid/index';
+import { Posts, Post, OnClickRef } from '../type';
 import { Container, Control, Input, Lablel, Spacer, Title } from './style';
-function AllPosts(props) {
+
+const AllPosts: FunctionComponent<Posts> = (props): JSX.Element => {
   let { posts } = props;
   const [inputQuery, setInputQuery] = useState('');
   const [isInputOpen, setIsInputOpen] = useState(false);
-  const [lensRef, setLensRef] = useState(null);
-  const inputRef = useRef();
+  const [lensRef, setLensRef] = useState<HTMLImageElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  if (inputQuery.length > 1 || inputQuery !== '') {
-    posts = posts.filter((post) =>
+  if (inputQuery!.length > 1 || inputQuery !== '') {
+    posts = posts.filter((post: Post) =>
       JSON.stringify(post).toLowerCase().includes(inputQuery.toLowerCase())
     );
   }
 
-  useOnClickOutside(inputRef, (e) => {
-    if (isInputOpen && lensRef !== e.target && !inputQuery) setIsInputOpen(false);
+  useOnClickOutside(inputRef, (event) => {
+    if (isInputOpen && lensRef !== event.target && !inputQuery) setIsInputOpen(false);
   });
 
   return (
@@ -29,7 +31,7 @@ function AllPosts(props) {
         <Control>
           <Lablel htmlFor="query" onClick={() => setIsInputOpen(!isInputOpen)}>
             <Image
-              onClick={() => setLensRef(event.target)}
+              onClick={(event: OnClickRef) => setLensRef(event.target)}
               src="/images/site/glass.png"
               alt="search"
               width={50}
@@ -52,5 +54,5 @@ function AllPosts(props) {
       </Container>
     </>
   );
-}
+};
 export default AllPosts;

@@ -1,4 +1,4 @@
-async function createUserRoute(loginData) {
+async function createUserRoute(loginData: { email: string; password: string }) {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     body: JSON.stringify(loginData),
