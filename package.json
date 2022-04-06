@@ -28,6 +28,7 @@
     "use-onclickoutside": "^0.4.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@babel/core": "^7.17.5",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-react": "^7.16.7",
