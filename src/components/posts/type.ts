@@ -1,4 +1,4 @@
-import { Key, ReactNode } from 'react';
+import { Key, ReactNode, MouseEvent } from 'react';
 
 export interface Posts {
   posts: {
@@ -17,4 +17,9 @@ export interface Post extends Posts {
   date: string;
   __typename?: string;
   isFeatured?: boolean;
+}
+
+export interface OnClickRef extends MouseEvent {
+  //TODO remove | any;
+  target: HTMLImageElement | any;
 }
