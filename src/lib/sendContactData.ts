@@ -1,4 +1,9 @@
-export default async function sendContactData(contactDetails) {
+export default async function sendContactData(contactDetails: {
+  name: string;
+  email: string;
+  message: string;
+}) {
+  console.log(contactDetails);
   const response = await fetch('/api/contact', {
     method: 'POST',
     body: JSON.stringify(contactDetails),

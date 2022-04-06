@@ -10,10 +10,14 @@ import sh from 'react-syntax-highlighter/dist/cjs/languages/prism/shell-session'
 import yml from 'react-syntax-highlighter/dist/cjs/languages/prism/yaml';
 import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
 
-export default function SyntaxHighlighted({ code: props }) {
+export default function SyntaxHighlighted({
+  code: props,
+}: {
+  code: { className: string; children: string[] };
+}) {
   const { className, children } = props;
 
-  let language;
+  let language: string;
 
   if (!className) language = 'language-js';
   else language = className.split('-')[1];

@@ -1,10 +1,11 @@
-import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
-import { useContext, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { FormEvent, FunctionComponent, useContext, useRef, useState } from 'react';
 
 import createUserRoute from '../../lib/createUser';
 import { NotificationContext } from '../context/NotificationContext';
-import Notification from '../Notification/index';
+import { NotificationContextType } from '../context/type';
+import Notification from '../Notification';
 import {
   Actions,
   AuthContainer,
@@ -18,28 +19,30 @@ import {
   Title,
   Toogle,
 } from './style';
+import { UserAuth } from './type';
 
-function AuthCard() {
+const AuthCard: FunctionComponent = () => {
   const router = useRouter();
-  const { setRequestStatus } = useContext(NotificationContext);
+  const { setRequestStatus } = useContext(NotificationContext) as NotificationContextType;
   const [isLogin, setIsLogin] = useState(false);
 
-  const enteredEmail = useRef();
-  const enteredPassword = useRef();
+  const enteredEmail = useRef<HTMLInputElement>(null);
+  const enteredPassword = useRef<HTMLInputElement>(null);
 
-  const submitHandler = async (event) => {
+  const submitHandler = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     if (isLogin) {
       try {
         setRequestStatus('pending');
-        const result = await signIn('credentials', {
+        // TODO remove | any
+        const result: UserAuth | any = await signIn('credentials', {
           redirect: false,
-          email: enteredEmail.current.value,
-          password: enteredPassword.current.value,
+          email: enteredEmail.current!.value,
+          password: enteredPassword.current!.value,
         });
         setRequestStatus('connected');
         if (result.error) {
-          console.error(result.error);
+          +console.error(result!.error);
           setRequestStatus('wrongPassword');
         }
         if (!result.error) router.push('/hidden/budget');
@@ -52,8 +55,8 @@ function AuthCard() {
       try {
         setRequestStatus('pending');
         await createUserRoute({
-          email: enteredEmail.current.value,
-          password: enteredPassword.current.value,
+          email: enteredEmail.current!.value,
+          password: enteredPassword.current!.value,
         });
         setRequestStatus('userCreated');
         setIsLogin(!isLogin);
@@ -92,5 +95,5 @@ function AuthCard() {
       <Notification />
     </>
   );
-}
+};
 export default AuthCard;
