@@ -4,7 +4,7 @@ import SyntaxHighlighted from 'src/Hook/SyntaxHighlighted';
 
 import PostHeader from '../PostHeader/index';
 import { Container, Content, Picture, Spacer } from './style';
-import { Post } from './type';
+import { Post } from '../../type';
 
 const PostContent: FunctionComponent<Post> = (props) => {
   const { post } = props;
@@ -40,7 +40,7 @@ const PostContent: FunctionComponent<Post> = (props) => {
     <>
       <Spacer />
       <Container>
-        <PostHeader title={post.title} image={imagePath} />
+        <PostHeader {...post} image={imagePath} />
         <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
       </Container>
     </>

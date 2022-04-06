@@ -10,9 +10,10 @@ import {
   PictureContainer,
   Title,
 } from './style';
+import { Post } from '../type';
 
-function PostItem(props) {
-  const { title, image, excerpt, date, slug } = props.post;
+function PostItem(props: Post) {
+  const { title, image, excerpt, date, slug } = props;
 
   const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
     day: 'numeric',

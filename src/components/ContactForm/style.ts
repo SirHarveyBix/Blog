@@ -37,6 +37,15 @@ export const Input = styled.input`
   background-color: var(--color-grey-50);
   resize: none;
 `;
+export const Textarea = styled.textarea`
+  font: inherit;
+  padding: var(--size-1);
+  border-radius: 4px;
+  width: 100%;
+  border: 1px solid var(--color-grey-400);
+  background-color: var(--color-grey-50);
+  resize: none;
+`;
 
 export const Controls = styled.div`
   display: flex;
