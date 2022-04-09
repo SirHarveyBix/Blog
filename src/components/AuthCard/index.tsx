@@ -84,7 +84,7 @@ const AuthCard: FunctionComponent = () => {
               <Input ref={enteredPassword} type="password" id="password" required />
             </Control>
             <Actions>
-              <Button>{isLogin ? 'Connection' : 'Creer un compte'}</Button>
+              <Button type="button">{isLogin ? 'Connection' : 'Creer un compte'}</Button>
               <Toogle type="button" onClick={() => setIsLogin(!isLogin)}>
                 {isLogin ? 'Creer un nouveau compte' : 'Se connecter'}
               </Toogle>

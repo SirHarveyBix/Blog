@@ -1,10 +1,12 @@
+import { FunctionComponent } from 'react';
 import { NotificationContextProvider } from '../context/NotificationContext';
 import Notification from '../Notification/index';
 import CreateLabel from './CreateLabel';
 import EditBudget from './EditBudget';
 import { Container, ContentFrom, Spacer, Title } from './style';
+import { BudgetData } from './type';
 
-function Budget(props) {
+const Budget: FunctionComponent<{ data?: BudgetData[]; loading: boolean }> = (props) => {
   const { data, loading } = props;
 
   return (
@@ -30,5 +32,5 @@ function Budget(props) {
       </NotificationContextProvider>
     </>
   );
-}
+};
 export default Budget;

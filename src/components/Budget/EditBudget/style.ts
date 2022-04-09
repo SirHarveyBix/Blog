@@ -1,5 +1,9 @@
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
+
+interface NumberInput {
+  isNumberInput?: boolean;
+}
 export const Control = styled.div`
   display: flex;
   justify-content: space-around;
@@ -7,7 +11,7 @@ export const Control = styled.div`
 export const Label = styled.label`
   color: white;
 `;
-export const Input = styled.input`
+export const Input = styled.input<NumberInput>`
   font: inherit;
   background-color: #f1e1fc;
   color: #38015c;

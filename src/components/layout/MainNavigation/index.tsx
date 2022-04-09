@@ -3,9 +3,10 @@ import { signOut, useSession } from 'next-auth/react';
 
 import Logo from '../Logo/index';
 import { Button, Container, Header, List } from './style';
+import { FunctionComponent } from 'react';
 
-function MainNavigation() {
-  const { data: session, status } = useSession();
+const MainNavigation: FunctionComponent = () => {
+  const { data: session } = useSession();
 
   return (
     <Header>
@@ -27,12 +28,14 @@ function MainNavigation() {
           </List>
           {session && (
             <List>
-              <Button onClick={signOut}>Logout</Button>
+              <Button type="button" onClick={() => signOut()}>
+                Logout
+              </Button>
             </List>
           )}
         </Container>
       </nav>
     </Header>
   );
-}
+};
 export default MainNavigation;

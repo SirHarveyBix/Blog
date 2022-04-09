@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const NotificationStatus = styled.div`
+interface Status {
+  status: string;
+}
+
+export const NotificationStatus = styled.div<Status>`
   position: fixed;
   z-index: 100;
   display: flex;
@@ -17,16 +21,10 @@ export const NotificationStatus = styled.div`
   left: 0;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
-  ${({ status }) =>
-    status === 'error'
-      ? `
-    background-color: var(--color-error-500);`
-      : null}
+  ${({ status }) => (status === 'error' ? ` background-color: var(--color-error-500);` : null)}
   ${({ status }) =>
     status === 'success'
-      ? `
-     background-color: var(--color-success-500);
-     color: var(--color-grey-800);`
+      ? ` background-color: var(--color-success-500); color: var(--color-grey-800);`
       : null}
 @media (min-width: 768px) {
     width: 40rem;

@@ -1,6 +1,7 @@
+import { FunctionComponent } from 'react';
 import { Container } from './style';
 
-function Logo() {
+const Logo: FunctionComponent = () => {
   return <Container>Gui' Blog</Container>;
-}
+};
 export default Logo;
