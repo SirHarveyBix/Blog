@@ -9,7 +9,7 @@ import { Control, EditButton, Input, Label, PlainText, PlainTextRow } from './st
 const EditBudget: FunctionComponent<BudgetDataProps> = (props) => {
   const { data: session } = useSession() as SessionHook;
   const { data } = props;
-  console.log(data);
+
   const [isEditable, setIsEditable] = useState(false);
   const [editedInput, setEditedInput] = useState({
     id: data.id,
