@@ -9,6 +9,7 @@ export const NotificationContextProvider: FunctionComponent<ReactNode> = ({ chil
   const [notification, setNotification] = useState<NotificationType | null>(null);
 
   useEffect(() => {
+    // TODO add enums ?
     if (requestStatus === 'pending') {
       setNotification({
         status: 'pending',

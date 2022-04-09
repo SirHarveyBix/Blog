@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { FunctionComponent, useContext } from 'react';
 
 import { NotificationContext } from '../context/NotificationContext';
+import { NotificationContextType } from '../context/type';
 import { Message, NotificationStatus, Title } from './style';
 
-function Notification() {
-  const { notification } = useContext(NotificationContext);
+const Notification: FunctionComponent = (): JSX.Element => {
+  const { notification } = useContext(NotificationContext) as NotificationContextType;
 
   return (
     <>
@@ -16,6 +17,6 @@ function Notification() {
       )}
     </>
   );
-}
+};
 
 export default Notification;
