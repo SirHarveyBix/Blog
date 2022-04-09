@@ -1,22 +1,24 @@
 import { useMutation } from '@apollo/client';
 import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { useState, FunctionComponent } from 'react';
 
 import { GET_BUDGET, REMOVE_BUDGET, UPDATE_BUDGET } from '../../../graphql/query';
+import { BudgetDataProps, SessionHook } from '../type';
 import { Control, EditButton, Input, Label, PlainText, PlainTextRow } from './style';
 
-function EditBudget(props) {
-  const { data: session, status } = useSession();
+const EditBudget: FunctionComponent<BudgetDataProps> = (props) => {
+  const { data: session } = useSession() as SessionHook;
   const { data } = props;
+  console.log(data);
   const [isEditable, setIsEditable] = useState(false);
   const [editedInput, setEditedInput] = useState({
     id: data.id,
-    label: null,
-    amount: null,
+    label: '',
+    amount: 0,
   });
 
   const options = {
-    refetchQueries: [{ query: GET_BUDGET, variables: { data: { id: session.user.id } } }],
+    refetchQueries: [{ query: GET_BUDGET, variables: { data: { id: session?.user.id } } }],
     onCompleted: () => setIsEditable(false),
   };
   const [removeBudget] = useMutation(REMOVE_BUDGET, options);
@@ -82,6 +84,6 @@ function EditBudget(props) {
       )}
     </>
   );
-}
+};
 
 export default EditBudget;

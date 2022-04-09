@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
 interface NumberInput {
-  isNumberInput: boolean;
+  isNumberInput?: boolean;
 }
 export const Control = styled.div`
   display: flex;

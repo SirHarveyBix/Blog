@@ -9,6 +9,9 @@ export interface BudgetData {
   __typename: string;
 }
 
+export interface BudgetDataProps {
+  data: BudgetData;
+}
 export interface Author {
   id: Key | string;
   __typename: string;

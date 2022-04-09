@@ -59,7 +59,9 @@ const CreateLabel: FunctionComponent = () => {
           />
         </Container>
       )}
-      <Button onClick={(e) => (e.preventDefault(), setNewLabel(true))}>ajouter un label</Button>
+      <Button type="button" onClick={(e) => (e.preventDefault(), setNewLabel(true))}>
+        ajouter un label
+      </Button>
     </>
   );
 };
