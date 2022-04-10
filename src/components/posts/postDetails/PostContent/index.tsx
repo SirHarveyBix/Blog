@@ -6,8 +6,8 @@ import { Post } from '../../type';
 import PostHeader from '../PostHeader/index';
 import { Container, Content, Picture, Spacer } from './style';
 
-const PostContent: FunctionComponent<Post> = ({ post }) => {
-  const imagePath = `/images/posts/${post.slug}/${post.image}`;
+const PostContent: FunctionComponent<Post> = ({ ...post }) => {
+  const imagePath = `/images/posts/${post?.slug}/${post?.image}`;
 
   const customRenderers: { [nodeType: string]: ElementType } = {
     p(paragraph) {
@@ -40,7 +40,7 @@ const PostContent: FunctionComponent<Post> = ({ post }) => {
       <Spacer />
       <Container>
         <PostHeader {...post} image={imagePath} />
-        <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
+        <ReactMarkdown components={customRenderers}>{post?.content}</ReactMarkdown>
       </Container>
     </>
   );
