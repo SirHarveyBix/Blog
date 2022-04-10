@@ -9,7 +9,6 @@ export interface Posts {
 }
 
 export interface Post extends Posts {
-  post: Post;
   slug: string | Key;
   title: string;
   image: string;
@@ -18,6 +17,9 @@ export interface Post extends Posts {
   date: string;
   __typename?: string;
   isFeatured?: boolean;
+}
+export interface PostProps {
+  post: Post;
 }
 
 export interface OnClickRef extends MouseEvent {
