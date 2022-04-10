@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { Post } from '../type';
 import {
   Container,
   Content,
@@ -10,7 +11,6 @@ import {
   PictureContainer,
   Title,
 } from './style';
-import { Post } from '../type';
 
 function PostItem(props: Post) {
   const { title, image, excerpt, date, slug } = props;

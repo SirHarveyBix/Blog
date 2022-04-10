@@ -3,7 +3,7 @@ import { FunctionComponent, useRef, useState } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
 
 import PostsGrid from '../PostsGrid/index';
-import { Posts, Post, OnClickRef } from '../type';
+import { OnClickRef, Post, Posts } from '../type';
 import { Container, Control, Input, Lablel, Spacer, Title } from './style';
 
 const AllPosts: FunctionComponent<Posts> = (props): JSX.Element => {
@@ -13,7 +13,7 @@ const AllPosts: FunctionComponent<Posts> = (props): JSX.Element => {
   const [lensRef, setLensRef] = useState<HTMLImageElement | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  if (inputQuery!.length > 1 || inputQuery !== '') {
+  if (inputQuery.length > 1 || inputQuery !== '') {
     posts = posts.filter((post: Post) =>
       JSON.stringify(post).toLowerCase().includes(inputQuery.toLowerCase())
     );

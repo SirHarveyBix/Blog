@@ -1,14 +1,30 @@
 import Head from 'next/head';
 
 import client from 'pages/api/graphql';
+import { Key, ReactNode } from 'react';
 import FeaturedPosts from 'src/components/homePage/FeaturedPosts/index';
 import Hero from 'src/components/homePage/Hero/index';
 import { FEATURED_POSTS } from 'src/graphql/query';
 import { initializeApollo } from 'src/lib/apolloClient';
 
-function HomePage(props: { posts: any }) {
-  const { posts } = props;
+export interface Posts extends Post {
+  filter: () => unknown;
+  map(arg0: (post: Post) => JSX.Element): ReactNode;
+}
+interface Post {
+  slug: Key | string;
+  title: string;
+  image: string;
+  excerpt: string;
+  date: string;
+  content: string;
+  __typename: string;
+  isFeatured: boolean;
+  posts: Posts;
+  post: Post;
+}
 
+function HomePage(posts: JSX.IntrinsicAttributes & Post & { children?: ReactNode }) {
   return (
     <>
       <Head>
@@ -16,7 +32,7 @@ function HomePage(props: { posts: any }) {
         <meta name="description" content="programation et developpement" />
       </Head>
       <Hero />
-      <FeaturedPosts posts={posts} />
+      <FeaturedPosts {...posts} />
     </>
   );
 }

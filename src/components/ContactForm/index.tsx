@@ -13,8 +13,8 @@ import {
   Input,
   Lablel,
   Spacer,
-  Title,
   Textarea,
+  Title,
 } from './style';
 
 function ContactForm() {

@@ -1,7 +1,8 @@
-import { Key, ReactNode, MouseEvent } from 'react';
+import { Key, MouseEvent, ReactNode } from 'react';
 
 export interface Posts {
   posts: {
+    //TODO remove any;
     filter: any;
     map(arg0: (post: Post) => JSX.Element): ReactNode;
   };
@@ -9,7 +10,7 @@ export interface Posts {
 
 export interface Post extends Posts {
   post: Post;
-  slug: Key | string;
+  slug: string | Key;
   title: string;
   image: string;
   excerpt: string;

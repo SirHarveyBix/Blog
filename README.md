@@ -18,17 +18,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ###### Frontend :
 
 > The Frontend : [www.gui-dev.fr](https://www.gui-dev.fr/)
-> 
+>
 > Hosted by vercel : [admin panel](https://vercel.com/sirharveybix/blog-prod)
 
--->  _consider to fill the information in > General, Git, & Environement Variables_
+--> _consider to fill the information in > General, Git, & Environement Variables_
 
 --> _you can add a **.vercelignore** file to force vercel not to deploys certains files / folder like "utils"_
 
 ###### Backend :
 
 > The Backend : [bloggql.herokuapp.com/](https://bloggql.herokuapp.com/)
-> 
+>
 > Hosted by Heroku [admin panel](https://dashboard.heroku.com/apps/bloggql)
 
 --> _consider to editing Config Vars as you did in **.env** file : [Details](./utils/README.md)_

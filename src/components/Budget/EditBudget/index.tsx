@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { useSession } from 'next-auth/react';
-import { useState, FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 
 import { GET_BUDGET, REMOVE_BUDGET, UPDATE_BUDGET } from '../../../graphql/query';
 import { BudgetDataProps, SessionHook } from '../type';

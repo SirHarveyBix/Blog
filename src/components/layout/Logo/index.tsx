@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+
 import { Container } from './style';
 
 const Logo: FunctionComponent = () => {

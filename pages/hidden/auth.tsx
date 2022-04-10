@@ -3,9 +3,10 @@ import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
-import AuthCard from '/src/components/AuthCard/index';
+import AuthCard from 'src/components/AuthCard/index';
 
 import { NotificationContextProvider } from '../../src/components/context/NotificationContext';
+import { GetServerSidePropsContext } from 'next';
 
 function Auth() {
   const router = useRouter();
@@ -33,7 +34,7 @@ function Auth() {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession({ req: context.req });
 
   if (session) {

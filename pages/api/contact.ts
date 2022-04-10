@@ -1,10 +1,11 @@
-import client from '/pages/api/graphql';
-import { SEND_MESSAGE } from '/src/graphql/query';
+import { FetchResult } from '@apollo/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+import client from 'pages/api/graphql';
+import { SEND_MESSAGE } from 'src/graphql/query';
 
-export default async function handler(request, response) {
+export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   if (request.method === 'POST') {
     const { email, name, message } = request.body;
-
     if (
       !email ||
       !name ||
@@ -16,10 +17,10 @@ export default async function handler(request, response) {
       response.status(422).json({ message: 'Invalid input' });
       return;
     }
-
-    let newMessage = { email, name, message };
+    //TODO remove any
+    let newMessage: any = { email, name, message };
     try {
-      newMessage = await client.mutate({
+      newMessage = await client.mutate<FetchResult>({
         mutation: SEND_MESSAGE,
         variables: { data: newMessage },
       });
@@ -30,6 +31,6 @@ export default async function handler(request, response) {
 
     response
       .status(201)
-      .json({ message: 'Successfully Sent !', message: newMessage.data.sendMessage.id });
+      .json({ message: 'Successfully Sent !', messageId: newMessage?.data?.sendMessage.id });
   }
 }

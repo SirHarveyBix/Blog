@@ -1,7 +1,8 @@
-import { Posts, Post } from '../type';
-import PostItem from '../PostItem/index';
-import { Container } from './style';
 import { FunctionComponent } from 'react';
+
+import PostItem from '../PostItem/index';
+import { Post, Posts } from '../type';
+import { Container } from './style';
 
 const PostsGrid: FunctionComponent<Posts> = (props): JSX.Element => {
   const { posts }: Posts = props;
