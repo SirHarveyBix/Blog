@@ -81,7 +81,7 @@ function ContactForm() {
               />
             </Control>
             <Actions>
-              <Button type="button">Envoyer</Button>
+              <Button type="submit">Envoyer</Button>
             </Actions>
           </Controls>
           <Notification />

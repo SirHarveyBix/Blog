@@ -1,12 +1,12 @@
 import Head from 'next/head';
 
-import client from '/pages/api/graphql';
-import FeaturedPosts from '/src/components/homePage/FeaturedPosts/index';
-import Hero from '/src/components/homePage/Hero/index';
-import { FEATURED_POSTS } from '/src/graphql/query';
-import { initializeApollo } from '/src/lib/apolloClient';
+import client from 'pages/api/graphql';
+import FeaturedPosts from 'src/components/homePage/FeaturedPosts/index';
+import Hero from 'src/components/homePage/Hero/index';
+import { FEATURED_POSTS } from 'src/graphql/query';
+import { initializeApollo } from 'src/lib/apolloClient';
 
-function HomePage(props) {
+function HomePage(props: { posts: any }) {
   const { posts } = props;
 
   return (

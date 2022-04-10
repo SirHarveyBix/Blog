@@ -2,11 +2,12 @@ import { ApolloProvider } from '@apollo/client';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 
-import GlobalStyle from '/src/components/GlobalStyle/index';
-import Layout from '/src/components/layout/Layout';
-import { useApollo } from '/src/lib/apolloClient';
+import Layout from 'src/components/layout/Layout';
+import { useApollo } from 'src/lib/apolloClient';
+import GlobalStyle from 'src/components/GlobalStyle';
+import type { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps.initialApolloState);
   const { session } = pageProps;
 
@@ -27,4 +28,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default App;
