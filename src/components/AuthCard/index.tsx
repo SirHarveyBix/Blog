@@ -1,5 +1,5 @@
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 import { FormEvent, FunctionComponent, useContext, useRef, useState } from 'react';
 
 import createUserRoute from '../../lib/createUser';
@@ -19,7 +19,6 @@ import {
   Title,
   Toogle,
 } from './style';
-import { UserAuth } from './type';
 
 const AuthCard: FunctionComponent = () => {
   const router = useRouter();
@@ -35,7 +34,7 @@ const AuthCard: FunctionComponent = () => {
       try {
         setRequestStatus('pending');
         // TODO remove | any
-        const result: UserAuth | any = await signIn('credentials', {
+        const result: any = await signIn('credentials', {
           redirect: false,
           email: enteredEmail.current!.value,
           password: enteredPassword.current!.value,

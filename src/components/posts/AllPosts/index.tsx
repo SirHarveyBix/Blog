@@ -3,7 +3,7 @@ import { FunctionComponent, useRef, useState } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
 
 import PostsGrid from '../PostsGrid/index';
-import { Posts, Post, OnClickRef } from '../type';
+import { OnClickRef, Post, Posts } from '../type';
 import { Container, Control, Input, Lablel, Spacer, Title } from './style';
 
 const AllPosts: FunctionComponent<Posts> = (props): JSX.Element => {

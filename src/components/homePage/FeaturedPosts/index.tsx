@@ -1,9 +1,10 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
+
 import PostsGrid from '../../posts/PostsGrid';
 import { Container, Title } from './style';
 import { Post } from './type';
 
-const FeaturedPosts: FunctionComponent<Post> = (props: PropsWithChildren<Post>): JSX.Element => {
+const FeaturedPosts: FunctionComponent<Post> = (props: PropsWithChildren<Post>) => {
   const { posts } = props;
 
   return (

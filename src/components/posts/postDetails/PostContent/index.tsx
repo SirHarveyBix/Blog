@@ -2,12 +2,11 @@ import { ElementType, FunctionComponent } from 'react';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighted from 'src/Hook/SyntaxHighlighted';
 
+import { Post } from '../../type';
 import PostHeader from '../PostHeader/index';
 import { Container, Content, Picture, Spacer } from './style';
-import { Post } from '../../type';
 
-const PostContent: FunctionComponent<Post> = (props) => {
-  const { post } = props;
+const PostContent: FunctionComponent<Post> = ({ post }) => {
   const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers: { [nodeType: string]: ElementType } = {

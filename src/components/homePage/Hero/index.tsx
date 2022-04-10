@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+
 import { Container, Description, Picture, Spacer, Title } from './style';
 
 const Hero: FunctionComponent = () => {

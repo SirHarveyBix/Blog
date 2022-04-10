@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
+import { FunctionComponent } from 'react';
 
 import Logo from '../Logo/index';
 import { Button, Container, Header, List } from './style';
-import { FunctionComponent } from 'react';
 
 const MainNavigation: FunctionComponent = () => {
   const { data: session } = useSession();

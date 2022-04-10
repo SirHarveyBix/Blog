@@ -1,6 +1,6 @@
 import { createContext, FunctionComponent, ReactNode, useEffect, useState } from 'react';
 
-import { NotificationType, NotificationContextType } from './type';
+import { NotificationContextType, NotificationType } from './type';
 
 export const NotificationContext = createContext<NotificationContextType | null>(null);
 

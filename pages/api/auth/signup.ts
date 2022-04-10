@@ -1,11 +1,12 @@
-import client from '/pages/api/graphql';
-import { CREATE_USER, EXISTING_USER } from '/src/graphql/query';
+import { NextApiRequest, NextApiResponse } from 'next';
+import client from 'pages/api/graphql';
+import { CREATE_USER, EXISTING_USER } from 'src/graphql/query';
 
-export default async function handler(request, response) {
+export default async function handler(request: NextApiRequest, response: NextApiResponse) {
   if (request.method !== 'POST') return;
 
   const data = request.body;
-  const { email, password } = data;
+  const { email } = data;
 
   let userExists;
   try {

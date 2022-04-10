@@ -21,6 +21,7 @@
     "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-empty-function": ["warn"],
     "@typescript-eslint/ban-types": ["warn"],
+    "@typescript-eslint/no-unused-vars": 0,
     "prettier/prettier": [
       "error",
       {
