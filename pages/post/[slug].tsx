@@ -1,42 +1,28 @@
 import Head from 'next/head';
 
 import client from 'pages/api/graphql';
-import { FunctionComponent, Key, ReactNode } from 'react';
 import PostContent from 'src/components/posts/postDetails/PostContent';
+import { PostProps } from 'src/components/posts/type';
 import { ALL_POSTS, POST_DETAILS } from 'src/graphql/query';
 
-interface PostProps extends Posts {
-  post: PostProps;
-  slug: Key | string;
-  title: string;
-  image: string;
-  excerpt: string;
-  date: string;
-  content: string;
-  __typename?: string;
-  isFeatured?: boolean;
-}
-
-export interface Posts {
-  posts: {
-    filter: any;
-    map(arg0: (post: PostProps) => JSX.Element): ReactNode;
-  };
-}
-
-const PostDetailPage: FunctionComponent<PostProps> = ({ post }) => {
+const PostDetailPage = (props: PostProps) => {
+  const { post } = props;
   return (
     <>
       <Head>
-        <title>{post.title}</title>
-        <meta name="description" content={`${post.excerpt}`} />
+        <title>{post?.title}</title>
+        <meta name="description" content={`${post?.excerpt}`} />
       </Head>
       <PostContent {...post} />
     </>
   );
 };
 
-export async function getStaticProps(context: { params: { slug: string } }) {
+interface PostSlug {
+  slug: string;
+}
+
+export async function getStaticProps(context: { params: PostSlug }) {
   const { params } = context;
   const { slug } = params;
 
@@ -62,7 +48,7 @@ export async function getStaticPaths() {
   const allPosts = data.getAllPosts;
 
   return {
-    paths: allPosts.map((post: PostProps) => ({
+    paths: allPosts.map((post: PostSlug) => ({
       params: {
         slug: post.slug,
       },

@@ -5,7 +5,7 @@ import { Post, Posts } from '../type';
 import { Container } from './style';
 
 const PostsGrid: FunctionComponent<Posts> = (props): JSX.Element => {
-  const { posts }: Posts = props;
+  const { posts } = props;
 
   return (
     <Container>
