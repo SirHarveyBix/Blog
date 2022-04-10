@@ -36,12 +36,12 @@ const AuthCard: FunctionComponent = () => {
         // TODO remove | any
         const result: any = await signIn('credentials', {
           redirect: false,
-          email: enteredEmail.current!.value,
-          password: enteredPassword.current!.value,
+          email: enteredEmail.current?.value,
+          password: enteredPassword.current?.value,
         });
         setRequestStatus('connected');
         if (result.error) {
-          +console.error(result!.error);
+          console.error(result.error);
           setRequestStatus('wrongPassword');
         }
         if (!result.error) router.push('/hidden/budget');

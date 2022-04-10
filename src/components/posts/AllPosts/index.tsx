@@ -13,7 +13,7 @@ const AllPosts: FunctionComponent<Posts> = (props): JSX.Element => {
   const [lensRef, setLensRef] = useState<HTMLImageElement | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  if (inputQuery!.length > 1 || inputQuery !== '') {
+  if (inputQuery.length > 1 || inputQuery !== '') {
     posts = posts.filter((post: Post) =>
       JSON.stringify(post).toLowerCase().includes(inputQuery.toLowerCase())
     );
