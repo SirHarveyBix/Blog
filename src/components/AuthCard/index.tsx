@@ -33,18 +33,17 @@ const AuthCard: FunctionComponent = () => {
     if (isLogin) {
       try {
         setRequestStatus('pending');
-        // TODO remove | any
-        const result: any = await signIn('credentials', {
+        const result = await signIn<'credentials'>('credentials', {
           redirect: false,
           email: enteredEmail.current?.value,
           password: enteredPassword.current?.value,
         });
         setRequestStatus('connected');
-        if (result.error) {
+        if (result?.error) {
           console.error(result.error);
           setRequestStatus('wrongPassword');
         }
-        if (!result.error) router.push('/hidden/budget');
+        if (!result?.error) router.push('/hidden/budget');
       } catch (error) {
         console.error(error);
       }

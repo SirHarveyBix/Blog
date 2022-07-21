@@ -1,10 +1,10 @@
-import { createContext, FunctionComponent, ReactNode, useEffect, useState } from 'react';
+import { createContext, FunctionComponent, PropsWithChildren, useEffect, useState } from 'react';
 
 import { NotificationContextType, NotificationType } from './type';
 
 export const NotificationContext = createContext<NotificationContextType | null>(null);
 
-export const NotificationContextProvider: FunctionComponent<ReactNode> = ({ children }) => {
+export const NotificationContextProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const [requestStatus, setRequestStatus] = useState<string | null>(null);
   const [notification, setNotification] = useState<NotificationType | null>(null);
 

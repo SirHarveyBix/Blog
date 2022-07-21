@@ -1,8 +1,8 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, PropsWithChildren } from 'react';
 
 import MainNavigation from './MainNavigation/index';
 
-const Layout: FunctionComponent = (props) => {
+const Layout: FunctionComponent<PropsWithChildren> = (props) => {
   return (
     <>
       <MainNavigation />
