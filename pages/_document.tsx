@@ -6,6 +6,7 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
+import { Fragment } from 'react';
 
 import { ServerStyleSheet } from 'styled-components';
 
@@ -23,12 +24,12 @@ class MyDocument extends Document {
       const initialProps = await Document.getInitialProps(context);
       return {
         ...initialProps,
-        styles: (
-          <>
+        styles: [
+          <Fragment key="1">
             {initialProps.styles}
             {sheet.getStyleElement()}
-          </>
-        ),
+          </Fragment>,
+        ],
       };
     } finally {
       sheet.seal();

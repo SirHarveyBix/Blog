@@ -14,6 +14,7 @@ import {
   ContentFrom,
   Control,
   Input,
+  Text,
   Label,
   Spacer,
   Title,
@@ -73,7 +74,7 @@ const AuthCard: FunctionComponent = () => {
         <AuthContainer>
           <ContentFrom onSubmit={submitHandler}>
             <Title>{isLogin ? 'Connection' : 'Creer un compte'}</Title>
-            <Control>
+            {/* <Control>
               <Label htmlFor="email">Email</Label>
               <Input ref={enteredEmail} type="email" id="email" required />
             </Control>
@@ -86,8 +87,10 @@ const AuthCard: FunctionComponent = () => {
               <Toogle type="button" onClick={() => setIsLogin(!isLogin)}>
                 {isLogin ? 'Creer un nouveau compte' : 'Se connecter'}
               </Toogle>
-            </Actions>
+            </Actions> */}
           </ContentFrom>
+          <Text>suite au passage payant de Heroku : </Text>
+          <Text>l'acces, ou la creation d'un compte n'est plus possible</Text>
         </AuthContainer>
       </Container>
       <Notification />

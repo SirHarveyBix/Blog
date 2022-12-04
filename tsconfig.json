@@ -18,6 +18,6 @@
     "baseUrl": "./",
     "incremental": true
   },
-  "exclude": ["node_modules", "utils"],
+  "exclude": ["node_modules", "utils", "**/*.js"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
