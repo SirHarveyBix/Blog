@@ -27,7 +27,7 @@ function Auth() {
         <title>La connection</title>
         <meta name="description" content="login" />
       </Head>
-      <NotificationContextProvider>
+      <NotificationContextProvider value={null}>
         <AuthCard />
       </NotificationContextProvider>
     </>

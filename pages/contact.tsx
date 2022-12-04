@@ -11,7 +11,7 @@ function ContactPage() {
         <title>contactez moi</title>
         <meta name="description" content="envoyez moi vos messages" />
       </Head>
-      <NotificationContextProvider>
+      <NotificationContextProvider value={null}>
         <ContactForm />;
       </NotificationContextProvider>
     </>

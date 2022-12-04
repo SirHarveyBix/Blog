@@ -1,18 +1,14 @@
 import { useQuery } from '@apollo/client';
 import { GetServerSidePropsContext } from 'next';
 import { Session } from 'next-auth';
-
 import { getSession } from 'next-auth/react';
 import { FunctionComponent, useEffect, useState } from 'react';
-
 import Budget from 'src/components/Budget';
-
 import { GET_BUDGET } from 'src/graphql/query';
 
 const BudgetPage: FunctionComponent<{ session: Session }> = ({ session }) => {
-  //TODO remove any
   const { loading, data } = useQuery(GET_BUDGET, {
-    variables: { data: { id: (session as any)!.user.id } },
+    variables: { data: { id: session.user && session.user.id } },
   });
   const [budget, setBudget] = useState();
 

@@ -40,6 +40,11 @@ export const Label = styled.label`
   margin-bottom: 0.5rem;
 `;
 
+export const Text = styled.div`
+  color: white;
+  margin: var(--size-2);
+`;
+
 export const Input = styled.input`
   font: inherit;
   background-color: #f1e1fc;

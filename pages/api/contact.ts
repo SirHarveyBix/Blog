@@ -17,8 +17,8 @@ export default async function handler(request: NextApiRequest, response: NextApi
       response.status(422).json({ message: 'Invalid input' });
       return;
     }
-    //TODO remove any
-    let newMessage: any = { email, name, message };
+
+    let newMessage: Record<string, any> = { email, name, message };
     try {
       newMessage = await client.mutate<FetchResult>({
         mutation: SEND_MESSAGE,

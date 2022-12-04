@@ -1,14 +1,6 @@
-import { Key, MouseEvent, ReactNode } from 'react';
+import { Key } from 'react';
 
-export interface Posts {
-  posts: {
-    //TODO remove any;
-    filter: any;
-    map(arg0: (post: Post) => JSX.Element): ReactNode;
-  };
-}
-
-export interface Post extends Posts {
+export interface Post {
   slug: string | Key;
   title: string;
   image: string;
@@ -17,12 +9,4 @@ export interface Post extends Posts {
   date: string;
   __typename?: string;
   isFeatured?: boolean;
-}
-export interface PostProps {
-  post: Post;
-}
-
-export interface OnClickRef extends MouseEvent {
-  //TODO remove | any;
-  target: HTMLImageElement | any;
 }

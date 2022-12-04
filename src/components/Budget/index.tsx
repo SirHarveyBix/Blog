@@ -13,7 +13,7 @@ const Budget: FunctionComponent<{ data?: BudgetData[]; loading: boolean }> = (pr
   return (
     <>
       <Spacer />
-      <NotificationContextProvider>
+      <NotificationContextProvider value={null}>
         <Container>
           <ContentFrom>
             <Title>Budget</Title>

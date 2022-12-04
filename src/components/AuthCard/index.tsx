@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { signIn } from 'next-auth/react';
+import { signIn, SignInResponse } from 'next-auth/react';
 import { FormEvent, FunctionComponent, useContext, useRef, useState } from 'react';
 
 import createUserRoute from '../../lib/createUser';
@@ -7,17 +7,18 @@ import { NotificationContext } from '../context/NotificationContext';
 import { NotificationContextType } from '../context/type';
 import Notification from '../Notification';
 import {
-  Actions,
+  // Actions,
   AuthContainer,
-  Button,
+  // Button,
   Container,
   ContentFrom,
-  Control,
-  Input,
-  Label,
+  // Control,
+  // Input,
+  Text,
+  // Label,
   Spacer,
   Title,
-  Toogle,
+  // Toogle,
 } from './style';
 
 const AuthCard: FunctionComponent = () => {
@@ -33,7 +34,7 @@ const AuthCard: FunctionComponent = () => {
     if (isLogin) {
       try {
         setRequestStatus('pending');
-        const result = await signIn<'credentials'>('credentials', {
+        const result: SignInResponse | undefined = await signIn('credentials', {
           redirect: false,
           email: enteredEmail.current?.value,
           password: enteredPassword.current?.value,
@@ -73,7 +74,7 @@ const AuthCard: FunctionComponent = () => {
         <AuthContainer>
           <ContentFrom onSubmit={submitHandler}>
             <Title>{isLogin ? 'Connection' : 'Creer un compte'}</Title>
-            <Control>
+            {/* <Control>
               <Label htmlFor="email">Email</Label>
               <Input ref={enteredEmail} type="email" id="email" required />
             </Control>
@@ -86,8 +87,10 @@ const AuthCard: FunctionComponent = () => {
               <Toogle type="button" onClick={() => setIsLogin(!isLogin)}>
                 {isLogin ? 'Creer un nouveau compte' : 'Se connecter'}
               </Toogle>
-            </Actions>
+            </Actions> */}
           </ContentFrom>
+          <Text>suite au passage payant de Heroku : </Text>
+          <Text>l'acces, ou la creation d'un compte n'est plus possible</Text>
         </AuthContainer>
       </Container>
       <Notification />

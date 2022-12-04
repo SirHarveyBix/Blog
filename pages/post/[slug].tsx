@@ -1,11 +1,11 @@
 import Head from 'next/head';
-
 import client from 'pages/api/graphql';
+import { FunctionComponent } from 'react';
 import PostContent from 'src/components/posts/postDetails/PostContent';
-import { PostProps } from 'src/components/posts/type';
+import { Post } from 'src/components/posts/type';
 import { ALL_POSTS, POST_DETAILS } from 'src/graphql/query';
 
-const PostDetailPage = (props: PostProps) => {
+const PostDetailPage: FunctionComponent<{ post: Post }> = (props) => {
   const { post } = props;
   return (
     <>
@@ -13,7 +13,7 @@ const PostDetailPage = (props: PostProps) => {
         <title>{post?.title}</title>
         <meta name="description" content={`${post?.excerpt}`} />
       </Head>
-      <PostContent {...post} />
+      <PostContent post={post} />
     </>
   );
 };

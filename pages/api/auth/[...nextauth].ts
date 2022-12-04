@@ -1,8 +1,6 @@
 import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-
+import CredentialsProvider, { CredentialInput } from 'next-auth/providers/credentials';
 import { CONNECT_USER, EXISTING_USER } from 'src/graphql/query';
-
 import client from '../graphql';
 import { ApolloError, ApolloQueryResult, NetworkStatus } from '@apollo/client';
 import { GraphQLError } from 'graphql';
@@ -38,12 +36,14 @@ export default NextAuth({
 
   providers: [
     CredentialsProvider({
-      authorize: async (credentials: any): Promise<{ id: string; email: string }> => {
+      authorize: async (
+        credentials: Record<string | symbol, string> | undefined
+      ): Promise<{ id: string; email: string }> => {
         let userExists: UserExists;
         try {
           userExists = await client.query({
             query: EXISTING_USER,
-            variables: { data: { email: credentials.email } },
+            variables: { data: { email: credentials?.email } },
           });
         } catch (error) {
           console.error(error);
@@ -58,7 +58,7 @@ export default NextAuth({
             query: CONNECT_USER,
             variables: {
               data: {
-                password: credentials.password,
+                password: credentials?.password,
                 dbPassword: userExists!.data.findExistingUser.password,
               },
             },
@@ -75,7 +75,7 @@ export default NextAuth({
           email: userExists!.data.findExistingUser.email,
         };
       },
-      credentials: null as any,
+      credentials: null as unknown as Record<string, CredentialInput>,
     }),
   ],
 });

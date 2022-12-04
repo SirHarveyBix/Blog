@@ -1,8 +1,9 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
+import { SessionProviderProps } from 'next-auth/react';
+import { FunctionComponent } from 'react';
 
 import MainNavigation from './MainNavigation/index';
 
-const Layout: FunctionComponent<PropsWithChildren> = (props) => {
+const Layout: FunctionComponent<SessionProviderProps> = (props) => {
   return (
     <>
       <MainNavigation />
