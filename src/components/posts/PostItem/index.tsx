@@ -1,5 +1,5 @@
 import Link from 'next/link';
-
+import { FunctionComponent } from 'react';
 import { Post } from '../type';
 import {
   Container,
@@ -12,8 +12,8 @@ import {
   Title,
 } from './style';
 
-function PostItem(props: Post) {
-  const { title, image, excerpt, date, slug } = props;
+const PostItem: FunctionComponent<{ post: Post }> = (props) => {
+  const { title, image, excerpt, date, slug } = props.post;
 
   const formattedDate = new Date(date).toLocaleDateString('fr-FR', {
     day: 'numeric',
@@ -40,5 +40,5 @@ function PostItem(props: Post) {
       </Link>
     </ListContainer>
   );
-}
+};
 export default PostItem;

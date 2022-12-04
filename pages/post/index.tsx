@@ -1,25 +1,12 @@
 import Head from 'next/head';
 
 import client from 'pages/api/graphql';
-import { FunctionComponent, Key, PropsWithChildren, ReactNode } from 'react';
+import { FunctionComponent } from 'react';
 import AllPosts from 'src/components/posts/AllPosts';
+import { Post } from 'src/components/posts/type';
 import { ALL_POSTS } from 'src/graphql/query';
 
-interface PostProps {
-  posts: {
-    slug: Key | string;
-    title: string;
-    image: string;
-    excerpt: string;
-    date: string;
-    __typename?: string;
-    isFeatured?: boolean;
-    filter: any;
-    map(arg0: (post: any) => JSX.Element): ReactNode;
-  };
-}
-
-const AllPostsPage: FunctionComponent<PropsWithChildren<PostProps>> = (props) => {
+const AllPostsPage: FunctionComponent<{ posts: Post[] }> = (props) => {
   const { posts } = props;
 
   return (

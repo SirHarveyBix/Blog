@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { signIn } from 'next-auth/react';
+import { signIn, SignInResponse } from 'next-auth/react';
 import { FormEvent, FunctionComponent, useContext, useRef, useState } from 'react';
 
 import createUserRoute from '../../lib/createUser';
@@ -7,18 +7,18 @@ import { NotificationContext } from '../context/NotificationContext';
 import { NotificationContextType } from '../context/type';
 import Notification from '../Notification';
 import {
-  Actions,
+  // Actions,
   AuthContainer,
-  Button,
+  // Button,
   Container,
   ContentFrom,
-  Control,
-  Input,
+  // Control,
+  // Input,
   Text,
-  Label,
+  // Label,
   Spacer,
   Title,
-  Toogle,
+  // Toogle,
 } from './style';
 
 const AuthCard: FunctionComponent = () => {
@@ -34,7 +34,7 @@ const AuthCard: FunctionComponent = () => {
     if (isLogin) {
       try {
         setRequestStatus('pending');
-        const result = await signIn<'credentials'>('credentials', {
+        const result: SignInResponse | undefined = await signIn('credentials', {
           redirect: false,
           email: enteredEmail.current?.value,
           password: enteredPassword.current?.value,

@@ -4,7 +4,9 @@ import { NotificationContextType, NotificationType } from './type';
 
 export const NotificationContext = createContext<NotificationContextType | null>(null);
 
-export const NotificationContextProvider: FunctionComponent<ProviderProps<NotificationContextType | null>> = ({ children }) => {
+export const NotificationContextProvider: FunctionComponent<
+  ProviderProps<NotificationContextType | null>
+> = ({ children }) => {
   const [requestStatus, setRequestStatus] = useState<string | null>(null);
   const [notification, setNotification] = useState<NotificationType | null>(null);
 

@@ -1,12 +1,10 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
-
+import { FunctionComponent } from 'react';
+import { Post } from 'src/components/posts/type';
 import PostsGrid from '../../posts/PostsGrid';
 import { Container, Title } from './style';
-import { Post } from './type';
 
-const FeaturedPosts: FunctionComponent<Post> = (props: PropsWithChildren<Post>) => {
+const FeaturedPosts: FunctionComponent<{ posts: Post[] }> = (props): JSX.Element => {
   const { posts } = props;
-
   return (
     <Container>
       <Title>Posts mis en avant</Title>

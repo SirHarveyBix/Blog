@@ -1,7 +1,7 @@
-import { Post } from '../../type';
+import { FunctionComponent } from 'react';
 import { Header, Picture, Title } from './style';
 
-function PostHeader(props: Post) {
+const PostHeader: FunctionComponent<{ title: string; image: string }> = (props) => {
   const { title, image } = props;
 
   return (
@@ -10,5 +10,5 @@ function PostHeader(props: Post) {
       <Picture src={image} alt={title} width={250} height={150} />
     </Header>
   );
-}
+};
 export default PostHeader;
