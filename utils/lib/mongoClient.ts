@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 
-const clientDB = async (db) => {
-  let chosenDB;
+const clientDB = async (db: string): Promise<MongoClient | unknown> => {
+  let chosenDB: string | undefined;
   if (db === 'Budget') {
     chosenDB =
       process.env.NODE_ENV === 'production'
@@ -17,10 +17,11 @@ const clientDB = async (db) => {
   }
   const connectionString = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.CLUSTER}.wyrhp.mongodb.net/${chosenDB}?retryWrites=true&w=majority`;
 
-  let client;
+  let client: MongoClient;
   try {
     client = await MongoClient.connect(connectionString);
   } catch (error) {
+
     console.error(error);
     return error;
   }

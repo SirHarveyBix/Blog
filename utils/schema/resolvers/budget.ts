@@ -1,14 +1,14 @@
-import { ObjectID } from 'mongodb';
+import { MongoClient, ObjectId, ObjectID, } from 'mongodb';
 
-import clientDB from '../../lib/mongoClient.js';
+import clientDB from '../../lib/mongoClient';
 
 const budgetResolver = {
   Query: {
-    async getAllBudget(_parent, { data: FindUserById }) {
-      const getClient = await clientDB('Budget');
+    async getAllBudget(_parent: undefined, { data: FindUserById }: { data: { id: string } }) {
+      const getClient = await clientDB('Budget') as MongoClient
       const db = getClient.db();
 
-      let data = [];
+      let data: { id: ObjectId; amount: number; label: string; author: { id: ObjectId }[] }[] = [];
       try {
         const results = await db
           .collection('budget')
@@ -22,7 +22,7 @@ const budgetResolver = {
             id: item._id,
             amount: item.amount,
             label: item.label,
-            author: item.author.map((element) => ({
+            author: item.author.map((element: any) => ({
               ...element,
             })),
           });
@@ -37,9 +37,10 @@ const budgetResolver = {
   },
   Mutation: {
     // TODO : is mandatory to check if, and which user is connected !
-    async createBudgetLine(_parent, { data: BudgetInput }) {
-      const getClient = await clientDB('Budget');
-      const db = getClient.db();
+    async createBudgetLine(_parent: undefined, { data: BudgetInput }: { data: { id: ObjectId } }) {
+
+      const getClient = await clientDB('Budget') as MongoClient;
+      const db = getClient.db()
       try {
         const result = await db.collection('budget').insertOne(BudgetInput);
         BudgetInput.id = result.insertedId;
@@ -50,11 +51,11 @@ const budgetResolver = {
       getClient.close();
       return BudgetInput;
     },
-    async removeBudgetById(_parent, { data: BudgetIdInput }) {
-      const getClient = await clientDB('Budget');
+    async removeBudgetById(_parent: undefined, { data: BudgetIdInput }: { data: { id: ObjectId } }) {
+      const getClient = await clientDB('Budget') as MongoClient;
       const db = getClient.db();
 
-      let result;
+      let result: { deletedCount: number; };
       try {
         result = await db.collection('budget').deleteOne({ _id: new ObjectID(BudgetIdInput.id) });
       } catch (error) {
@@ -65,11 +66,11 @@ const budgetResolver = {
       getClient.close();
       return;
     },
-    async updateBudgetById(_parent, { data: BudgetInput }) {
-      const getClient = await clientDB('Budget');
+    async updateBudgetById(_parent: undefined, { data: BudgetInput }: { data: { id: ObjectId, amount: number, label: string } }) {
+      const getClient = await clientDB('Budget') as MongoClient;
       const db = getClient.db();
 
-      let result;
+      let result: { modifiedCount: number; };
       try {
         result = await db
           .collection('budget')
