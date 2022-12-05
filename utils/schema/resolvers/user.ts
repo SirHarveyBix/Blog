@@ -1,10 +1,16 @@
-import { hashPassword, verifyPassword } from '../../lib/bcrypt.js';
-import clientDB from '../../lib/mongoClient.js';
+import { MongoClient, ObjectId } from 'mongodb';
+import { hashPassword, verifyPassword } from '../../lib/bcrypt';
+import clientDB from '../../lib/mongoClient';
 
 const userResolver = {
   Query: {
-    async findExistingUser(_parent, { data: userData }) {
-      const getClient = await clientDB('Auth');
+    async findExistingUser(_parent: null, { data: userData }: {
+      data: {
+        id: string;
+        email: string;
+      }
+    }) {
+      const getClient = await clientDB('Auth') as MongoClient;
       const db = getClient.db();
 
       let userExists;
@@ -17,19 +23,23 @@ const userResolver = {
       getClient.close();
       return userExists;
     },
-    async connectUser(_parent, { data: passwords }) {
+    async connectUser(_parent: null, { data: passwords }: any) {
       const isPasswordValid = await verifyPassword(passwords.password, passwords.dbPassword);
 
       return { isValid: isPasswordValid ? isPasswordValid : null };
     },
   },
   Mutation: {
-    async createUser(_parent, { data: userData }) {
-      const getClient = await clientDB('Auth');
+    async createUser(_parent: null, { data: userData }: any) {
+      const getClient = await clientDB('Auth') as MongoClient;
       const db = getClient.db();
 
       const hasedPassword = await hashPassword(userData.password);
-      const newUser = {
+      const newUser: {
+        email: string,
+        password: string,
+        id?: ObjectId
+      } = {
         email: userData.email,
         password: hasedPassword,
       };

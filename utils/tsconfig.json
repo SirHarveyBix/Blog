@@ -1,0 +1,23 @@
+{
+  "ts-node": {
+    "file": true
+  },
+  "compilerOptions": {
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2018",
+    "jsx": "preserve",
+    "strict": true,
+    "lib": ["es2018", "esnext.asynciterable"],
+    "module": "commonjs",
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["*.ts", "*.graphql", "server.ts"]
+}

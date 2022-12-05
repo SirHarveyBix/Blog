@@ -7,18 +7,18 @@ import { NotificationContext } from '../context/NotificationContext';
 import { NotificationContextType } from '../context/type';
 import Notification from '../Notification';
 import {
-  // Actions,
+  Actions,
   AuthContainer,
-  // Button,
+  Button,
   Container,
   ContentFrom,
-  // Control,
-  // Input,
+  Control,
+  Input,
   Text,
-  // Label,
+  Label,
   Spacer,
   Title,
-  // Toogle,
+  Toogle,
 } from './style';
 
 const AuthCard: FunctionComponent = () => {
@@ -72,25 +72,25 @@ const AuthCard: FunctionComponent = () => {
       <Spacer />
       <Container>
         <AuthContainer>
-          <ContentFrom onSubmit={submitHandler}>
-            <Title>{isLogin ? 'Connection' : 'Creer un compte'}</Title>
-            {/* <Control>
+          <ContentFrom onSubmit={ submitHandler }>
+            <Title>{ isLogin ? 'Connection' : 'Creer un compte' }</Title>
+            <Control>
               <Label htmlFor="email">Email</Label>
-              <Input ref={enteredEmail} type="email" id="email" required />
+              <Input ref={ enteredEmail } type="email" id="email" required />
             </Control>
             <Control>
               <Label htmlFor="password">Password</Label>
-              <Input ref={enteredPassword} type="password" id="password" required />
+              <Input ref={ enteredPassword } type="password" id="password" required />
             </Control>
             <Actions>
-              <Button type="submit">{isLogin ? 'Connection' : 'Creer un compte'}</Button>
-              <Toogle type="button" onClick={() => setIsLogin(!isLogin)}>
-                {isLogin ? 'Creer un nouveau compte' : 'Se connecter'}
+              <Button type="submit">{ isLogin ? 'Connection' : 'Creer un compte' }</Button>
+              <Toogle type="button" onClick={ () => setIsLogin(!isLogin) }>
+                { isLogin ? 'Creer un nouveau compte' : 'Se connecter' }
               </Toogle>
-            </Actions> */}
+            </Actions>
           </ContentFrom>
-          <Text>suite au passage payant de Heroku : </Text>
-          <Text>l'acces, ou la creation d'un compte n'est plus possible</Text>
+          {/* <Text>suite au passage payant de Heroku : </Text>
+          <Text>l'acces, ou la creation d'un compte n'est plus possible</Text> */}
         </AuthContainer>
       </Container>
       <Notification />
