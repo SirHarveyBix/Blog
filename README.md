@@ -27,9 +27,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ###### Backend :
 
-> The Backend : [bloggql.herokuapp.com/](https://bloggql.herokuapp.com/)
+> The Backend : [bloggql.herokuapp.com/](https://bloggql.up.railway.app/)
 >
-> Hosted by Heroku [admin panel](https://dashboard.heroku.com/apps/bloggql)
+> Hosted by railway.app
 
 --> _consider to editing Config Vars as you did in **.env** file : [Details](./utils/README.md)_
 
@@ -57,4 +57,4 @@ Before deploying your onwn app, edit meta tags on [pages](/blog/pages/)
 
 Frontend : [www.gui-dev.fr](https://www.gui-dev.fr/)
 
-Backend : [bloggql.herokuapp.com/](https://bloggql.herokuapp.com/)
+Backend : [bloggql.up.railway.app](https://bloggql.up.railway.app/)
