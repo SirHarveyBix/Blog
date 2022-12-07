@@ -8,7 +8,7 @@
     "yarn": "1.x"
   },
   "scripts": {
-    "cp": "copyfiles --error schema/typeDefs/*.* posts/*.* dist"
+    "build": "copyfiles --error schema/typeDefs/*.* posts/*.* dist && tsc -P ."
   },
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "^7.4.0",

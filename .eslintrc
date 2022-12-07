@@ -10,10 +10,8 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
-
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "next/babel",
     "next/core-web-vitals"
   ],
   "plugins": ["graphql", "simple-import-sort", "react-hooks", "@typescript-eslint"],
