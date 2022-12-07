@@ -1,5 +1,5 @@
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
-import { loadSchema, loadSchemaSync } from '@graphql-tools/load';
+import { loadSchemaSync } from '@graphql-tools/load';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { GraphQLSchema } from 'graphql';
 import { merge } from 'lodash';

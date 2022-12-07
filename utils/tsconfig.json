@@ -4,10 +4,13 @@
   },
   "compilerOptions": {
     "baseUrl": "./",
+    "outDir": "./dist",
+    "rootDir": "./",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es2018",
     "jsx": "preserve",
+    "allowJs": true,
     "strict": true,
     "lib": ["es2018", "esnext.asynciterable"],
     "module": "commonjs",
@@ -16,8 +19,16 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "declaration": true
   },
   "exclude": ["node_modules"],
-  "include": ["*.ts", "*.graphql", "server.ts"]
+  "include": [
+    "*.ts",
+    "./**/*.graphql",
+    "./**/*.md",
+    "server.ts",
+    "schema/typeDefs/documentNode.d.ts"
+  ]
+  // "files": ["./**/*.graphql", "./**/*.md", "*.md"]
 }

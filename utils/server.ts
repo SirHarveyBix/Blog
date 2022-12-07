@@ -1,4 +1,3 @@
-
 import { ApolloServer } from 'apollo-server';
 import {
   ApolloServerPluginInlineTrace,
@@ -10,7 +9,7 @@ import 'dotenv/config';
 
 const schema = applyMiddleware(executableSchema);
 
-const server:any = new ApolloServer({
+const server: any = new ApolloServer({
   // ssrMode: typeof window === 'undefined',
   schema,
   plugins: [
@@ -23,7 +22,7 @@ const server:any = new ApolloServer({
 
 const port = process.env.PORT || 4000;
 
-server.listen({ port: port }).then((port: { port: string; }) => {
+server.listen({ port: port }).then((port: { port: string }) => {
   console.info(`
     🚀  Server is ready at port ${JSON.stringify(port.port)}
     📭  Query at https://studio.apollographql.com/graph/${process.env.APOLLO_GRAPH_REF}
