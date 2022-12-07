@@ -4,6 +4,7 @@
   "npmClient": "yarn",
   "scripts": {
     "gql": "cd utils && nodemon --exec ts-node server.ts",
+    "build:gql": "cd utils && tsc -p .",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
