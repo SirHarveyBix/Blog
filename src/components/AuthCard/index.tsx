@@ -14,7 +14,6 @@ import {
   ContentFrom,
   Control,
   Input,
-  Text,
   Label,
   Spacer,
   Title,
@@ -89,8 +88,6 @@ const AuthCard: FunctionComponent = () => {
               </Toogle>
             </Actions>
           </ContentFrom>
-          {/* <Text>suite au passage payant de Heroku : </Text>
-          <Text>l'acces, ou la creation d'un compte n'est plus possible</Text> */}
         </AuthContainer>
       </Container>
       <Notification />

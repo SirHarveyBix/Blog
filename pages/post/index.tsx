@@ -1,5 +1,4 @@
 import Head from 'next/head';
-
 import client from 'pages/api/graphql';
 import { FunctionComponent } from 'react';
 import AllPosts from 'src/components/posts/AllPosts';

@@ -1,7 +1,5 @@
 import Head from 'next/head';
-
 import ContactForm from 'src/components/ContactForm/index';
-
 import { NotificationContextProvider } from 'src/components/context/NotificationContext';
 
 function ContactPage() {

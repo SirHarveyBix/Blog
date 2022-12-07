@@ -1,9 +1,10 @@
+import { ApolloError, ApolloQueryResult, NetworkStatus } from '@apollo/client';
+import { GraphQLError } from 'graphql';
 import NextAuth from 'next-auth';
 import CredentialsProvider, { CredentialInput } from 'next-auth/providers/credentials';
 import { CONNECT_USER, EXISTING_USER } from 'src/graphql/query';
+
 import client from '../graphql';
-import { ApolloError, ApolloQueryResult, NetworkStatus } from '@apollo/client';
-import { GraphQLError } from 'graphql';
 
 interface UserExists {
   data: any;

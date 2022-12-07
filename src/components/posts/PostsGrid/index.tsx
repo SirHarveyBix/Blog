@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+
 import PostItem from '../PostItem/index';
 import { Post } from '../type';
 import { Container } from './style';

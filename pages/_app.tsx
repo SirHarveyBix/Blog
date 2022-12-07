@@ -1,11 +1,10 @@
 import { ApolloProvider } from '@apollo/client';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
-
+import GlobalStyle from 'src/components/GlobalStyle';
 import Layout from 'src/components/layout/Layout';
 import { useApollo } from 'src/lib/apolloClient';
-import GlobalStyle from 'src/components/GlobalStyle';
-import type { AppProps } from 'next/app';
 
 function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo(pageProps.initialApolloState);

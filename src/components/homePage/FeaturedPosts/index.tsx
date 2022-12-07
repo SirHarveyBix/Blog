@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Post } from 'src/components/posts/type';
+
 import PostsGrid from '../../posts/PostsGrid';
 import { Container, Title } from './style';
 

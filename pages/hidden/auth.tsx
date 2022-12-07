@@ -1,12 +1,11 @@
+import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-
 import AuthCard from 'src/components/AuthCard/index';
 
 import { NotificationContextProvider } from '../../src/components/context/NotificationContext';
-import { GetServerSidePropsContext } from 'next';
 
 function Auth() {
   const router = useRouter();
