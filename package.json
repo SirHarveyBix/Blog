@@ -10,7 +10,7 @@
     "start": "next start",
     "watch": "tsc -w",
     "lint:gql": "cd utils && yarn lint",
-    "lint": "next lint --ext ts --ext tsx && cd utils && eslint '**/*.ts' --ignore-pattern node_modules",
+    "lint": "next lint --ext ts --ext tsx && cd utils --ignore-pattern node_modules",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
