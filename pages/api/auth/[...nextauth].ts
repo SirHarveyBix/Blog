@@ -7,7 +7,14 @@ import { CONNECT_USER, EXISTING_USER } from 'src/graphql/query';
 import client from '../graphql';
 
 interface UserExists {
-  data: any;
+  connectUser?: { isValid: boolean };
+  data: {
+    findExistingUser: {
+      _id: string;
+      password: string;
+      email: string;
+    };
+  };
   errors?: readonly GraphQLError[] | undefined;
   error?: ApolloError | undefined;
   loading?: boolean;
@@ -53,7 +60,7 @@ export default NextAuth({
           throw new Error("l'utilisateur n'existe pas !");
         }
 
-        let connectUser: ApolloQueryResult<any>;
+        let connectUser: ApolloQueryResult<UserExists>;
         try {
           connectUser = await client.query({
             query: CONNECT_USER,
@@ -67,7 +74,7 @@ export default NextAuth({
         } catch (error) {
           console.error(error);
         }
-        if (!connectUser!.data.connectUser.isValid) {
+        if (!connectUser!.data.connectUser?.isValid) {
           throw new Error('mauvais mot de passe');
         }
 
