@@ -5,6 +5,7 @@
     "commonjs": true
   },
   "parser": "@babel/eslint-parser",
+  "requireConfigFile": false,
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
