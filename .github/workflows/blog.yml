@@ -30,3 +30,9 @@ jobs:
 
       - name: Test if ESLint succeeds
         run: yarn lint && echo "🥳 ESLint proceeds successfully"
+
+      - run: cd utils && npm install -g yarn
+      - run: cd utils && yarn install --frozen-lockfile
+
+      - name: Test if yarn build succeeds
+        run: cd utils && yarn run copyfiles --error schema/typeDefs/*.* posts/*.* dist && yarn run tsc -P . && echo "👌 yarn build proceeds successfully"

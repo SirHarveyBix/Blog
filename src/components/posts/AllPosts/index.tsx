@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { FunctionComponent, useRef, useState } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
+
 import PostsGrid from '../PostsGrid/index';
 import { Post } from '../type';
 import { Container, Control, Input, Lablel, Spacer, Title } from './style';

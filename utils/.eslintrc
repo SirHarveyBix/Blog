@@ -1,11 +1,22 @@
 {
   "root": true,
   "env": {
-    "node": true
+    "node": true,
+    "commonjs": true
   },
-  "parser": "@babel/eslint-parser",
-  "extends": ["plugin:prettier/recommended"],
-  "plugins": ["graphql", "simple-import-sort"],
+
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "extends": ["eslint:recommended"],
+  "plugins": ["simple-import-sort"],
   "rules": {
     "simple-import-sort/imports": "warn",
     "prettier/prettier": [
@@ -17,11 +28,12 @@
       }
     ]
   },
+  "ignorePatterns": ["dist"],
   "settings": {
     "import/core-modules": ["path"],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".graphql", ".md"]
+        "extensions": [".ts", ".js", ".graphql", ".md"]
       }
     }
   }

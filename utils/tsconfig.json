@@ -19,16 +19,8 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "declaration": true
+    "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "include": [
-    "*.ts",
-    "./**/*.graphql",
-    "./**/*.md",
-    "server.ts",
-    "schema/typeDefs/documentNode.d.ts"
-  ]
-  // "files": ["./**/*.graphql", "./**/*.md", "*.md"]
+  "include": ["*.ts", "server.ts"]
 }

@@ -9,8 +9,9 @@
     "build": "next build",
     "start": "next start",
     "watch": "tsc -w",
-    "lint:gql": "cd utils && yarn lint",
-    "lint": "next lint --ext ts --ext tsx && cd utils && eslint '**/*.js' --ignore-pattern node_modules"
+    "lint:gql": "cd utils && eslint --ext ts && eslint '**/*.ts' --ignore-pattern node_modules",
+    "lint": "next lint --ext ts --ext tsx",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
     "@apollo/client": "^3.5.9",

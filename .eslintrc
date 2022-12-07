@@ -4,16 +4,16 @@
     "node": true,
     "commonjs": true
   },
-  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "parser": "@babel/eslint-parser"
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
-
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "next/babel",
     "next/core-web-vitals"
   ],
   "plugins": ["graphql", "simple-import-sort", "react-hooks", "@typescript-eslint"],
@@ -36,6 +36,7 @@
       }
     ]
   },
+  "ignorePatterns": ["utils"],
   "settings": {
     "import/core-modules": ["path"],
     "import/resolver": {

@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+
 import { Header, Picture, Title } from './style';
 
 const PostHeader: FunctionComponent<{ title: string; image: string }> = (props) => {

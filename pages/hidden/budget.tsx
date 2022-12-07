@@ -14,9 +14,9 @@ const BudgetPage: FunctionComponent<{ session: Session }> = ({ session }) => {
 
   useEffect(() => {
     if (!loading && data?.getAllBudget) setBudget(data.getAllBudget);
-  }, [data]);
+  }, [data, loading]);
 
-  return <Budget data={budget} loading={loading} />;
+  return <Budget data={ budget } loading={ loading } />;
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
