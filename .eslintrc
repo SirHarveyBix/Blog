@@ -4,8 +4,9 @@
     "node": true,
     "commonjs": true
   },
-  "parser": "@babel/eslint-parser",
-  "requireConfigFile": false,
+  "parserOptions": {
+    "parser": "@babel/eslint-parser"
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -35,6 +36,7 @@
       }
     ]
   },
+  "ignorePatterns": ["utils"],
   "settings": {
     "import/core-modules": ["path"],
     "import/resolver": {
