@@ -27,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ###### Backend :
 
-> The Backend : [bloggql.herokuapp.com/](https://bloggql.up.railway.app/)
+> The Backend : [bloggql.up.railway.app](https://bloggql.up.railway.app/)
 >
 > Hosted by railway.app
 
