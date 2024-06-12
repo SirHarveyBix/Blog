@@ -4,7 +4,7 @@ import useOnClickOutside from 'use-onclickoutside';
 
 import PostsGrid from '../PostsGrid/index';
 import { Post } from '../type';
-import { Container, Control, Input, Lablel, Spacer, Title } from './style';
+import { Container, Control, Input, Label, Spacer, Title } from './style';
 
 const AllPosts: FunctionComponent<{ posts: Post[] }> = (props): JSX.Element => {
   let { posts } = props;
@@ -20,7 +20,9 @@ const AllPosts: FunctionComponent<{ posts: Post[] }> = (props): JSX.Element => {
   }
 
   useOnClickOutside(inputRef, (event) => {
-    if (isInputOpen && lensRef !== event.target && !inputQuery) setIsInputOpen(false);
+    if (isInputOpen && lensRef !== event.target && !inputQuery) {
+      setIsInputOpen(false);
+    }
   });
 
   return (
@@ -29,7 +31,7 @@ const AllPosts: FunctionComponent<{ posts: Post[] }> = (props): JSX.Element => {
       <Container>
         <Title>Tout les Posts</Title>
         <Control>
-          <Lablel htmlFor="query" onClick={() => setIsInputOpen(!isInputOpen)}>
+          <Label htmlFor="query" onClick={() => setIsInputOpen(!isInputOpen)}>
             <Image
               onClick={(event) => setLensRef(event.target as HTMLImageElement)}
               src="/images/site/glass.png"
@@ -37,7 +39,7 @@ const AllPosts: FunctionComponent<{ posts: Post[] }> = (props): JSX.Element => {
               width={50}
               height={50}
             />
-          </Lablel>
+          </Label>
           {isInputOpen && (
             <Input
               ref={inputRef}

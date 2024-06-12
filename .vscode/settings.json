@@ -1,5 +1,9 @@
 {
-  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
   "editor.tabSize": 2,
   "editor.renderWhitespace": "trailing",
   "editor.autoIndent": "full",
@@ -12,9 +16,7 @@
     "enable": true
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "always"
   },
-  "eslint.packageManager": "yarn",
-  "eslint.quiet": true,
   "editor.formatOnSave": true
 }

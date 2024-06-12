@@ -5,27 +5,35 @@
     "commonjs": true
   },
   "parserOptions": {
-    "parser": "@babel/eslint-parser"
+    "parser": "@babel/eslint-parser",
+    "ecmaVersion": "latest"
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "next",
+    "plugin:@next/next/recommended",
+    "standard-with-typescript",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "next/core-web-vitals"
+    "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["graphql", "simple-import-sort", "react-hooks", "@typescript-eslint"],
+  "plugins": [
+    "graphql",
+    "simple-import-sort",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
   "rules": {
     "simple-import-sort/imports": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/no-unescaped-entities": "off",
     "react/no-children-prop": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-    "@typescript-eslint/no-empty-function": ["warn"],
-    "@typescript-eslint/ban-types": ["warn"],
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/no-unused-vars": 0,
     "prettier/prettier": [
       "error",
@@ -36,12 +44,21 @@
       }
     ]
   },
-  "ignorePatterns": ["utils"],
+  "ignorePatterns": [
+    "utils"
+  ],
   "settings": {
-    "import/core-modules": ["path"],
+    "import/core-modules": [
+      "path"
+    ],
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts", ".tsx", ".jsx"]
+        "extensions": [
+          ".js",
+          ".ts",
+          ".tsx",
+          ".jsx"
+        ]
       }
     },
     "react": {
