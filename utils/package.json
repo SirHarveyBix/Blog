@@ -20,7 +20,7 @@
     "graphql-middleware": "^6.1.31",
     "graphql-tool": "^1.0.0",
     "gray-matter": "^4.0.3",
-    "mongodb": "^4.8.0",
+    "mongodb": "^5.5.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.5",
     "copyfiles": "^2.4.1"
