@@ -11,9 +11,7 @@ const MainNavigation: FunctionComponent = () => {
   return (
     <Header>
       <Link href="/">
-        {/* <a> */}
         <Logo />
-        {/* </a> */}
       </Link>
       <nav>
         <Container>

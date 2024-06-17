@@ -31,7 +31,6 @@ const PostItem: FunctionComponent<{ post: Post }> = (props) => {
         <Container>
           <PictureContainer>
             <Picture src={imagePath} alt={title} width={275} height={150} />
-            {/* layout="responsive" */}
           </PictureContainer>
           <Content>
             <Title>{title}</Title>

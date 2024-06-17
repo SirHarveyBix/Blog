@@ -40,7 +40,6 @@ const EditBudget: FunctionComponent<BudgetDataProps> = (props) => {
           <PlainTextRow>
             <PlainText>{data.label}</PlainText>
             <PlainText>{data.amount} €</PlainText>
-            {/* layout="fixed" */}
             <EditButton
               alt="Editer"
               width={33}
