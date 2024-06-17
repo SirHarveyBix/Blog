@@ -31,26 +31,11 @@ const clientDB = async (db: string): Promise<MongoClient | unknown> => {
 
 export default clientDB;
 
-export const USERNAME = () => {
-  if (process.env.USERNAME != null) {
-    return process.env.USERNAME
+const CONNECTION_STRING = (chosenDB: string) => {
+  if (process.env.MONGO_CONNECTION_STRING != null) {
+    // unite: username, password, cluster, in case of MongoDB free cluster would close this account
+    return `${process.env.MONGO_CONNECTION_STRING}/${chosenDB}?retryWrites=true&w=majority`;
   }
-}
-
-export const PASSWORD = () => {
-  if (process.env.PASSWORD != null) {
-    return process.env.PASSWORD
-  }
-}
-
-export const CLUSTER = () => {
-  if (process.env.CLUSTER != null) {
-    return process.env.CLUSTER
-  }
-}
-
-const CONNECTION_STRING = (chosenDB: string): string => {
-  return `mongodb+srv://${USERNAME()}:${PASSWORD()}@${CLUSTER()}.nx4tb4v.mongodb.net/${chosenDB}?retryWrites=true&w=majority`;
 }
 
 export const BUDGET_DB_PROD = () => {

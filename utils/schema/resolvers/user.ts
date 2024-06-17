@@ -34,14 +34,14 @@ const userResolver = {
       const getClient = await clientDB('Auth') as MongoClient;
       const db = getClient.db();
 
-      const hasedPassword = await hashPassword(userData.password);
+      const hashedPassword = await hashPassword(userData.password);
       const newUser: {
         email: string,
         password: string,
         id?: ObjectId
       } = {
         email: userData.email,
-        password: hasedPassword,
+        password: hashedPassword,
       };
 
       try {
