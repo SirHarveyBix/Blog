@@ -21,7 +21,7 @@ export const Picture = styled(Image)`
   max-width: 600px;
 `;
 
-export const Content = styled.p`
+export const Content = styled.div`
   color: var(--color-grey-800);
 `;
 

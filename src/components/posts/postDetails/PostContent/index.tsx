@@ -18,14 +18,12 @@ const PostContent: FunctionComponent<{ post: Post }> = (props): JSX.Element => {
         const imageFormat = image.properties.src.split('-')[0];
 
         return (
-          <>
-            <Picture
-              src={`/images/posts/${post.slug}/${image.properties.src}`}
-              alt={image.alt}
-              width={imageFormat === 'banner' ? 650 : 600}
-              height={imageFormat === 'banner' ? 70 : 300}
-            />
-          </>
+          <Picture
+            src={`/images/posts/${post.slug}/${image.properties.src}`}
+            alt={image.alt ?? 'Random'}
+            width={imageFormat === 'banner' ? 650 : 600}
+            height={imageFormat === 'banner' ? 70 : 300}
+          />
         );
       }
       return <Content>{paragraph.children}</Content>;

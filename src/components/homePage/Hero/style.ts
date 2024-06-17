@@ -15,8 +15,8 @@ export const Picture = styled(Image)`
   margin: auto;
   object-fit: cover;
   object-position: top;
-  width: 100%;
-  height: 100%;
+  width: 25%;
+  height: 25%;
 `;
 
 export const Title = styled.h1`

@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId, ObjectID, } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
 import clientDB from '../../lib/mongoClient';
 
@@ -57,7 +57,7 @@ const budgetResolver = {
 
       let result: { deletedCount: number; };
       try {
-        result = await db.collection('budget').deleteOne({ _id: new ObjectID(BudgetIdInput.id) });
+        result = await db.collection('budget').deleteOne({ _id: new ObjectId(BudgetIdInput.id) });
       } catch (error) {
         return error;
       }
@@ -75,7 +75,7 @@ const budgetResolver = {
         result = await db
           .collection('budget')
           .updateOne(
-            { _id: new ObjectID(BudgetInput.id) },
+            { _id: new ObjectId(BudgetInput.id) },
             { $set: { amount: Number(BudgetInput?.amount), label: String(BudgetInput?.label) } }
           );
       } catch (error) {

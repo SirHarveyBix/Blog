@@ -56,6 +56,7 @@ const CreateLabel: FunctionComponent = () => {
             height={40}
             src="/images/site/valid-Icon.png"
             onClick={handleAddedInput}
+            alt="valider"
           />
         </Container>
       )}

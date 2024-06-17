@@ -27,7 +27,7 @@ export const Control = styled.div`
   align-items: center;
 `;
 
-export const Lablel = styled.label`
+export const Label = styled.label`
   margin: var(--size-2) 0 var(--size-1) 0;
   cursor: pointer;
 `;

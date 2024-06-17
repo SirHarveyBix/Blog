@@ -41,7 +41,7 @@ const EditBudget: FunctionComponent<BudgetDataProps> = (props) => {
             <PlainText>{data.label}</PlainText>
             <PlainText>{data.amount} €</PlainText>
             <EditButton
-              layout="fixed"
+              alt="Editer"
               width={33}
               height={33}
               src="/images/site/edit-icon.png"
@@ -72,12 +72,14 @@ const EditBudget: FunctionComponent<BudgetDataProps> = (props) => {
             width={40}
             height={40}
             src="/images/site/valid-Icon.png"
+            alt="Valider"
             onClick={handleUpdate}
           />
           <EditButton
             width={26}
             height={34}
             src="/images/site/delete-icon.png"
+            alt="Supprimer"
             onClick={() => removeBudget({ variables: { data: { id: data.id } } })}
           />
         </Control>

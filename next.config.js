@@ -2,9 +2,8 @@
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 require('dotenv').config();
 
-const commonnRules = {
+const commonRules = {
   reactStrictMode: true,
-  extends: ['plugin:@next/next/recommended'],
   eslint: { dirs: ['src'] },
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -18,14 +17,14 @@ const commonnRules = {
 module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
-      ...commonnRules,
+      ...commonRules,
       env: {
         URI: process.env.DEVELOPMENT_URI,
       },
     };
   }
   return {
-    ...commonnRules,
+    ...commonRules,
     env: {
       URI: process.env.PRODUCTION_URI,
     },
