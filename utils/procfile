@@ -1,2 +1,0 @@
-worker: copyfiles --error schema/typeDefs/*.* posts/*.* dist && tsc -p .
-web: node dist/server.js

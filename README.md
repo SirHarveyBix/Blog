@@ -15,7 +15,7 @@ yarn gql
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-###### Frontend :
+###### Frontend
 
 > The Frontend : [www.gui-dev.fr](https://www.gui-dev.fr/)
 >
@@ -25,13 +25,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 --> _you can add a **.vercelignore** file to force vercel not to deploys certains files / folder like "utils"_
 
-###### Backend :
+###### Backend
 
 > The Backend : [bloggql.up.railway.app](https://bloggql.up.railway.app/)
 >
 > Hosted by railway.app
 
 --> _consider to editing Config Vars as you did in **.env** file : [Details](./utils/README.md)_
+
+### MongoDB
+
+I choose to user [MongoDB ATLAS](https://cloud.mongodb.com/v2/666b080cc224f67e921c1b72#/overview),
+if you keep this choice, you must create a free M0 Cluster to store your datas, once proceed, dont forget to add your domain IP (_[Ionos](https://my.ionos.fr/domain-details/gui-dev.fr?linkId=ct.txt.domains.tools.show-details)_), to the IP whitelist : **Project > security > Network Access**
 
 ### Write Articles
 
@@ -53,7 +58,7 @@ Images must be stored in [/public/images/posts/[_ARTICLE-FILENAME_]](/blog/publi
 
 Before deploying your onwn app, edit meta tags on [pages](/blog/pages/)
 
-### Deployed :
+### Deployed
 
 Frontend : [www.gui-dev.fr](https://www.gui-dev.fr/)
 
