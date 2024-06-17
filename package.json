@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.4.5",
     "graphql": "^16.8.2",
     "graphql-tools": "^9.0.1",
     "next": "13.0.1",
