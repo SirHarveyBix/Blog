@@ -19,8 +19,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-        with:
-          node-version: 16.13.0
 
       - run: npm install -g yarn
       - run: yarn install --frozen-lockfile
