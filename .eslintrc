@@ -2,11 +2,17 @@
   "root": true,
   "env": {
     "node": true,
-    "commonjs": true
+    "commonjs": true,
+    "browser": true
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "parser": "@babel/eslint-parser",
-    "ecmaVersion": "latest"
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
   },
   "extends": [
     "eslint:recommended",
@@ -14,7 +20,7 @@
     "next",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
+    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
@@ -32,7 +38,7 @@
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/ban-types": "warn",
-    "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": "warn",
     "prettier/prettier": [
       "error",
       {
@@ -42,10 +48,10 @@
       }
     ]
   },
-  "ignorePatterns": [
-    "utils"
-  ],
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "import/core-modules": [
       "path"
     ],
@@ -58,9 +64,6 @@
           ".jsx"
         ]
       }
-    },
-    "react": {
-      "version": "detect"
     }
   }
 }
