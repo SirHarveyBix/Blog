@@ -21,7 +21,7 @@ export const Title = styled.h1`
   }
 `;
 
-export const Lablel = styled.label`
+export const Label = styled.label`
   display: block;
   font-family: 'Oswald', sans-serif;
   font-weight: bold;

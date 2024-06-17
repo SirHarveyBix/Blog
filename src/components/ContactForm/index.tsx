@@ -11,7 +11,7 @@ import {
   Control,
   Controls,
   Input,
-  Lablel,
+  Label,
   Spacer,
   Textarea,
   Title,
@@ -49,7 +49,7 @@ function ContactForm() {
         <form onSubmit={sendMessageHandler}>
           <Controls>
             <Control>
-              <Lablel htmlFor="email">Email</Lablel>
+              <Label htmlFor="email">Email</Label>
               <Input
                 type="email"
                 id="email"
@@ -59,7 +59,7 @@ function ContactForm() {
               />
             </Control>
             <Control>
-              <Lablel htmlFor="name">Nom</Lablel>
+              <Label htmlFor="name">Nom</Label>
               <Input
                 type="text"
                 id="name"
@@ -69,7 +69,7 @@ function ContactForm() {
               />
             </Control>
             <Control>
-              <Lablel htmlFor="message">Message</Lablel>
+              <Label htmlFor="message">Message</Label>
               <Textarea
                 id="message"
                 rows={5}
